@@ -215,7 +215,7 @@ namespace RCT2GA
             }
 
             //Apply the offset to the checksum
-            checksum -= 0x1D4C1;
+            checksum -= TD6ChecksumModifier;
 
             return checksum;
         }
