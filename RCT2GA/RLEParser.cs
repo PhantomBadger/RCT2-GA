@@ -12,7 +12,11 @@ namespace RCT2GA
     {
         const int TD6ChecksumModifier = 0x1D4C1;
 
-        //Decode the RLE Bytes
+        /// <summary>
+        /// Decodes the encoded bytes from Run-Length Encoding
+        /// </summary>
+        /// <param name="encodedBytes">The encoded byte array</param>
+        /// <returns>The decoded byte array</returns>
         public byte[] Decode(byte[] encodedBytes)
         {
             List<byte> decodedBytes = new List<byte>();
@@ -25,13 +29,13 @@ namespace RCT2GA
                 byte b = encodedBytes[i];
 
                 //Get the MSB
-                bool msb = GetBit(b, 1);
+                bool msb = ((b & 0x80) != 0);
 
                 //If MSB is false(0) then the byte is a counter of how many bytes to copy
                 if (!msb)
                 {
                     //Get the next x bytes
-                    int bCounter = Math.Abs(Convert.ToInt32(b)) + 1;
+                    int bCounter = b + 1;
 
                     //Go to the next byte
                     i++;
@@ -55,13 +59,14 @@ namespace RCT2GA
                         byte byteToCopy = encodedBytes[i + 1];
 
                         //Flip the byte and + 1, or we can just do 257 - the byte value and cheat a little bit
-                        int copyCounter = 257 - Math.Abs(Convert.ToInt32(b));
+                        int copyCounter = 257 - b;
 
                         for (int j = 0; j < copyCounter; j++)
                         {
                             decodedBytes.Add(byteToCopy);
                         }
 
+                        //Increment the counter to prevent going over the copy bit again
                         i++;
                     }
                     else
@@ -136,7 +141,7 @@ namespace RCT2GA
                     }
 
                     //Create the copy byte
-                    byte copyByte = Convert.ToByte(amountToCopy -1);
+                    byte copyByte = (byte)(amountToCopy -1);
 
                     encodedBytes.Add(copyByte);
                     for (int j = 0; j < bytesToCopy.Count(); j++)
@@ -194,10 +199,12 @@ namespace RCT2GA
 
         private bool GetBit(byte b, int bitNumber)
         {
-            string binaryString = Convert.ToString(b, 2).PadLeft(8, '0');
+            //string binaryString = Convert.ToString(b, 2).PadLeft(8, '0');
 
             //Turn into bool
-            return (binaryString[bitNumber - 1] != '0');
+            //return (binaryString[bitNumber - 1] != '0');
+
+            return (b & 0x80) != 0;
         }
 
         private uint CalculateChecksum(byte[] encodedBytes)
