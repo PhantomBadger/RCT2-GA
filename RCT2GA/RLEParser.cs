@@ -24,7 +24,7 @@ namespace RCT2GA
             //Decode the bytes - Run Length Encoding
 
             //Go through each byte
-            for (int i = 0; i < encodedBytes.Count(); i++)
+            for (int i = 0; i < encodedBytes.Length; i++)
             {
                 byte b = encodedBytes[i];
 
@@ -89,12 +89,12 @@ namespace RCT2GA
         {
             List<byte> encodedBytes = new List<byte>();
 
-            for (int i = 0; i < rawBytes.Count(); i++)
+            for (int i = 0; i < rawBytes.Length; i++)
             {
                 byte curByte = rawBytes[i];
 
                 //Check the next byte
-                if (i + 1 >= rawBytes.Count())
+                if (i + 1 >= rawBytes.Length)
                 {
                     //Next byte is end of file, so we done Im p sure
                     break;
@@ -112,12 +112,12 @@ namespace RCT2GA
                     bytesToCopy.Add(curByte);
 
                     //Set the 125 (0-124) copy cap as thats the size limit in the internal RCT program
-                    for (int j = i + 1; j < rawBytes.Count() && amountToCopy < 124; j++)
+                    for (int j = i + 1; j < rawBytes.Length && amountToCopy < 124; j++)
                     {
                         curByte = rawBytes[j];
 
                         //Check if the next value is the end
-                        if (j + 1 >= rawBytes.Count())
+                        if (j + 1 >= rawBytes.Length)
                         {
                             //If it is, we add our current and bail
                             bytesToCopy.Add(curByte);
@@ -159,7 +159,7 @@ namespace RCT2GA
                     byte byteToDuplicate = curByte;
                     int duplicateCount = 1;
 
-                    for (int j = i + 1; j < rawBytes.Count() - 1 && duplicateCount < 124; j++)
+                    for (int j = i + 1; j < rawBytes.Length - 1 && duplicateCount < 124; j++)
                     {
                         curByte = rawBytes[j];
                         peekByte = rawBytes[j + 1];
@@ -189,7 +189,7 @@ namespace RCT2GA
             byte[] checksumArray = BitConverter.GetBytes(checksum);
             //checksumArray = checksumArray.Reverse().ToArray();
 
-            for (int i = 0; i < checksumArray.Count(); i++)
+            for (int i = 0; i < checksumArray.Length; i++)
             {
                 encodedBytes.Add(checksumArray[i]);
             }
@@ -211,7 +211,7 @@ namespace RCT2GA
         {
             uint checksum = 0;
 
-            for (int i = 0; i < encodedBytes.Count(); i++)
+            for (int i = 0; i < encodedBytes.Length; i++)
             {
                 //Add to the summation register
                 //Use casting to byte to limit it to 8 bits
