@@ -13,17 +13,19 @@ namespace RCT2GA
         {
             //TEMP
             //CURRENTLY ONLY DECODES & RE-ENCODES AN ENTERED FILE
+
+            //Reports missing elements from data struct
             string missingKeys = "";
-            string[] enumNames = Enum.GetNames(typeof(RCT2.RCT2TrackElements.RCT2TrackElement));
+            string[] enumNames = Enum.GetNames(typeof(RideData.RCT2TrackElements.RCT2TrackElement));
             for (int i = 0; i < enumNames.Length; i++)
             {
-                if (!RCT2.RCT2TrackElements.TrackElementPropertyMap.ContainsKey((RCT2.RCT2TrackElements.RCT2TrackElement)Enum.Parse(typeof(RCT2.RCT2TrackElements.RCT2TrackElement), enumNames[i])))
+                if (!RideData.RCT2TrackElements.TrackElementPropertyMap.ContainsKey((RideData.RCT2TrackElements.RCT2TrackElement)Enum.Parse(typeof(RideData.RCT2TrackElements.RCT2TrackElement), enumNames[i])))
                 {
                     missingKeys += (enumNames[i]) + "\n";
                 }
             }
 
-            Console.WriteLine($"Size of elements dict is {RCT2.RCT2TrackElements.TrackElementPropertyMap.Count}");
+            Console.WriteLine($"Size of elements dict is {RideData.RCT2TrackElements.TrackElementPropertyMap.Count}");
             Console.ReadLine();
 
             //Test output decoded TD6 file

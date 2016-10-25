@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
-using RCT2GA.RCT2;
+using RCT2GA.RideData;
 
 namespace RCT2GA
 {
