@@ -241,12 +241,12 @@ namespace RCT2GA.RideData
                                         Decline25ToRightBankDecline25,
                                         LeftBankDecline25ToDecline25,
                                         RightBankDecline25ToDecline25,
-                                        LeftBankToLeftBankIncline25,
-                                        RightBankToRightBankIncline25,
+                                        LeftBankFlatToLeftBankIncline25,
+                                        RightBankFlatToRightBankIncline25,
                                         LeftBankIncline25ToLeftBankFlat,
                                         RightBankIncline25ToRightBankFlat,
-                                        LeftBankToLeftBankDecline25,
-                                        RightBankToRightBankDecline25,
+                                        LeftBankFlatToLeftBankDecline25,
+                                        RightBankFlatToRightBankDecline25,
                                         LeftBankDecline25ToLeftBankFlat,
                                         RightBankDecline25ToRightBankFlat,
                                         FlatToLeftBankIncline25,
@@ -268,6 +268,8 @@ namespace RCT2GA.RideData
         //Property map to link the enum to the relevent property
         //Location Change data adapted from the information found by Kevin Burke and showcased
         //on his github //https://github.com/kevinburke/rct/blob/master/tracks/segment.go
+
+        //Seems some values are incorrect, could cause issues with collisions
         public static Dictionary<RCT2TrackElement, RCT2ElementProperty> TrackElementPropertyMap = new Dictionary<RCT2TrackElement, RCT2ElementProperty>
         {
             { 
@@ -278,7 +280,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    SHFChange = new Vector3(0, 0, 1)
+                    Displacement = new Vector3(0, 0, 1)
                 }
             },
             { 
@@ -289,7 +291,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    SHFChange = new Vector3(0, 0, 1)
+                    Displacement = new Vector3(0, 0, 1)
                 }
             },
             { 
@@ -300,7 +302,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    SHFChange = new Vector3(0, 0, 1)
+                    Displacement = new Vector3(0, 0, 1)
                 }
             },
             { 
@@ -311,7 +313,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    SHFChange = new Vector3(0, 0, 1)
+                    Displacement = new Vector3(0, 0, 1)
                 }
             },
             { 
@@ -322,7 +324,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    SHFChange = new Vector3(0, 2, 1)
+                    Displacement = new Vector3(0, 2, 1)
                 }
             },
             { 
@@ -333,7 +335,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    SHFChange = new Vector3(0, 8, 1)
+                    Displacement = new Vector3(0, 8, 1)
                 }
             },
             { 
@@ -344,7 +346,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    SHFChange = new Vector3(0, 1, 1)
+                    Displacement = new Vector3(0, 1, 1)
                 }
             },
             { 
@@ -355,7 +357,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    SHFChange = new Vector3(0, 4, 1)
+                    Displacement = new Vector3(0, 4, 1)
                 }
             },
             { 
@@ -366,7 +368,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    SHFChange = new Vector3(0, 4, 1)
+                    Displacement = new Vector3(0, 4, 1)
                 }
             },
             { 
@@ -377,7 +379,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    SHFChange = new Vector3(0, 1, 1)
+                    Displacement = new Vector3(0, 1, 1)
                 }
             },
             { 
@@ -388,7 +390,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    SHFChange = new Vector3(0, -2, 1)
+                    Displacement = new Vector3(0, -2, 1)
                 }
             },
             { 
@@ -399,7 +401,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    SHFChange = new Vector3(0, -8, 1)
+                    Displacement = new Vector3(0, -8, 1)
                 }
             },
             { 
@@ -410,7 +412,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    SHFChange = new Vector3(0, -1, 1)
+                    Displacement = new Vector3(0, -1, 1)
                 }
             },
             { 
@@ -421,7 +423,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    SHFChange = new Vector3(0, -4, 1)
+                    Displacement = new Vector3(0, -4, 1)
                 }
             },
             { 
@@ -432,7 +434,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    SHFChange = new Vector3(0, -4, 1)
+                    Displacement = new Vector3(0, -4, 1)
                 }
             },
             { 
@@ -443,7 +445,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    SHFChange = new Vector3(0, -1, 1)
+                    Displacement = new Vector3(0, -1, 1)
                 }
             },
             { 
@@ -454,7 +456,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Left90,
-                    SHFChange = new Vector3(-3, 0, 3)
+                    Displacement = new Vector3(-3, 0, 3)
                 }
             },
             { 
@@ -465,7 +467,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Right90,
-                    SHFChange = new Vector3(3, 0, 3)
+                    Displacement = new Vector3(3, 0, 3)
                 }
             },
             { 
@@ -476,7 +478,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.Left,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    SHFChange = new Vector3(0, 0, 1)
+                    Displacement = new Vector3(0, 0, 1)
                 }
             },
             { 
@@ -487,7 +489,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.Right,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    SHFChange = new Vector3(0, 0, 1)
+                    Displacement = new Vector3(0, 0, 1)
                 }
             },
             { 
@@ -498,7 +500,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.Left,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    SHFChange = new Vector3(0, 0, 1)
+                    Displacement = new Vector3(0, 0, 1)
                 }
             },
             { 
@@ -509,7 +511,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.Right,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    SHFChange = new Vector3(0, 0, 1)
+                    Displacement = new Vector3(0, 0, 1)
                 }
             },
             { 
@@ -520,7 +522,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.Left,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.Left,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Left90,
-                    SHFChange = new Vector3(-3, 0, 3)
+                    Displacement = new Vector3(-3, 0, 3)
                 }
             },
             { 
@@ -531,7 +533,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.Right,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.Right,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    SHFChange = new Vector3(3, 0, 3)
+                    Displacement = new Vector3(3, 0, 3)
                 }
             },
             { 
@@ -542,7 +544,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.Left,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    SHFChange = new Vector3(0, 1, 1)
+                    Displacement = new Vector3(0, 1, 1)
                 }
             },
             { 
@@ -553,7 +555,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.Right,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    SHFChange = new Vector3(0, 1, 1)
+                    Displacement = new Vector3(0, 1, 1)
                 }
             },
             { 
@@ -564,7 +566,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.Left,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    SHFChange = new Vector3(0, 1, 1)
+                    Displacement = new Vector3(0, 1, 1)
                 }
             },
             { 
@@ -575,7 +577,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.Right,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    SHFChange = new Vector3(0, 1, 1)
+                    Displacement = new Vector3(0, 1, 1)
                 }
             },
             { 
@@ -586,7 +588,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.Left,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    SHFChange = new Vector3(0, -1, 1)
+                    Displacement = new Vector3(0, -1, 1)
                 }
             },
             { 
@@ -597,7 +599,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.Right,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    SHFChange = new Vector3(0, -1, 1)
+                    Displacement = new Vector3(0, -1, 1)
                 }
             },
             { 
@@ -608,7 +610,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.Left,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    SHFChange = new Vector3(0, -1, 1)
+                    Displacement = new Vector3(0, -1, 1)
                 }
             },
             { 
@@ -619,7 +621,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.Right,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    SHFChange = new Vector3(0, -1, 1)
+                    Displacement = new Vector3(0, -1, 1)
                 }
             },
             { 
@@ -630,7 +632,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.Left,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.Left,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    SHFChange = new Vector3(0, 0, 1)
+                    Displacement = new Vector3(0, 0, 1)
                 }
             },
             { 
@@ -641,7 +643,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.Right,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.Right,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    SHFChange = new Vector3(0, 0, 1)
+                    Displacement = new Vector3(0, 0, 1)
                 }
             },
             { 
@@ -652,7 +654,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Left90,
-                    SHFChange = new Vector3(-3, 8, 3)
+                    Displacement = new Vector3(-3, 8, 3)
                 }
             },
             { 
@@ -663,7 +665,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Right90,
-                    SHFChange = new Vector3(3, 8, 3)
+                    Displacement = new Vector3(3, 8, 3)
                 }
             },
             { 
@@ -674,7 +676,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Left90,
-                    SHFChange = new Vector3(-3, -8, 3)
+                    Displacement = new Vector3(-3, -8, 3)
                 }
             },
             { 
@@ -685,7 +687,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Right90,
-                    SHFChange = new Vector3(3, -8, 3)
+                    Displacement = new Vector3(3, -8, 3)
                 }
             },
             { 
@@ -696,7 +698,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    SHFChange = new Vector3(-2, 0, 3)
+                    Displacement = new Vector3(-2, 0, 3)
                 }
             },
             { 
@@ -707,7 +709,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    SHFChange = new Vector3(2, 0, 3)
+                    Displacement = new Vector3(2, 0, 3)
                 }
             },
             { 
@@ -718,7 +720,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    SHFChange = new Vector3(-2, 0, 2)
+                    Displacement = new Vector3(-2, 0, 2)
                 }
             },
             { 
@@ -729,7 +731,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    SHFChange = new Vector3(2, 0, 2)
+                    Displacement = new Vector3(2, 0, 2)
                 }
             },
             { 
@@ -740,7 +742,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Left90,
-                    SHFChange = new Vector3(-2, 0, 2)
+                    Displacement = new Vector3(-2, 0, 2)
                 }
             },
             { 
@@ -751,7 +753,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Right90,
-                    SHFChange = new Vector3(2, 0, 2)
+                    Displacement = new Vector3(2, 0, 2)
                 }
             },
             { 
@@ -762,7 +764,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.Left,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.Left,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Left90,
-                    SHFChange = new Vector3(-2, 0, 2)
+                    Displacement = new Vector3(-2, 0, 2)
                 }
             },
             { 
@@ -773,7 +775,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.Right,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.Right,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Right90,
-                    SHFChange = new Vector3(2, 0, 2)
+                    Displacement = new Vector3(2, 0, 2)
                 }
             },
             { 
@@ -784,7 +786,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Left90,
-                    SHFChange = new Vector3(-2, 4, 2)
+                    Displacement = new Vector3(-2, 4, 2)
                 }
             },
             { 
@@ -795,7 +797,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Right90,
-                    SHFChange = new Vector3(2, 4, 2)
+                    Displacement = new Vector3(2, 4, 2)
                 }
             },
             { 
@@ -806,7 +808,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Left90,
-                    SHFChange = new Vector3(-2, -4, 2)
+                    Displacement = new Vector3(-2, -4, 2)
                 }
             },
             { 
@@ -817,7 +819,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Right90,
-                    SHFChange = new Vector3(2, -4, 2)
+                    Displacement = new Vector3(2, -4, 2)
                 }
             },
             { 
@@ -828,7 +830,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Left90,
-                    SHFChange = new Vector3(0, 0, 1)
+                    Displacement = new Vector3(0, 0, 1)
                 }
             },
             { 
@@ -839,7 +841,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Right90,
-                    SHFChange = new Vector3(0, 0, 1)
+                    Displacement = new Vector3(0, 0, 1)
                 }
             },
             { 
@@ -850,7 +852,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.Flipped,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    SHFChange = new Vector3(0, 2, 3)
+                    Displacement = new Vector3(0, 2, 3)
                 }
             },
             { 
@@ -861,7 +863,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.Flipped,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    SHFChange = new Vector3(0, 2, 3)
+                    Displacement = new Vector3(0, 2, 3)
                 }
             },
             { 
@@ -872,7 +874,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.Flipped,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    SHFChange = new Vector3(0, -2, 3)
+                    Displacement = new Vector3(0, -2, 3)
                 }
             },
             { 
@@ -883,7 +885,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.Flipped,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    SHFChange = new Vector3(0, -2, 3)
+                    Displacement = new Vector3(0, -2, 3)
                 }
             },
             { 
@@ -894,7 +896,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.Flipped,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Reverse180,
-                    SHFChange = new Vector3(0, 19, 2)
+                    Displacement = new Vector3(0, 19, 2)
                 }
             },
             { 
@@ -905,7 +907,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.Flipped,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Reverse180,
-                    SHFChange = new Vector3(0, -13, 0)
+                    Displacement = new Vector3(0, -13, 0)
                 }
             },
             { 
@@ -916,7 +918,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.Flipped,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Left90,
-                    SHFChange = new Vector3(-2, 10, 2)
+                    Displacement = new Vector3(-2, 10, 2)
                 }
             },
             { 
@@ -927,7 +929,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.Flipped,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Right90,
-                    SHFChange = new Vector3(2, 10, 2)
+                    Displacement = new Vector3(2, 10, 2)
                 }
             },
             { 
@@ -938,7 +940,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.Flipped,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Left90,
-                    SHFChange = new Vector3(-2, -10, 2)
+                    Displacement = new Vector3(-2, -10, 2)
                 }
             },
             { 
@@ -949,7 +951,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.Flipped,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Right90,
-                    SHFChange = new Vector3(2, -10, 2)
+                    Displacement = new Vector3(2, -10, 2)
                 }
             },
             { 
@@ -960,7 +962,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    SHFChange = new Vector3(0, 3, 1)
+                    Displacement = new Vector3(0, 3, 1)
                 }
             },
             { 
@@ -971,7 +973,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    SHFChange = new Vector3(0, 3, 1)
+                    Displacement = new Vector3(0, 3, 1)
                 }
             },
             { 
@@ -982,7 +984,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.Flipped,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    SHFChange = new Vector3(0, -3, 1)
+                    Displacement = new Vector3(0, -3, 1)
                 }
             },
             { 
@@ -993,7 +995,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    SHFChange = new Vector3(0, -3, 1)
+                    Displacement = new Vector3(0, -3, 1)
                 }
             },
             { 
@@ -1004,7 +1006,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    SHFChange = new Vector3(0, 12, 0)
+                    Displacement = new Vector3(0, 12, 0)
                 }
             },
             { 
@@ -1015,7 +1017,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    SHFChange = new Vector3(0, 4, 0)
+                    Displacement = new Vector3(0, 4, 0)
                 }
             },
             { 
@@ -1026,7 +1028,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    SHFChange = new Vector3(0, 0, 1)
+                    Displacement = new Vector3(0, 0, 1)
                 }
             },
             { 
@@ -1037,7 +1039,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    SHFChange = new Vector3(0, 2, 1)
+                    Displacement = new Vector3(0, 2, 1)
                 }
             },
             { 
@@ -1048,7 +1050,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    SHFChange = new Vector3(0, 8, 1)
+                    Displacement = new Vector3(0, 8, 1)
                 }
             },
             { 
@@ -1059,7 +1061,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    SHFChange = new Vector3(0, 1, 1)
+                    Displacement = new Vector3(0, 1, 1)
                 }
             },
             { 
@@ -1070,7 +1072,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    SHFChange = new Vector3(0, 4, 1)
+                    Displacement = new Vector3(0, 4, 1)
                 }
             },
             { 
@@ -1081,7 +1083,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    SHFChange = new Vector3(0, 4, 1)
+                    Displacement = new Vector3(0, 4, 1)
                 }
             },
             { 
@@ -1092,7 +1094,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    SHFChange = new Vector3(0, 1, 1)
+                    Displacement = new Vector3(0, 1, 1)
                 }
             },
             { 
@@ -1103,7 +1105,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    SHFChange = new Vector3(0, -2, 1)
+                    Displacement = new Vector3(0, -2, 1)
                 }
             },
             { 
@@ -1114,7 +1116,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    SHFChange = new Vector3(0, -8, 1)
+                    Displacement = new Vector3(0, -8, 1)
                 }
             },
             { 
@@ -1125,7 +1127,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    SHFChange = new Vector3(0, -1, 1)
+                    Displacement = new Vector3(0, -1, 1)
                 }
             },
             { 
@@ -1136,7 +1138,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    SHFChange = new Vector3(0, -4, 1)
+                    Displacement = new Vector3(0, -4, 1)
                 }
             },
             { 
@@ -1147,7 +1149,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    SHFChange = new Vector3(0, -4, 1)
+                    Displacement = new Vector3(0, -4, 1)
                 }
             },
             { 
@@ -1158,7 +1160,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    SHFChange = new Vector3(0, -1, 1)
+                    Displacement = new Vector3(0, -1, 1)
                 }
             },
             { 
@@ -1169,7 +1171,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Left90,
-                    SHFChange = new Vector3(-3, 0, 3)
+                    Displacement = new Vector3(-3, 0, 3)
                 }
             },
             { 
@@ -1180,7 +1182,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Right90,
-                    SHFChange = new Vector3(3, 0, 3)
+                    Displacement = new Vector3(3, 0, 3)
                 }
             },
             { 
@@ -1191,7 +1193,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    SHFChange = new Vector3(-2, 0, 3)
+                    Displacement = new Vector3(-2, 0, 3)
                 }
             },
             { 
@@ -1202,7 +1204,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    SHFChange = new Vector3(2, 0, 3)
+                    Displacement = new Vector3(2, 0, 3)
                 }
             },
             { 
@@ -1213,7 +1215,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Left90,
-                    SHFChange = new Vector3(-2, 0, 2)
+                    Displacement = new Vector3(-2, 0, 2)
                 }
             },
             { 
@@ -1224,7 +1226,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Right90,
-                    SHFChange = new Vector3(2, 0, 2)
+                    Displacement = new Vector3(2, 0, 2)
                 }
             },
             { 
@@ -1235,7 +1237,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.Left,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.Left,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Reverse180,
-                    SHFChange = new Vector3(-4, 2, 1)
+                    Displacement = new Vector3(-4, 2, 1)
                 }
             },
             { 
@@ -1246,7 +1248,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.Right,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.Right,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Reverse180,
-                    SHFChange = new Vector3(4, 2, 1)
+                    Displacement = new Vector3(4, 2, 1)
                 }
             },
             { 
@@ -1257,7 +1259,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.Left,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.Left,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Reverse180,
-                    SHFChange = new Vector3(-4, -2, 1)
+                    Displacement = new Vector3(-4, -2, 1)
                 }
             },
             { 
@@ -1268,7 +1270,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.Right,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.Right,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Reverse180,
-                    SHFChange = new Vector3(4, -2, 1)
+                    Displacement = new Vector3(4, -2, 1)
                 }
             },
             { 
@@ -1279,7 +1281,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.Left,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.Left,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Reverse180,
-                    SHFChange = new Vector3(-4, 2, 1)
+                    Displacement = new Vector3(-4, 2, 1)
                 }
             },
             { 
@@ -1290,7 +1292,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.Right,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.Right,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Reverse180,
-                    SHFChange = new Vector3(4, 2, 1)
+                    Displacement = new Vector3(4, 2, 1)
                 }
             },
             { 
@@ -1301,7 +1303,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.Left,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.Left,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Reverse180,
-                    SHFChange = new Vector3(-4, -2, 1)
+                    Displacement = new Vector3(-4, -2, 1)
                 }
             },
             { 
@@ -1312,7 +1314,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.Right,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.Right,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Reverse180,
-                    SHFChange = new Vector3(4, -2, 1)
+                    Displacement = new Vector3(4, -2, 1)
                 }
             },
             { 
@@ -1323,7 +1325,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Left90,
-                    SHFChange = new Vector3(0, 8, 1)
+                    Displacement = new Vector3(0, 8, 1)
                 }
             },
             { 
@@ -1334,7 +1336,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Right90,
-                    SHFChange = new Vector3(0, 8, 1)
+                    Displacement = new Vector3(0, 8, 1)
                 }
             },
             { 
@@ -1345,7 +1347,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Left90,
-                    SHFChange = new Vector3(0, -8, 1)
+                    Displacement = new Vector3(0, -8, 1)
                 }
             },
             { 
@@ -1356,7 +1358,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Right90,
-                    SHFChange = new Vector3(0, -8, 1)
+                    Displacement = new Vector3(0, -8, 1)
                 }
             },
             { 
@@ -1367,7 +1369,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    SHFChange = new Vector3(0, 0, 1)
+                    Displacement = new Vector3(0, 0, 1)
                 }
             },
             { 
@@ -1378,7 +1380,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    SHFChange = new Vector3(0, 0, 1)
+                    Displacement = new Vector3(0, 0, 1)
                 }
             },
             { 
@@ -1389,7 +1391,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    SHFChange = new Vector3(0, 0, 1)
+                    Displacement = new Vector3(0, 0, 1)
                 }
             },
             { 
@@ -1400,7 +1402,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.Left,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.Left,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Left90,
-                    SHFChange = new Vector3(-3, 2, 3)
+                    Displacement = new Vector3(-3, 2, 3)
                 }
             },
             { 
@@ -1411,7 +1413,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.Right,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.Right,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Right90,
-                    SHFChange = new Vector3(3, 2, 3)
+                    Displacement = new Vector3(3, 2, 3)
                 }
             },
             { 
@@ -1422,7 +1424,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.Left,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.Left,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Left90,
-                    SHFChange = new Vector3(-3, -2, 3)
+                    Displacement = new Vector3(-3, -2, 3)
                 }
             },
             { 
@@ -1433,7 +1435,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.Right,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.Right,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Right90,
-                    SHFChange = new Vector3(3, -2, 3)
+                    Displacement = new Vector3(3, -2, 3)
                 }
             },
             { 
@@ -1444,7 +1446,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Left90,
-                    SHFChange = new Vector3(-3, 2, 3)
+                    Displacement = new Vector3(-3, 2, 3)
                 }
             },
             { 
@@ -1455,7 +1457,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Right90,
-                    SHFChange = new Vector3(3, 2, 3)
+                    Displacement = new Vector3(3, 2, 3)
                 }
             },
             { 
@@ -1466,7 +1468,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Left90,
-                    SHFChange = new Vector3(-3, -2, 3)
+                    Displacement = new Vector3(-3, -2, 3)
                 }
             },
             { 
@@ -1477,7 +1479,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Right90,
-                    SHFChange = new Vector3(3, -2, 3)
+                    Displacement = new Vector3(3, -2, 3)
                 }
             },
             { 
@@ -1488,7 +1490,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.Left,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.Left,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    SHFChange = new Vector3(0, 2, 1)
+                    Displacement = new Vector3(0, 2, 1)
                 }
             },
             { 
@@ -1499,7 +1501,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.Right,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.Right,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    SHFChange = new Vector3(0, 2, 1)
+                    Displacement = new Vector3(0, 2, 1)
                 }
             },
             { 
@@ -1510,7 +1512,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    SHFChange = new Vector3(0, 0, 1)
+                    Displacement = new Vector3(0, 0, 1)
                 }
             },
             { 
@@ -1521,7 +1523,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    SHFChange = new Vector3(0, 0, 1)
+                    Displacement = new Vector3(0, 0, 1)
                 }
             },
             { 
@@ -1532,7 +1534,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    SHFChange = new Vector3(0, 0, 1)
+                    Displacement = new Vector3(0, 0, 1)
                 }
             },
             { 
@@ -1543,7 +1545,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.Left,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.Left,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    SHFChange = new Vector3(0, -2, 1)
+                    Displacement = new Vector3(0, -2, 1)
                 }
             },
             { 
@@ -1554,7 +1556,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.Right,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.Right,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    SHFChange = new Vector3(0, -2, 1)
+                    Displacement = new Vector3(0, -2, 1)
                 }
             },
             { 
@@ -1565,7 +1567,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    SHFChange = new Vector3(0, 2, 5)
+                    Displacement = new Vector3(0, 2, 5)
                 }
             },
             { 
@@ -1576,7 +1578,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    SHFChange = new Vector3(0, 11, 4)
+                    Displacement = new Vector3(0, 11, 4)
                 }
             },
             { 
@@ -1587,7 +1589,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    SHFChange = new Vector3(0, 11, 4)
+                    Displacement = new Vector3(0, 11, 4)
                 }
             },
             { 
@@ -1598,7 +1600,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    SHFChange = new Vector3(0, 0, 1)
+                    Displacement = new Vector3(0, 0, 1)
                 }
             },
             { 
@@ -1609,7 +1611,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    SHFChange = new Vector3(0, -11, 4)
+                    Displacement = new Vector3(0, -11, 4)
                 }
             },
             { 
@@ -1620,7 +1622,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    SHFChange = new Vector3(0, -11, 4)
+                    Displacement = new Vector3(0, -11, 4)
                 }
             },
             { 
@@ -1631,7 +1633,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    SHFChange = new Vector3(0, 20, 4)
+                    Displacement = new Vector3(0, 20, 4)
                 }
             },
             { 
@@ -1642,7 +1644,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    SHFChange = new Vector3(0, -2, 6)
+                    Displacement = new Vector3(0, -2, 6)
                 }
             },
             { 
@@ -1653,7 +1655,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    SHFChange = new Vector3(0, 10, 0)
+                    Displacement = new Vector3(0, 10, 0)
                 }
             },
             { 
@@ -1664,7 +1666,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    SHFChange = new Vector3(0, 4, 0)
+                    Displacement = new Vector3(0, 4, 0)
                 }
             },
             { 
@@ -1675,7 +1677,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    SHFChange = new Vector3(0, -4, 0)
+                    Displacement = new Vector3(0, -4, 0)
                 }
             },
             { 
@@ -1686,7 +1688,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    SHFChange = new Vector3(0, 7, 0)
+                    Displacement = new Vector3(0, 7, 0)
                 }
             },
             { 
@@ -1697,7 +1699,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    SHFChange = new Vector3(0, -7, 1)
+                    Displacement = new Vector3(0, -7, 1)
                 }
             },
             { 
@@ -1708,7 +1710,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    SHFChange = new Vector3(0, 7, 1)
+                    Displacement = new Vector3(0, 7, 1)
                 }
             },
             { 
@@ -1719,7 +1721,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    SHFChange = new Vector3(0, -7, 0)
+                    Displacement = new Vector3(0, -7, 0)
                 }
             },
             { 
@@ -1730,7 +1732,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    SHFChange = new Vector3(0, -3, 1)
+                    Displacement = new Vector3(0, -3, 1)
                 }
             },
             { 
@@ -1741,7 +1743,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.DiagonalLeft,
-                    SHFChange = new Vector3(-2, 0, 3)
+                    Displacement = new Vector3(-2, 0, 3)
                 }
             },
             { 
@@ -1752,7 +1754,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.DiagonalRight,
-                    SHFChange = new Vector3(2, 0, 3)
+                    Displacement = new Vector3(2, 0, 3)
                 }
             },
             { 
@@ -1763,7 +1765,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.DiagonalLeft,
-                    SHFChange = new Vector3(-2, 0, 3)
+                    Displacement = new Vector3(-2, 0, 3)
                 }
             },
             { 
@@ -1774,7 +1776,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.DiagonalRight,
-                    SHFChange = new Vector3(2, 0, 3)
+                    Displacement = new Vector3(2, 0, 3)
                 }
             },
             { 
@@ -1785,7 +1787,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.Left,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.Left,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.DiagonalLeft,
-                    SHFChange = new Vector3(-2, 0, 3)
+                    Displacement = new Vector3(-2, 0, 3)
                 }
             },
             { 
@@ -1796,7 +1798,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.Right,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.Right,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.DiagonalRight,
-                    SHFChange = new Vector3(2, 0, 3)
+                    Displacement = new Vector3(2, 0, 3)
                 }
             },
             { 
@@ -1807,7 +1809,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.Left,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.Left,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.DiagonalLeft,
-                    SHFChange = new Vector3(-2, 0, 3)
+                    Displacement = new Vector3(-2, 0, 3)
                 }
             },
             { 
@@ -1818,7 +1820,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.Right,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.Right,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.DiagonalRight,
-                    SHFChange = new Vector3(2, 0, 3)
+                    Displacement = new Vector3(2, 0, 3)
                 }
             },
             { 
@@ -1829,7 +1831,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.DiagonalStraight,
-                    SHFChange = new Vector3(0, 0, 2)
+                    Displacement = new Vector3(0, 0, 2)
                 }
             },
             { 
@@ -1840,7 +1842,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.DiagonalStraight,
-                    SHFChange = new Vector3(0, 2, 2)
+                    Displacement = new Vector3(0, 2, 2)
                 }
             },
             { 
@@ -1851,7 +1853,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.DiagonalStraight,
-                    SHFChange = new Vector3(0, 8, 2)
+                    Displacement = new Vector3(0, 8, 2)
                 }
             },
             { 
@@ -1862,7 +1864,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.DiagonalStraight,
-                    SHFChange = new Vector3(0, 1, 2)
+                    Displacement = new Vector3(0, 1, 2)
                 }
             },
             { 
@@ -1873,7 +1875,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.DiagonalStraight,
-                    SHFChange = new Vector3(0, 4, 2)
+                    Displacement = new Vector3(0, 4, 2)
                 }
             },
             { 
@@ -1884,7 +1886,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.DiagonalStraight,
-                    SHFChange = new Vector3(0, 4, 2)
+                    Displacement = new Vector3(0, 4, 2)
                 }
             },
             { 
@@ -1895,7 +1897,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.DiagonalStraight,
-                    SHFChange = new Vector3(0, 1, 2)
+                    Displacement = new Vector3(0, 1, 2)
                 }
             },
             { 
@@ -1906,7 +1908,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.DiagonalStraight,
-                    SHFChange = new Vector3(0, -2, 2)
+                    Displacement = new Vector3(0, -2, 2)
                 }
             },
             { 
@@ -1917,7 +1919,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.DiagonalStraight,
-                    SHFChange = new Vector3(0, -8, 2)
+                    Displacement = new Vector3(0, -8, 2)
                 }
             },
             { 
@@ -1928,7 +1930,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.DiagonalStraight,
-                    SHFChange = new Vector3(0, -1, 2)
+                    Displacement = new Vector3(0, -1, 2)
                 }
             },
             { 
@@ -1939,7 +1941,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.DiagonalStraight,
-                    SHFChange = new Vector3(0, -4, 2)
+                    Displacement = new Vector3(0, -4, 2)
                 }
             },
             { 
@@ -1950,7 +1952,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.DiagonalStraight,
-                    SHFChange = new Vector3(0, -4, 2)
+                    Displacement = new Vector3(0, -4, 2)
                 }
             },
             { 
@@ -1961,7 +1963,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.DiagonalStraight,
-                    SHFChange = new Vector3(0, -1, 2)
+                    Displacement = new Vector3(0, -1, 2)
                 }
             },
             { 
@@ -1972,7 +1974,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.DiagonalStraight,
-                    SHFChange = new Vector3(0, 3, 2)
+                    Displacement = new Vector3(0, 3, 2)
                 }
             },
             { 
@@ -1983,7 +1985,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.DiagonalStraight,
-                    SHFChange = new Vector3(0, 3, 2)
+                    Displacement = new Vector3(0, 3, 2)
                 }
             },
             { 
@@ -1994,7 +1996,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.DiagonalStraight,
-                    SHFChange = new Vector3(0, -3, 2)
+                    Displacement = new Vector3(0, -3, 2)
                 }
             },
             { 
@@ -2005,7 +2007,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.DiagonalStraight,
-                    SHFChange = new Vector3(0, -3, 2)
+                    Displacement = new Vector3(0, -3, 2)
                 }
             },
             { 
@@ -2016,7 +2018,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.Left,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.DiagonalStraight,
-                    SHFChange = new Vector3(0, 0, 2)
+                    Displacement = new Vector3(0, 0, 2)
                 }
             },
             { 
@@ -2027,7 +2029,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.Right,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.DiagonalStraight,
-                    SHFChange = new Vector3(0, 0, 2)
+                    Displacement = new Vector3(0, 0, 2)
                 }
             },
             { 
@@ -2038,7 +2040,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.Left,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.DiagonalStraight,
-                    SHFChange = new Vector3(0, 0, 2)
+                    Displacement = new Vector3(0, 0, 2)
                 }
             },
             { 
@@ -2049,7 +2051,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.Right,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.DiagonalStraight,
-                    SHFChange = new Vector3(0, 0, 2)
+                    Displacement = new Vector3(0, 0, 2)
                 }
             },
             { 
@@ -2060,7 +2062,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.Left,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.DiagonalStraight,
-                    SHFChange = new Vector3(0, 1, 2)
+                    Displacement = new Vector3(0, 1, 2)
                 }
             },
             { 
@@ -2071,7 +2073,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.DiagonalStraight,
-                    SHFChange = new Vector3(0, 1, 2)
+                    Displacement = new Vector3(0, 1, 2)
                 }
             },
             { 
@@ -2082,7 +2084,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.Left,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.DiagonalStraight,
-                    SHFChange = new Vector3(0, 1, 2)
+                    Displacement = new Vector3(0, 1, 2)
                 }
             },
             { 
@@ -2093,7 +2095,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.Right,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.DiagonalStraight,
-                    SHFChange = new Vector3(0, 1, 2)
+                    Displacement = new Vector3(0, 1, 2)
                 }
             },
             { 
@@ -2104,7 +2106,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.Left,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.DiagonalStraight,
-                    SHFChange = new Vector3(0, -1, 2)
+                    Displacement = new Vector3(0, -1, 2)
                 }
             },
             { 
@@ -2115,7 +2117,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.Right,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.DiagonalStraight,
-                    SHFChange = new Vector3(0, -1, 2)
+                    Displacement = new Vector3(0, -1, 2)
                 }
             },
             { 
@@ -2126,7 +2128,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.Left,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.DiagonalStraight,
-                    SHFChange = new Vector3(0, -1, 2)
+                    Displacement = new Vector3(0, -1, 2)
                 }
             },
             { 
@@ -2137,7 +2139,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.Right,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.DiagonalStraight,
-                    SHFChange = new Vector3(0, -1, 2)
+                    Displacement = new Vector3(0, -1, 2)
                 }
             },
             { 
@@ -2148,7 +2150,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.Left,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.Left,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.DiagonalStraight,
-                    SHFChange = new Vector3(0, 0, 2)
+                    Displacement = new Vector3(0, 0, 2)
                 }
             },
             { 
@@ -2159,7 +2161,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.Right,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.Right,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.DiagonalStraight,
-                    SHFChange = new Vector3(0, 0, 2)
+                    Displacement = new Vector3(0, 0, 2)
                 }
             },
             { 
@@ -2170,7 +2172,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    SHFChange = new Vector3(0, 0, 1)
+                    Displacement = new Vector3(0, 0, 1)
                 }
             },
             { 
@@ -2181,7 +2183,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    SHFChange = new Vector3(0, 0, 1)
+                    Displacement = new Vector3(0, 0, 1)
                 }
             },
             { 
@@ -2192,7 +2194,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.Flipped,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    SHFChange = new Vector3(0, 4, 3)
+                    Displacement = new Vector3(0, 4, 3)
                 }
             },
             { 
@@ -2203,7 +2205,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.Flipped,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    SHFChange = new Vector3(0, 4, 3)
+                    Displacement = new Vector3(0, 4, 3)
                 }
             },
             { 
@@ -2214,7 +2216,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.Flipped,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    SHFChange = new Vector3(0, -4, 3) //TODO: Check
+                    Displacement = new Vector3(0, -4, 3)
                 }
             },
             { 
@@ -2225,7 +2227,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.Flipped,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    SHFChange = new Vector3(0, -4, 3) //TODO: Check
+                    Displacement = new Vector3(0, -4, 3)
                 }
             },
             { 
@@ -2236,7 +2238,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.Left,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Left90,
-                    SHFChange = new Vector3(-2, 3, 2)
+                    Displacement = new Vector3(-2, 3, 2)
                 }
             },
             { 
@@ -2247,7 +2249,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.Right,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Right90,
-                    SHFChange = new Vector3(2, 3, 2)
+                    Displacement = new Vector3(2, 3, 2)
                 }
             },
             { 
@@ -2258,7 +2260,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.Left,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Left90,
-                    SHFChange = new Vector3(-2, -3, 2)
+                    Displacement = new Vector3(-2, -3, 2)
                 }
             },
             { 
@@ -2269,7 +2271,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.Right,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Right90,
-                    SHFChange = new Vector3(2, -3, 2)
+                    Displacement = new Vector3(2, -3, 2)
                 }
             },
             { 
@@ -2280,7 +2282,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    SHFChange = new Vector3(0, 2, 1)
+                    Displacement = new Vector3(0, 2, 1)
                 }
             },
             { 
@@ -2291,7 +2293,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.Flipped,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Reverse180,
-                    SHFChange = new Vector3(-2, 3, 3)
+                    Displacement = new Vector3(-2, 3, 3)
                 }
             },
             { 
@@ -2302,7 +2304,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.Flipped,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Reverse180,
-                    SHFChange = new Vector3(2, 3, 3)
+                    Displacement = new Vector3(2, 3, 3)
                 }
             },
             { 
@@ -2313,7 +2315,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.Flipped,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Reverse180,
-                    SHFChange = new Vector3(-2, -3, -1)
+                    Displacement = new Vector3(-2, -3, -1)
                 }
             },
             { 
@@ -2324,7 +2326,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.Flipped,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Reverse180,
-                    SHFChange = new Vector3(2, -3, -1)
+                    Displacement = new Vector3(2, -3, -1)
                 }
             },
             { 
@@ -2335,7 +2337,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.Flipped,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    SHFChange = new Vector3(0, -2, 3)
+                    Displacement = new Vector3(0, -2, 3)
                 }
             },
             { 
@@ -2346,7 +2348,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.Flipped,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    SHFChange = new Vector3(0, -2, 3)
+                    Displacement = new Vector3(0, -2, 3)
                 }
             },
             { 
@@ -2354,10 +2356,10 @@ namespace RCT2GA.RideData
                 {
                     InputTrackDegree = RCT2ElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2ElementProperty.RCT2TrackDegree.None,
-                    InputTrackBank = RCT2ElementProperty.RCT2TrackBank.Flipped, //TODO: Check
+                    InputTrackBank = RCT2ElementProperty.RCT2TrackBank.Flipped,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    SHFChange = new Vector3(0, 2, 3)
+                    Displacement = new Vector3(0, 2, 3)
                 }
             },
             { 
@@ -2365,10 +2367,10 @@ namespace RCT2GA.RideData
                 {
                     InputTrackDegree = RCT2ElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2ElementProperty.RCT2TrackDegree.None,
-                    InputTrackBank = RCT2ElementProperty.RCT2TrackBank.Flipped, //TODO: Check
+                    InputTrackBank = RCT2ElementProperty.RCT2TrackBank.Flipped,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    SHFChange = new Vector3(0, 2, 3)
+                    Displacement = new Vector3(0, 2, 3)
                 }
             },
             { 
@@ -2379,7 +2381,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.Flipped,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Reverse180,
-                    SHFChange = new Vector3(0, 15, 1)
+                    Displacement = new Vector3(0, 15, 2)
                 }
             },
             { 
@@ -2387,10 +2389,10 @@ namespace RCT2GA.RideData
                 {
                     InputTrackDegree = RCT2ElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2ElementProperty.RCT2TrackDegree.Down25,
-                    InputTrackBank = RCT2ElementProperty.RCT2TrackBank.Flipped, //TODO: Check
-                    OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
+                    InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
+                    OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.Flipped,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Reverse180,
-                    SHFChange = new Vector3(0, -15, 2) //TODO: Check
+                    Displacement = new Vector3(0, -15, 2)
                 }
             },
             { 
@@ -2401,7 +2403,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.Flipped,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Left90,
-                    SHFChange = new Vector3(-2, 6, 2)
+                    Displacement = new Vector3(-2, 6, 2)
                 }
             },
             { 
@@ -2412,7 +2414,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.Flipped,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Right90,
-                    SHFChange = new Vector3(2, 6, 2)
+                    Displacement = new Vector3(2, 6, 2)
                 }
             },
             { 
@@ -2420,10 +2422,10 @@ namespace RCT2GA.RideData
                 {
                     InputTrackDegree = RCT2ElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2ElementProperty.RCT2TrackDegree.None,
-                    InputTrackBank = RCT2ElementProperty.RCT2TrackBank.Flipped, //TODO: Check
+                    InputTrackBank = RCT2ElementProperty.RCT2TrackBank.Flipped,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Left90,
-                    SHFChange = new Vector3(-2, -6, 2)
+                    Displacement = new Vector3(-2, -6, 2)
                 }
             },
             { 
@@ -2431,10 +2433,10 @@ namespace RCT2GA.RideData
                 {
                     InputTrackDegree = RCT2ElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2ElementProperty.RCT2TrackDegree.None,
-                    InputTrackBank = RCT2ElementProperty.RCT2TrackBank.Flipped, //TODO: Check
+                    InputTrackBank = RCT2ElementProperty.RCT2TrackBank.Flipped,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Right90,
-                    SHFChange = new Vector3(2, -6, 2)
+                    Displacement = new Vector3(2, -6, 2)
                 }
             },
             { 
@@ -2445,7 +2447,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Reverse180,
-                    SHFChange = new Vector3(0, 4, 1)
+                    Displacement = new Vector3(0, 4, 0)
                 }
             },
             { 
@@ -2456,7 +2458,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Reverse180,
-                    SHFChange = new Vector3(0, -4, 1)
+                    Displacement = new Vector3(0, -4, 0)
                 }
             },
             { 
@@ -2467,7 +2469,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    SHFChange = new Vector3(0, 0, 6)
+                    Displacement = new Vector3(0, 0, 6)
                 }
             },
             { 
@@ -2478,7 +2480,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    SHFChange = new Vector3(0, 0, 6)
+                    Displacement = new Vector3(0, 0, 6)
                 }
             },
             { 
@@ -2489,7 +2491,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    SHFChange = new Vector3(0, 0, 2)
+                    Displacement = new Vector3(0, 0, 2)
                 }
             },
             { 
@@ -2500,7 +2502,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    SHFChange = new Vector3(0, 0, 2)
+                    Displacement = new Vector3(0, 0, 2)
                 }
             },
             {
@@ -2511,7 +2513,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    SHFChange = new Vector3(0, 0, 2)
+                    Displacement = new Vector3(0, 0, 2)
                 }
             },
             {
@@ -2522,7 +2524,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Right90,
-                    SHFChange = new Vector3(2, 0, 2)
+                    Displacement = new Vector3(2, 0, 2)
                 }
             },
             {
@@ -2533,7 +2535,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Left90,
-                    SHFChange = new Vector3(-2, 0, 2)
+                    Displacement = new Vector3(-2, 0, 2)
                 }
             },
             {
@@ -2544,7 +2546,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.Flipped,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Reverse180,
-                    SHFChange = new Vector3(0, -12, 4)
+                    Displacement = new Vector3(0, -12, 4)
                 }
             },
             {
@@ -2555,7 +2557,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.Flipped,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Reverse180,
-                    SHFChange = new Vector3(0, 16, -1)
+                    Displacement = new Vector3(0, 16, -1)
                 }
             },
             {
@@ -2566,7 +2568,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.Flipped,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Reverse180,
-                    SHFChange = new Vector3(0, -16, 4)
+                    Displacement = new Vector3(0, -16, 4)
                 }
             },
             {
@@ -2577,7 +2579,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Left90,
-                    SHFChange = new Vector3(-2, 2, 2)
+                    Displacement = new Vector3(-2, 2, 2)
                 }
             },
             {
@@ -2588,7 +2590,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Right90,
-                    SHFChange = new Vector3(2, 2, 2)
+                    Displacement = new Vector3(2, 2, 2)
                 }
             },
             {
@@ -2599,7 +2601,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight, //TODO: Check
-                    SHFChange = new Vector3(0, 0, 3)
+                    Displacement = new Vector3(0, 0, 3)
                 }
             },
             {
@@ -2610,7 +2612,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    SHFChange = new Vector3(0, 0, 3)
+                    Displacement = new Vector3(0, 0, 3)
                 }
             },
             {
@@ -2621,7 +2623,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    SHFChange = new Vector3(0, 0, 2)
+                    Displacement = new Vector3(0, 0, 2)
                 }
             },
             {
@@ -2632,7 +2634,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    SHFChange = new Vector3(0, -10, 0)
+                    Displacement = new Vector3(0, -10, 0)
                 }
             },
             {
@@ -2643,7 +2645,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    SHFChange = new Vector3(0, -30, 6)
+                    Displacement = new Vector3(0, -30, 6)
                 }
             },
             {
@@ -2654,7 +2656,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    SHFChange = new Vector3(0, 0, 1)
+                    Displacement = new Vector3(0, 0, 1)
                 }
             },
             {
@@ -2665,7 +2667,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.Left,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.Left,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Left90,
-                    SHFChange = new Vector3(-2, 4, 2)
+                    Displacement = new Vector3(-2, 4, 2)
                 }
             },
             {
@@ -2676,7 +2678,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.Right,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.Right,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Right90,
-                    SHFChange = new Vector3(2, 4, 2)
+                    Displacement = new Vector3(2, 4, 2)
                 }
             },
             {
@@ -2687,10 +2689,10 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.Left,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.Left,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Left90,
-                    SHFChange = new Vector3(-2, -4, 2)
+                    Displacement = new Vector3(-2, -4, 2)
                 }
             },
-                        {
+            {
                 RCT2TrackElement.RightQuarterTurnDecline25BankedAcross3, new RCT2ElementProperty
                 {
                     InputTrackDegree = RCT2ElementProperty.RCT2TrackDegree.Down25,
@@ -2698,7 +2700,381 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.Right,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.Right,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Right90,
-                    SHFChange = new Vector3(2, -4, 2)
+                    Displacement = new Vector3(2, -4, 2)
+                }
+            },
+            {
+                RCT2TrackElement.LeftQuarterTurnIncline25BankedAcross5, new RCT2ElementProperty
+                {
+                    InputTrackDegree = RCT2ElementProperty.RCT2TrackDegree.Up25,
+                    OutputTrackDegree = RCT2ElementProperty.RCT2TrackDegree.Up25,
+                    InputTrackBank = RCT2ElementProperty.RCT2TrackBank.Left,
+                    OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.Left,
+                    DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Left90,
+                    Displacement = new Vector3(-3, 4, 3)
+                }
+            },
+            {
+                RCT2TrackElement.RightQuarterTurnIncline25BankedAcross5, new RCT2ElementProperty
+                {
+                    InputTrackDegree = RCT2ElementProperty.RCT2TrackDegree.Up25,
+                    OutputTrackDegree = RCT2ElementProperty.RCT2TrackDegree.Up25,
+                    InputTrackBank = RCT2ElementProperty.RCT2TrackBank.Right,
+                    OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.Right,
+                    DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Right90,
+                    Displacement = new Vector3(3, 4, 3)
+                }
+            },
+            {
+                RCT2TrackElement.LeftQuarterTurnDecline25BankedAcross5, new RCT2ElementProperty
+                {
+                    InputTrackDegree = RCT2ElementProperty.RCT2TrackDegree.Down25,
+                    OutputTrackDegree = RCT2ElementProperty.RCT2TrackDegree.Down25,
+                    InputTrackBank = RCT2ElementProperty.RCT2TrackBank.Left,
+                    OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.Left,
+                    DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Left90,
+                    Displacement = new Vector3(-3, -4, 3)
+                }
+            },
+            {
+                RCT2TrackElement.RightQuarterTurnDecline25BankedAcross5, new RCT2ElementProperty
+                {
+                    InputTrackDegree = RCT2ElementProperty.RCT2TrackDegree.Down25,
+                    OutputTrackDegree = RCT2ElementProperty.RCT2TrackDegree.Down25,
+                    InputTrackBank = RCT2ElementProperty.RCT2TrackBank.Right,
+                    OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.Right,
+                    DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Right90,
+                    Displacement = new Vector3(3, -4, 3)
+                }
+            },
+            {
+                RCT2TrackElement.Incline25ToLeftBankIncline25, new RCT2ElementProperty
+                {
+                    InputTrackDegree = RCT2ElementProperty.RCT2TrackDegree.Up25,
+                    OutputTrackDegree = RCT2ElementProperty.RCT2TrackDegree.Up25,
+                    InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
+                    OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.Left,
+                    DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
+                    Displacement = new Vector3(0, 2, 1)
+                }
+            },
+            {
+                RCT2TrackElement.Incline25ToRightBankIncline25, new RCT2ElementProperty
+                {
+                    InputTrackDegree = RCT2ElementProperty.RCT2TrackDegree.Up25,
+                    OutputTrackDegree = RCT2ElementProperty.RCT2TrackDegree.Up25,
+                    InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
+                    OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.Right,
+                    DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
+                    Displacement = new Vector3(0, 2, 1)
+                }
+            },
+            {
+                RCT2TrackElement.LeftBankIncline25ToIncline25, new RCT2ElementProperty
+                {
+                    InputTrackDegree = RCT2ElementProperty.RCT2TrackDegree.Up25,
+                    OutputTrackDegree = RCT2ElementProperty.RCT2TrackDegree.Up25,
+                    InputTrackBank = RCT2ElementProperty.RCT2TrackBank.Left,
+                    OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
+                    DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
+                    Displacement = new Vector3(0, 2, 1) //TODO: Add accurate values
+                }
+            },
+            {
+                RCT2TrackElement.RightBankIncline25ToIncline25, new RCT2ElementProperty
+                {
+                    InputTrackDegree = RCT2ElementProperty.RCT2TrackDegree.Up25,
+                    OutputTrackDegree = RCT2ElementProperty.RCT2TrackDegree.Up25,
+                    InputTrackBank = RCT2ElementProperty.RCT2TrackBank.Right,
+                    OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
+                    DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
+                    Displacement = new Vector3(0, 2, 1)
+                }
+            },
+            {
+                RCT2TrackElement.Decline25ToLeftBankDecline25, new RCT2ElementProperty
+                {
+                    InputTrackDegree = RCT2ElementProperty.RCT2TrackDegree.Down25,
+                    OutputTrackDegree = RCT2ElementProperty.RCT2TrackDegree.Down25,
+                    InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
+                    OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.Left,
+                    DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
+                    Displacement = new Vector3(0, -2, 1)
+                }
+            },
+            {
+                RCT2TrackElement.Decline25ToRightBankDecline25, new RCT2ElementProperty
+                {
+                    InputTrackDegree = RCT2ElementProperty.RCT2TrackDegree.Down25,
+                    OutputTrackDegree = RCT2ElementProperty.RCT2TrackDegree.Down25,
+                    InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
+                    OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.Right,
+                    DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
+                    Displacement = new Vector3(0, -2, 1)
+                }
+            },
+            {
+                RCT2TrackElement.LeftBankDecline25ToDecline25, new RCT2ElementProperty
+                {
+                    InputTrackDegree = RCT2ElementProperty.RCT2TrackDegree.Down25,
+                    OutputTrackDegree = RCT2ElementProperty.RCT2TrackDegree.Down25,
+                    InputTrackBank = RCT2ElementProperty.RCT2TrackBank.Left,
+                    OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
+                    DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
+                    Displacement = new Vector3(0, -2, 1)
+                }
+            },
+            {
+                RCT2TrackElement.RightBankDecline25ToDecline25, new RCT2ElementProperty
+                {
+                    InputTrackDegree = RCT2ElementProperty.RCT2TrackDegree.Down25,
+                    OutputTrackDegree = RCT2ElementProperty.RCT2TrackDegree.Down25,
+                    InputTrackBank = RCT2ElementProperty.RCT2TrackBank.Right,
+                    OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
+                    DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
+                    Displacement = new Vector3(0, -2, 1)
+                }
+            },
+            {
+                RCT2TrackElement.LeftBankFlatToLeftBankIncline25, new RCT2ElementProperty
+                {
+                    InputTrackDegree = RCT2ElementProperty.RCT2TrackDegree.None,
+                    OutputTrackDegree = RCT2ElementProperty.RCT2TrackDegree.Up25,
+                    InputTrackBank = RCT2ElementProperty.RCT2TrackBank.Left,
+                    OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.Left,
+                    DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
+                    Displacement = new Vector3(0, 1, 1)
+                }
+            },
+            {
+                RCT2TrackElement.RightBankFlatToRightBankIncline25, new RCT2ElementProperty
+                {
+                    InputTrackDegree = RCT2ElementProperty.RCT2TrackDegree.None,
+                    OutputTrackDegree = RCT2ElementProperty.RCT2TrackDegree.Up25,
+                    InputTrackBank = RCT2ElementProperty.RCT2TrackBank.Right,
+                    OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.Right,
+                    DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
+                    Displacement = new Vector3(0, 1, 1)
+                }
+            },
+            {
+                RCT2TrackElement.LeftBankIncline25ToLeftBankFlat, new RCT2ElementProperty
+                {
+                    InputTrackDegree = RCT2ElementProperty.RCT2TrackDegree.Up25,
+                    OutputTrackDegree = RCT2ElementProperty.RCT2TrackDegree.None,
+                    InputTrackBank = RCT2ElementProperty.RCT2TrackBank.Left,
+                    OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.Left,
+                    DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
+                    Displacement = new Vector3(0, 1, 1)
+                }
+            },
+            {
+                RCT2TrackElement.RightBankIncline25ToRightBankFlat, new RCT2ElementProperty
+                {
+                    InputTrackDegree = RCT2ElementProperty.RCT2TrackDegree.Up25,
+                    OutputTrackDegree = RCT2ElementProperty.RCT2TrackDegree.None,
+                    InputTrackBank = RCT2ElementProperty.RCT2TrackBank.Right,
+                    OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.Right,
+                    DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
+                    Displacement = new Vector3(0, 1, 1)
+                }
+            },
+            {
+                RCT2TrackElement.LeftBankFlatToLeftBankDecline25, new RCT2ElementProperty
+                {
+                    InputTrackDegree = RCT2ElementProperty.RCT2TrackDegree.None,
+                    OutputTrackDegree = RCT2ElementProperty.RCT2TrackDegree.Down25,
+                    InputTrackBank = RCT2ElementProperty.RCT2TrackBank.Left,
+                    OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.Left,
+                    DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
+                    Displacement = new Vector3(0, -1, 1)
+                }
+            },
+            {
+                RCT2TrackElement.RightBankFlatToRightBankDecline25, new RCT2ElementProperty
+                {
+                    InputTrackDegree = RCT2ElementProperty.RCT2TrackDegree.None,
+                    OutputTrackDegree = RCT2ElementProperty.RCT2TrackDegree.Down25,
+                    InputTrackBank = RCT2ElementProperty.RCT2TrackBank.Right,
+                    OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.Right,
+                    DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
+                    Displacement = new Vector3(0, -1, 1)
+                }
+            },
+            {
+                RCT2TrackElement.LeftBankDecline25ToLeftBankFlat, new RCT2ElementProperty
+                {
+                    InputTrackDegree = RCT2ElementProperty.RCT2TrackDegree.Down25,
+                    OutputTrackDegree = RCT2ElementProperty.RCT2TrackDegree.None,
+                    InputTrackBank = RCT2ElementProperty.RCT2TrackBank.Left,
+                    OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.Left,
+                    DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
+                    Displacement = new Vector3(0, -1, 1) //TODO: Add accurate values
+                }
+            },
+            {
+                RCT2TrackElement.RightBankDecline25ToRightBankFlat, new RCT2ElementProperty
+                {
+                    InputTrackDegree = RCT2ElementProperty.RCT2TrackDegree.Down25,
+                    OutputTrackDegree = RCT2ElementProperty.RCT2TrackDegree.None,
+                    InputTrackBank = RCT2ElementProperty.RCT2TrackBank.Right,
+                    OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.Right,
+                    DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
+                    Displacement = new Vector3(0, -1, 1) //TODO: Add accurate values
+                }
+            },
+            {
+                RCT2TrackElement.FlatToLeftBankIncline25, new RCT2ElementProperty
+                {
+                    InputTrackDegree = RCT2ElementProperty.RCT2TrackDegree.None,
+                    OutputTrackDegree = RCT2ElementProperty.RCT2TrackDegree.Up25,
+                    InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
+                    OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.Left,
+                    DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
+                    Displacement = new Vector3(0, 1, 1) //TODO: Add accurate values
+                }
+            },
+            {
+                RCT2TrackElement.FlatToRightBankIncline25, new RCT2ElementProperty
+                {
+                    InputTrackDegree = RCT2ElementProperty.RCT2TrackDegree.None,
+                    OutputTrackDegree = RCT2ElementProperty.RCT2TrackDegree.Up25,
+                    InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
+                    OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.Right,
+                    DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
+                    Displacement = new Vector3(0, 1, 1) //TODO: Add accurate values
+                }
+            },
+            {
+                RCT2TrackElement.LeftBankIncline25ToFlat, new RCT2ElementProperty
+                {
+                    InputTrackDegree = RCT2ElementProperty.RCT2TrackDegree.Up25,
+                    OutputTrackDegree = RCT2ElementProperty.RCT2TrackDegree.None,
+                    InputTrackBank = RCT2ElementProperty.RCT2TrackBank.Left,
+                    OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
+                    DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
+                    Displacement = new Vector3(0, 1, 1) //TODO: Add accurate values
+                }
+            },
+            {
+                RCT2TrackElement.RightBankIncline25ToFlat, new RCT2ElementProperty
+                {
+                    InputTrackDegree = RCT2ElementProperty.RCT2TrackDegree.Up25,
+                    OutputTrackDegree = RCT2ElementProperty.RCT2TrackDegree.None,
+                    InputTrackBank = RCT2ElementProperty.RCT2TrackBank.Right,
+                    OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
+                    DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
+                    Displacement = new Vector3(0, 1, 1) //TODO: Add accurate values
+                }
+            },
+            {
+                RCT2TrackElement.FlatToLeftBankDecline25, new RCT2ElementProperty
+                {
+                    InputTrackDegree = RCT2ElementProperty.RCT2TrackDegree.None,
+                    OutputTrackDegree = RCT2ElementProperty.RCT2TrackDegree.Down25,
+                    InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
+                    OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.Left,
+                    DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
+                    Displacement = new Vector3(0, -1, 1) //TODO: Add accurate values
+                }
+            },
+            {
+                RCT2TrackElement.FlatToRightBankDecline25, new RCT2ElementProperty
+                {
+                    InputTrackDegree = RCT2ElementProperty.RCT2TrackDegree.None,
+                    OutputTrackDegree = RCT2ElementProperty.RCT2TrackDegree.Down25,
+                    InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
+                    OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.Right,
+                    DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
+                    Displacement = new Vector3(0, -1, 1) //TODO: Add accurate values
+                }
+            },
+            {
+                RCT2TrackElement.LeftBankDecline25ToFlat, new RCT2ElementProperty
+                {
+                    InputTrackDegree = RCT2ElementProperty.RCT2TrackDegree.Down25,
+                    OutputTrackDegree = RCT2ElementProperty.RCT2TrackDegree.None,
+                    InputTrackBank = RCT2ElementProperty.RCT2TrackBank.Left,
+                    OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
+                    DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
+                    Displacement = new Vector3(0, -1, 1) //TODO: Add accurate values
+                }
+            },
+            {
+                RCT2TrackElement.RightBankDecline25ToFlat, new RCT2ElementProperty
+                {
+                    InputTrackDegree = RCT2ElementProperty.RCT2TrackDegree.Down25,
+                    OutputTrackDegree = RCT2ElementProperty.RCT2TrackDegree.None,
+                    InputTrackBank = RCT2ElementProperty.RCT2TrackBank.Right,
+                    OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
+                    DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
+                    Displacement = new Vector3(0, -1, 1) //TODO: Add accurate values
+                }
+            },
+            {
+                RCT2TrackElement.LeftQuarterTurnIncline90Across1, new RCT2ElementProperty //<--- 21
+                {
+                    InputTrackDegree = RCT2ElementProperty.RCT2TrackDegree.Up90,
+                    OutputTrackDegree = RCT2ElementProperty.RCT2TrackDegree.Up90,
+                    InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
+                    OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
+                    DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Left90,
+                    Displacement = new Vector3(0, 12, 0)
+                }
+            },
+            {
+                RCT2TrackElement.RightQuarterTurnIncline90Across1, new RCT2ElementProperty
+                {
+                    InputTrackDegree = RCT2ElementProperty.RCT2TrackDegree.Up90,
+                    OutputTrackDegree = RCT2ElementProperty.RCT2TrackDegree.Up90,
+                    InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
+                    OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
+                    DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Right90,
+                    Displacement = new Vector3(0, 12, 0) //TODO: Add accurate values
+                }
+            },
+            {
+                RCT2TrackElement.LeftQuarterTurnDecline90Across1, new RCT2ElementProperty
+                {
+                    InputTrackDegree = RCT2ElementProperty.RCT2TrackDegree.Down90,
+                    OutputTrackDegree = RCT2ElementProperty.RCT2TrackDegree.Down90,
+                    InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
+                    OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
+                    DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Left90,
+                    Displacement = new Vector3(0, -12, 0) //TODO: Add accurate values
+                }
+            },
+            {
+                RCT2TrackElement.RightQuarterTurnDecline90Across1, new RCT2ElementProperty
+                {
+                    InputTrackDegree = RCT2ElementProperty.RCT2TrackDegree.Down90,
+                    OutputTrackDegree = RCT2ElementProperty.RCT2TrackDegree.Down90,
+                    InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
+                    OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
+                    DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Right90,
+                    Displacement = new Vector3(0, -12, 0) //TODO: Add accurate values
+                }
+            },
+            {
+                RCT2TrackElement.Incline90ToInvertedFlatQuarterLoop_Multidim, new RCT2ElementProperty
+                {
+                    InputTrackDegree = RCT2ElementProperty.RCT2TrackDegree.Up90,
+                    OutputTrackDegree = RCT2ElementProperty.RCT2TrackDegree.None,
+                    InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
+                    OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.Flipped,
+                    DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
+                    Displacement = new Vector3(0, 12, 0)
+                }
+            },
+            {
+                RCT2TrackElement.FlatToDecline90QuarterLoop_Multidim, new RCT2ElementProperty
+                {
+                    InputTrackDegree = RCT2ElementProperty.RCT2TrackDegree.None,
+                    OutputTrackDegree = RCT2ElementProperty.RCT2TrackDegree.Down90,
+                    InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
+                    OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
+                    DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
+                    Displacement = new Vector3(0, -16, 4)
                 }
             },
             {
@@ -2709,7 +3085,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    SHFChange = new Vector3(0, 0, 0)
+                    Displacement = new Vector3(0, 0, 0)
                 }
             },
         };

@@ -51,9 +51,6 @@ namespace RCT2GA.RideData
         public RCT2TrackBank OutputTrackBank { get; set; }
         public RCT2TrackDirectionChange DirectionChange { get; set; }
         //X = Sideways, Y = Height, Z = Forward
-        // - Left + Right
-        // - Down + Up
-        // - Forward + Back
-        public Vector3 SHFChange { get; set; }
+        public Vector3 Displacement { get; set; }
     }
 }
