@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using RCT2GA.RCT2;
 
 namespace RCT2GA
 {
@@ -195,16 +196,6 @@ namespace RCT2GA
             }
 
             return encodedBytes.ToArray();
-        }
-
-        private bool GetBit(byte b, int bitNumber)
-        {
-            //string binaryString = Convert.ToString(b, 2).PadLeft(8, '0');
-
-            //Turn into bool
-            //return (binaryString[bitNumber - 1] != '0');
-
-            return (b & 0x80) != 0;
         }
 
         private uint CalculateChecksum(byte[] encodedBytes)
