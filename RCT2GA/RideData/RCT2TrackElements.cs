@@ -2909,7 +2909,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.Left,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.Left,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    Displacement = new Vector3(0, -1, 1) //TODO: Add accurate values
+                    Displacement = new Vector3(0, -1, 1)
                 }
             },
             {
@@ -2920,7 +2920,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.Right,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.Right,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    Displacement = new Vector3(0, -1, 1) //TODO: Add accurate values
+                    Displacement = new Vector3(0, -1, 1)
                 }
             },
             {
@@ -2931,7 +2931,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.Left,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    Displacement = new Vector3(0, 1, 1) //TODO: Add accurate values
+                    Displacement = new Vector3(0, 1, 1)
                 }
             },
             {
@@ -2942,7 +2942,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.Right,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    Displacement = new Vector3(0, 1, 1) //TODO: Add accurate values
+                    Displacement = new Vector3(0, 1, 1)
                 }
             },
             {
@@ -2953,7 +2953,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.Left,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    Displacement = new Vector3(0, 1, 1) //TODO: Add accurate values
+                    Displacement = new Vector3(0, 1, 1)
                 }
             },
             {
@@ -2964,7 +2964,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.Right,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    Displacement = new Vector3(0, 1, 1) //TODO: Add accurate values
+                    Displacement = new Vector3(0, 1, 1)
                 }
             },
             {
@@ -2975,7 +2975,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.Left,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    Displacement = new Vector3(0, -1, 1) //TODO: Add accurate values
+                    Displacement = new Vector3(0, -1, 1)
                 }
             },
             {
@@ -2986,7 +2986,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.Right,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    Displacement = new Vector3(0, -1, 1) //TODO: Add accurate values
+                    Displacement = new Vector3(0, -1, 1)
                 }
             },
             {
@@ -2997,7 +2997,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.Left,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    Displacement = new Vector3(0, -1, 1) //TODO: Add accurate values
+                    Displacement = new Vector3(0, -1, 1)
                 }
             },
             {
@@ -3008,11 +3008,11 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.Right,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Straight,
-                    Displacement = new Vector3(0, -1, 1) //TODO: Add accurate values
+                    Displacement = new Vector3(0, -1, 1)
                 }
             },
             {
-                RCT2TrackElement.LeftQuarterTurnIncline90Across1, new RCT2ElementProperty //<--- 21
+                RCT2TrackElement.LeftQuarterTurnIncline90Across1, new RCT2ElementProperty
                 {
                     InputTrackDegree = RCT2ElementProperty.RCT2TrackDegree.Up90,
                     OutputTrackDegree = RCT2ElementProperty.RCT2TrackDegree.Up90,
@@ -3030,7 +3030,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Right90,
-                    Displacement = new Vector3(0, 12, 0) //TODO: Add accurate values
+                    Displacement = new Vector3(0, 12, 0)
                 }
             },
             {
@@ -3041,7 +3041,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Left90,
-                    Displacement = new Vector3(0, -12, 0) //TODO: Add accurate values
+                    Displacement = new Vector3(0, -12, 0)
                 }
             },
             {
@@ -3052,7 +3052,7 @@ namespace RCT2GA.RideData
                     InputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     OutputTrackBank = RCT2ElementProperty.RCT2TrackBank.None,
                     DirectionChange = RCT2ElementProperty.RCT2TrackDirectionChange.Right90,
-                    Displacement = new Vector3(0, -12, 0) //TODO: Add accurate values
+                    Displacement = new Vector3(0, -12, 0)
                 }
             },
             {
