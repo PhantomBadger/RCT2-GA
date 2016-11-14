@@ -265,6 +265,18 @@ namespace RCT2GA.RideData
                                         FlatToDecline90QuarterLoop_Multidim,
                                         EndOfTrack  };
 
+        public struct GForceFactors
+        {
+            public float LateralGFactor;
+            public float VerticalGFactor;
+
+            public GForceFactors(float lat, float vert)
+            {
+                LateralGFactor = lat;
+                VerticalGFactor = vert;
+            }
+        }
+
         //Property map to link the enum to the relevent property
         //Location Change data adapted from the information found by Kevin Burke and showcased
         //on his github //https://github.com/kevinburke/rct/blob/master/tracks/segment.go
@@ -3088,6 +3100,292 @@ namespace RCT2GA.RideData
                     Displacement = new Vector3(0, 0, 0)
                 }
             },
+        };
+
+        //Collection of the Vertical and Lateral G Force Factors
+        //Tuple is LAteral , Vertical
+        //Data extracted from https://github.com/OpenRCT2/OpenRCT2/blob/3da10b7d7db8fe60ca6cb1e277f39abe532e956b/src/ride/vehicle.c#L4968
+        //We can approximate some values, as the G force values and ride ratings are recalculated
+        //During the game, we approximate it for the fitness value
+        //Will need to redesign how to incorporate these values for more accurate calculations
+        //Large Switch statement?
+        public static Dictionary<RCT2TrackElement, GForceFactors> TrackElementGForceFactorMap = new Dictionary<RCT2TrackElement, GForceFactors>
+        {
+            //No Lateral or Vertical G Forces
+            { RCT2TrackElement.Flat, new GForceFactors(0, 0) },
+            { RCT2TrackElement.EndStation, new GForceFactors(0, 0) },
+            { RCT2TrackElement.BeginStation, new GForceFactors(0, 0) },
+            { RCT2TrackElement.MiddleStation, new GForceFactors(0, 0) },
+            { RCT2TrackElement.Incline25, new GForceFactors(0, 0) },
+            { RCT2TrackElement.Incline60, new GForceFactors(0, 0) },
+            { RCT2TrackElement.Decline25, new GForceFactors(0, 0) },
+            { RCT2TrackElement.Decline60, new GForceFactors(0, 0) },
+            { RCT2TrackElement.FlatToLeftBank, new GForceFactors(0, 0) },
+            { RCT2TrackElement.FlatToRightBank, new GForceFactors(0, 0) },
+            { RCT2TrackElement.LeftBankToFlat, new GForceFactors(0, 0) },
+            { RCT2TrackElement.RightBankToFlat, new GForceFactors(0, 0) },
+            { RCT2TrackElement.LeftBank, new GForceFactors(0, 0) },
+            { RCT2TrackElement.RightBank, new GForceFactors(0, 0) },
+            { RCT2TrackElement.TowerBase, new GForceFactors(0, 0) },
+            { RCT2TrackElement.TowerSection, new GForceFactors(0, 0) },
+            { RCT2TrackElement.FlatCovered, new GForceFactors(0, 0) },
+            { RCT2TrackElement.Incline25Covered, new GForceFactors(0, 0) },
+            { RCT2TrackElement.Incline60Covered, new GForceFactors(0, 0) },
+            { RCT2TrackElement.Decline25Covered, new GForceFactors(0, 0) },
+            { RCT2TrackElement.Decline60Covered, new GForceFactors(0, 0) },
+            { RCT2TrackElement.Brakes, new GForceFactors(0, 0) },
+            { RCT2TrackElement.RotationControlToggle_SpinningWildMouse, new GForceFactors(0, 0) },
+            { RCT2TrackElement.InvertedIncline90ToFlatQuarterLoop_Multidim, new GForceFactors(0, 0) },
+            { RCT2TrackElement.Incline25LeftBanked, new GForceFactors(0, 0) },
+            { RCT2TrackElement.Incline25RightBanked, new GForceFactors(0, 0) },
+            { RCT2TrackElement.Waterfall, new GForceFactors(0, 0) },
+            { RCT2TrackElement.Rapids, new GForceFactors(0, 0) },
+            { RCT2TrackElement.OnRidePhoto, new GForceFactors(0, 0) },
+            { RCT2TrackElement.Decline25LeftBanked, new GForceFactors(0, 0) },
+            { RCT2TrackElement.Decline25RightBanked, new GForceFactors(0, 0) },
+            { RCT2TrackElement.Whirlpool, new GForceFactors(0, 0) },
+            { RCT2TrackElement.ReverseWhoaBellyVertical, new GForceFactors(0, 0) },
+            { RCT2TrackElement.Incline90, new GForceFactors(0, 0) },
+            { RCT2TrackElement.Decline90, new GForceFactors(0, 0) },
+            { RCT2TrackElement.DiagFlat, new GForceFactors(0, 0) },
+            { RCT2TrackElement.DiagIncline25, new GForceFactors(0, 0) },
+            { RCT2TrackElement.DiagIncline60, new GForceFactors(0, 0) },
+            { RCT2TrackElement.DiagDecline25, new GForceFactors(0, 0) },
+            { RCT2TrackElement.DiagDecline60, new GForceFactors(0, 0) },
+            { RCT2TrackElement.DiagFlatToLeftBank, new GForceFactors(0, 0) },
+            { RCT2TrackElement.DiagFlatToRightBank, new GForceFactors(0, 0) },
+            { RCT2TrackElement.DiagLeftBankToFlat, new GForceFactors(0, 0) },
+            { RCT2TrackElement.DiagRightBankToFlat, new GForceFactors(0, 0) },
+            { RCT2TrackElement.DiagLeftBank, new GForceFactors(0, 0) },
+            { RCT2TrackElement.DiagRightBank, new GForceFactors(0, 0) },
+            { RCT2TrackElement.LogFlumeReverser, new GForceFactors(0, 0) },
+            { RCT2TrackElement.SpinningTunnel, new GForceFactors(0, 0) },
+            { RCT2TrackElement.PoweredLift, new GForceFactors(0, 0) },
+            { RCT2TrackElement.MinigolfHoleA, new GForceFactors(0, 0) },
+            { RCT2TrackElement.MinigolfHoleB, new GForceFactors(0, 0) },
+            { RCT2TrackElement.MinigolfHoleC, new GForceFactors(0, 0) },
+            { RCT2TrackElement.MinigolfHoleD, new GForceFactors(0, 0) },
+            { RCT2TrackElement.MinigolfHoleE, new GForceFactors(0, 0) },
+            { RCT2TrackElement.LeftReverser, new GForceFactors(0, 0) },
+            { RCT2TrackElement.RightReverser, new GForceFactors(0, 0) },
+            { RCT2TrackElement.AirThrustVerticalDown, new GForceFactors(0, 0) },
+            { RCT2TrackElement.BlockBrakes, new GForceFactors(0, 0) },
+            { RCT2TrackElement.Incline25ToLeftBankIncline25, new GForceFactors(0, 0) },
+            { RCT2TrackElement.Incline25ToRightBankIncline25, new GForceFactors(0, 0) },
+            { RCT2TrackElement.LeftBankIncline25ToIncline25, new GForceFactors(0, 0) },
+            { RCT2TrackElement.RightBankIncline25ToIncline25, new GForceFactors(0, 0) },
+            { RCT2TrackElement.Decline25ToLeftBankDecline25, new GForceFactors(0, 0) },
+            { RCT2TrackElement.Decline25ToRightBankDecline25, new GForceFactors(0, 0) },
+            { RCT2TrackElement.LeftBankDecline25ToDecline25, new GForceFactors(0, 0) },
+            { RCT2TrackElement.RightBankDecline25ToDecline25, new GForceFactors(0, 0) },
+            { RCT2TrackElement.LeftQuarterTurnIncline90Across1, new GForceFactors(0, 0) },
+            { RCT2TrackElement.RightQuarterTurnIncline90Across1, new GForceFactors(0, 0) },
+            { RCT2TrackElement.LeftQuarterTurnDecline90Across1, new GForceFactors(0, 0) },
+            { RCT2TrackElement.RightQuarterTurnDecline90Across1, new GForceFactors(0, 0) },
+            //Vertical Factor of 103
+            { RCT2TrackElement.FlatToIncline25, new GForceFactors(0, 103) },
+            { RCT2TrackElement.Decline25ToFlat, new GForceFactors(0, 103) },
+            { RCT2TrackElement.LeftBankToIncline25, new GForceFactors(0, 103) },
+            { RCT2TrackElement.RightBankToIncline25, new GForceFactors(0, 103) },
+            { RCT2TrackElement.Decline25ToLeftBank, new GForceFactors(0, 103) },
+            { RCT2TrackElement.Decline25ToRightBank, new GForceFactors(0, 103) },
+            { RCT2TrackElement.FlatToIncline25Covered, new GForceFactors(0, 103) },
+            { RCT2TrackElement.Decline25ToFlatCovered, new GForceFactors(0, 103) },
+            { RCT2TrackElement.LeftBankFlatToLeftBankIncline25, new GForceFactors(0, 103) },
+            { RCT2TrackElement.RightBankFlatToRightBankIncline25, new GForceFactors(0, 103) },
+            { RCT2TrackElement.LeftBankDecline25ToLeftBankFlat, new GForceFactors(0, 103) },
+            { RCT2TrackElement.RightBankDecline25ToRightBankFlat, new GForceFactors(0, 103) },
+            { RCT2TrackElement.FlatToLeftBankIncline25, new GForceFactors(0, 103) },
+            { RCT2TrackElement.FlatToRightBankIncline25, new GForceFactors(0, 103) },
+            { RCT2TrackElement.LeftBankDecline25ToFlat, new GForceFactors(0, 103) },
+            { RCT2TrackElement.RightBankDecline25ToFlat, new GForceFactors(0, 103) },
+            //Vertical Factor of -103
+            { RCT2TrackElement.Incline25ToFlat, new GForceFactors(0, -103) },
+            { RCT2TrackElement.FlatToDecline25, new GForceFactors(0, -103) },
+            { RCT2TrackElement.Incline25ToLeftBank, new GForceFactors(0, -103) },
+            { RCT2TrackElement.Incline25ToRightBank, new GForceFactors(0, -103) },
+            { RCT2TrackElement.LeftBankToDecline25, new GForceFactors(0, -103) },
+            { RCT2TrackElement.RightBankToDecline25, new GForceFactors(0, -103) },
+            { RCT2TrackElement.Incline25ToFlatCovered, new GForceFactors(0, -103) },
+            { RCT2TrackElement.FlatToDecline25Covered, new GForceFactors(0, -103) },
+            { RCT2TrackElement.CableLiftHill, new GForceFactors(0, -103) },
+            { RCT2TrackElement.LeftBankIncline25ToLeftBankFlat, new GForceFactors(0, -103) },
+            { RCT2TrackElement.RightBankIncline25ToRightBankFlat, new GForceFactors(0, -103) },
+            { RCT2TrackElement.LeftBankFlatToLeftBankDecline25, new GForceFactors(0, -103) },
+            { RCT2TrackElement.RightBankFlatToRightBankDecline25, new GForceFactors(0, -103) },
+            { RCT2TrackElement.LeftBankIncline25ToFlat, new GForceFactors(0, -103) },
+            { RCT2TrackElement.RightBankIncline25ToFlat, new GForceFactors(0, -103) },
+            { RCT2TrackElement.FlatToLeftBankDecline25, new GForceFactors(0, -103) },
+            { RCT2TrackElement.FlatToRightBankDecline25, new GForceFactors(0, -103) },
+            //Vertical Factor of 82
+            { RCT2TrackElement.Incline25To60, new GForceFactors(0, 82) },
+            { RCT2TrackElement.Decline60To25, new GForceFactors(0, 82) },
+            { RCT2TrackElement.Incline25To60Covered, new GForceFactors(0, 82) },
+            { RCT2TrackElement.Decline60To25Covered, new GForceFactors(0, 82) },
+            //Vertical Factor of -82
+            { RCT2TrackElement.Incline60To25, new GForceFactors(0, -82) },
+            { RCT2TrackElement.Decline25To60, new GForceFactors(0, -82) },
+            { RCT2TrackElement.Incline60To25Covered, new GForceFactors(0, -82) },
+            { RCT2TrackElement.Decline25To60Covered, new GForceFactors(0, -82) },
+            //Lateral Factor of 98
+            { RCT2TrackElement.LeftQuarterTurnAcross5, new GForceFactors(98, 0) },
+            { RCT2TrackElement.LeftQuarterTurnIncline25Across5, new GForceFactors(98, 0) },
+            { RCT2TrackElement.LeftQuarterTurnDecline25Across5, new GForceFactors(98, 0) },
+            { RCT2TrackElement.LeftTwistDownToUp, new GForceFactors(98, 0) },
+            { RCT2TrackElement.LeftTwistUpToDown, new GForceFactors(98, 0) },
+            { RCT2TrackElement.LeftQuarterTurnCoveredAcross5, new GForceFactors(98, 0) },
+            { RCT2TrackElement.LeftQuarterTurnHelixLargeIncline, new GForceFactors(98, 0) },
+            { RCT2TrackElement.LeftQuarterTurnHelixLargeDecline, new GForceFactors(98, 0) },
+            { RCT2TrackElement.LeftFlyerTwistDownToUp, new GForceFactors(98, 0) },
+            { RCT2TrackElement.LeftFlyerTwistUpToDown, new GForceFactors(98, 0) },
+            { RCT2TrackElement.LeftHeartlineRoll, new GForceFactors(98, 0) },
+            //Lateral Factor of -98
+            { RCT2TrackElement.RightQuarterTurnAcross5, new GForceFactors(-98, 0) },
+            { RCT2TrackElement.RightQuarterTurnIncline25Across5, new GForceFactors(-98, 0) },
+            { RCT2TrackElement.RightQuarterTurnDecline25Across5, new GForceFactors(-98, 0) },
+            { RCT2TrackElement.RightTwistDownToUp, new GForceFactors(-98, 0) },
+            { RCT2TrackElement.RightTwistUpToDown, new GForceFactors(-98, 0) },
+            { RCT2TrackElement.RightQuarterTurnCoveredAcross5, new GForceFactors(-98, 0) },
+            { RCT2TrackElement.RightQuarterTurnHelixLargeIncline, new GForceFactors(-98, 0) },
+            { RCT2TrackElement.RightQuarterTurnHelixLargeDecline, new GForceFactors(-98, 0) },
+            { RCT2TrackElement.RightFlyerTwistDownToUp, new GForceFactors(-98, 0) },
+            { RCT2TrackElement.RightFlyerTwistUpToDown, new GForceFactors(-98, 0) },
+            { RCT2TrackElement.RightHeartlineRoll, new GForceFactors(-98, 0) },
+            //Lateral Factor of 160, Vertical Factor of 200
+            { RCT2TrackElement.LeftQuarterTurnBankAcross5, new GForceFactors(160, 200) },
+            { RCT2TrackElement.LeftHalfBankedHelixInclineLarge, new GForceFactors(160, 200) },
+            { RCT2TrackElement.LeftHalfBankedHelixDeclineLarge, new GForceFactors(160, 200) },
+            { RCT2TrackElement.LeftQuarterTurnBankedHelixLargeIncline, new GForceFactors(160, 200) },
+            { RCT2TrackElement.LeftQuarterTurnBankedHelixLargeDecline, new GForceFactors(160, 200) },
+            //Lateral Factor of -160, Vertical Factor of 200
+            { RCT2TrackElement.RightQuarterTurnBankAcross5, new GForceFactors(-160, 200) },
+            { RCT2TrackElement.RightHalfBankedHelixInclineLarge, new GForceFactors(-160, 200) },
+            { RCT2TrackElement.RightHalfBankedHelixDeclineLarge, new GForceFactors(-160, 200) },
+            { RCT2TrackElement.RightQuarterTurnBankedHelixLargeIncline, new GForceFactors(-160, 200) },
+            { RCT2TrackElement.RightQuarterTurnBankedHelixLargeDecline, new GForceFactors(-160, 200) },
+            //If Track Progress < 48 Lateral Factor 98, else -98
+            { RCT2TrackElement.LeftSBend, new GForceFactors(98, 0) },           //Inaccurate, should be neg during the right component
+            { RCT2TrackElement.LeftSBendCovered, new GForceFactors(98, 0) },    // ^
+            //If Track Progress < 48 Lateral Factor -98, else 98
+            { RCT2TrackElement.RightSBend, new GForceFactors(-98, 0) },         //Inaccurate, should be pos during the left components
+            { RCT2TrackElement.RightSBendCovered, new GForceFactors(-98, 0) },  // ^
+            //Vertical Factor is the track progress - 155 / 2 + 28
+            { RCT2TrackElement.LeftVerticalLoop, new GForceFactors(0, 28) },    //Inaccurate, no way of doing track progress
+            { RCT2TrackElement.RightVerticalLoop, new GForceFactors(0, 28) },   // ^
+            //Lateral Factor is 59
+            { RCT2TrackElement.LeftQuarterTurnAcross3, new GForceFactors(0, 59) },
+            { RCT2TrackElement.LeftQuarterTurnIncline25Across3, new GForceFactors(0, 59) },
+            { RCT2TrackElement.LeftQuarterTurnDecline25Across3, new GForceFactors(0, 59) },
+            { RCT2TrackElement.LeftQuarterTurnCoveredAcross3, new GForceFactors(0, 59) },
+            { RCT2TrackElement.LeftCurvedLiftHill, new GForceFactors(0, 59) },
+            //Lateral Factor is -59
+            { RCT2TrackElement.RightQuarterTurnAcross3, new GForceFactors(0, -59) },
+            { RCT2TrackElement.RightQuarterTurnIncline25Across3, new GForceFactors(0, -59) },
+            { RCT2TrackElement.RightQuarterTurnDecline25Across3, new GForceFactors(0, -59) },
+            { RCT2TrackElement.RightQuarterTurnCoveredAcross3, new GForceFactors(0, -59) },
+            { RCT2TrackElement.RightCurvedLiftHill, new GForceFactors(0, -59) },
+            //Lateral Factor is 100, Vertical Factor is 100
+            { RCT2TrackElement.LeftQuarterTurnBankAcross3, new GForceFactors(100, 100) },
+            { RCT2TrackElement.LeftHalfBankedHelixInclineSmall, new GForceFactors(100, 100) },
+            { RCT2TrackElement.LeftHalfBankedHelixDeclineSmall, new GForceFactors(100, 100) },
+            //Lateral Factor is -100, Vertical Factor is 100
+            { RCT2TrackElement.RightQuarterTurnBankAcross3, new GForceFactors(-100, 100) },
+            { RCT2TrackElement.RightHalfBankedHelixInclineSmall, new GForceFactors(-100, 100) },
+            { RCT2TrackElement.RightHalfBankedHelixDeclineSmall, new GForceFactors(-100, 100) },
+            //Lateral Factor 45
+            { RCT2TrackElement.LeftQuarterTurnAcross1, new GForceFactors(45, 0) },
+            //Lateral Factor -45
+            { RCT2TrackElement.RightQuarterTurnAcross1, new GForceFactors(-45, 0) },
+            //Vertical Factor of Track Progress - 155 / 2 + 28
+            { RCT2TrackElement.HalfLoopUp, new GForceFactors(28, 0) },          //Inaccurate, no way of doing track progress
+            { RCT2TrackElement.FlyerHalfLoopUp, new GForceFactors(28, 0) },     // ^
+            //Vertical Factor of Track Progress / 2 + 28
+            { RCT2TrackElement.HalfLoopDown, new GForceFactors(-28, 0) },       //Inaccurate, no way of doing track progress
+            { RCT2TrackElement.FlyerHalfLoopDown, new GForceFactors(-28, 0) },  // ^
+            //Lateral Factor of 70, Vertical Factor of 52
+            { RCT2TrackElement.LeftCorkscrewUp, new GForceFactors(70, 52) },
+            { RCT2TrackElement.RightCorkscrewDown, new GForceFactors(70, 52) },
+            { RCT2TrackElement.LeftFlyCorkscrewDownToUp, new GForceFactors(70, 52) },
+            { RCT2TrackElement.RightFlyCorkscrewUpToDown, new GForceFactors(70, 52) },
+            //Lateral Factor of -70, Vertical Factor of 52
+            { RCT2TrackElement.RightCorkscrewUp, new GForceFactors(-70, 52) },
+            { RCT2TrackElement.LeftCorkscrewDown, new GForceFactors(-70, 52) },
+            { RCT2TrackElement.RightFlyCorkscrewDownToUp, new GForceFactors(-70, 52) },
+            { RCT2TrackElement.LeftFlyCorkscrewUpToDown, new GForceFactors(-70, 52) },
+            //Vertical Factor of 56
+            { RCT2TrackElement.FlatToIncline60, new GForceFactors(0, 56) },
+            { RCT2TrackElement.Decline60ToFlat, new GForceFactors(0, 56) },
+            //Vertical Factor of -56
+            { RCT2TrackElement.Incline60ToFlat, new GForceFactors(0, -56) },
+            { RCT2TrackElement.FlatToDecline60, new GForceFactors(0, -56) },
+            { RCT2TrackElement.BrakeforDrop, new GForceFactors(0, -56) },
+            //Lateral Factor of 88
+            { RCT2TrackElement.LeftQuarterTurnIncline60Across1, new GForceFactors(88, 0) },
+            { RCT2TrackElement.LeftQuarterTurnDecline60Across1, new GForceFactors(88, 0) },
+            //Lateral Factor of -88
+            { RCT2TrackElement.RightQuarterTurnIncline60Across1, new GForceFactors(-88, 0) },
+            { RCT2TrackElement.RightQuarterTurnDecline60Across1, new GForceFactors(-88, 0) },
+            //Vertical Factor varies from -150 to 0 to 150 depending on track progress
+            { RCT2TrackElement.Watersplash, new GForceFactors(0, -150) },   //Inaccurate, no way of doing track progress
+            //Vertical Factor of 160
+            { RCT2TrackElement.FlatToIncline60LongBase, new GForceFactors(0, 160) },
+            { RCT2TrackElement.FlatToDecline60LongBase, new GForceFactors(0, 160) },
+            //Vertical Factor of -160
+            { RCT2TrackElement.Incline60ToFlatLongBase, new GForceFactors(0, -160) },
+            //Vertical Factor of 120
+            { RCT2TrackElement.ReverseWhoaBellySlope, new GForceFactors(0, 120) },
+            { RCT2TrackElement.AirThrustVerticalDownToLevel, new GForceFactors(0, 120) },
+            //Vertical Factor of 110
+            { RCT2TrackElement.Incline60To90, new GForceFactors(0, 110) },
+            { RCT2TrackElement.Decline90To60, new GForceFactors(0, 110) },
+            //Vertical Factor of -110
+            { RCT2TrackElement.Incline90To60, new GForceFactors(0, -110) },
+            { RCT2TrackElement.Decline60To90, new GForceFactors(0, -110) },
+            //Lateral Factor of 137
+            { RCT2TrackElement.LeftOneEighthTurnOTD, new GForceFactors(137, 0) },
+            { RCT2TrackElement.LeftOneEighthTurnDTO, new GForceFactors(137, 0) },
+            //Lateral Factor of -137
+            { RCT2TrackElement.RightOneEighthTurnOTD, new GForceFactors(-137, 0) },
+            { RCT2TrackElement.RightOneEighthTurnDTO, new GForceFactors(-137, 0) },
+            //Lateral Factor of 200, Vertical of 270
+            { RCT2TrackElement.LeftOneEighthBankOTD, new GForceFactors(200, 270) },
+            { RCT2TrackElement.LeftOneEighthBankDTO, new GForceFactors(200, 270) },
+            //Lateral Factor of -200, Vertical of 270
+            { RCT2TrackElement.RightOneEighthBankOTD, new GForceFactors(-200, 270) },
+            { RCT2TrackElement.RightOneEighthBankDTO, new GForceFactors(-200, 270) },
+            //Vertical Factor of 113
+            { RCT2TrackElement.DiagFlatToIncline25, new GForceFactors(0, 113) },
+            { RCT2TrackElement.DiagDecline25ToFlat, new GForceFactors(0, 113) },
+            { RCT2TrackElement.DiagLeftBankToIncline25, new GForceFactors(0, 113) },
+            { RCT2TrackElement.DiagRightBankToIncline25, new GForceFactors(0, 113) },
+            { RCT2TrackElement.DiagDecline25ToLeftBank, new GForceFactors(0, 113) },
+            { RCT2TrackElement.DiagDecline25ToRightBank, new GForceFactors(0, 113) },
+            //Vertical Factor of -113
+            { RCT2TrackElement.DiagIncline25ToFlat, new GForceFactors(0, -113) },
+            { RCT2TrackElement.DiagFlatToDecline25, new GForceFactors(0, -113) },
+            { RCT2TrackElement.DiagIncline25ToLeftBank, new GForceFactors(0, -113) },
+            { RCT2TrackElement.DiagIncline25ToRightBank, new GForceFactors(0, -113) },
+            { RCT2TrackElement.DiagLeftBankToDecline25, new GForceFactors(0, -113) },
+            { RCT2TrackElement.DiagRightBankToDecline25, new GForceFactors(0, -113) },
+            //Vertical Factor of 95
+            { RCT2TrackElement.DiagIncline25To60, new GForceFactors(0, 95) },
+            { RCT2TrackElement.DiagDecline60To25, new GForceFactors(0, 95) },
+            //Vertical Factor of -95
+            { RCT2TrackElement.DiagIncline60To25, new GForceFactors(0, -95) },
+            { RCT2TrackElement.DiagDecline25To60, new GForceFactors(0, -95) },
+            //Vertical Factor of 60
+            { RCT2TrackElement.DiagFlatToIncline60, new GForceFactors(0, 60) },
+            { RCT2TrackElement.DiagDecline60ToFlat, new GForceFactors(0, 60) },
+            //Vertical Factor of -60
+            { RCT2TrackElement.DiagIncline60ToFlat, new GForceFactors(0, -60) },
+            { RCT2TrackElement.DiagFlatToDecline60, new GForceFactors(0, -60) },
+            //Vertical Factor of 170, Lateral Factor of 115
+            { RCT2TrackElement.LeftBarrelRollUpToDown, new GForceFactors(115, 170) },
+            { RCT2TrackElement.LeftBarrelRollDownToUp, new GForceFactors(115, 170) },
+            //Vertical Factor of 170, Lateral Factor of -115
+            { RCT2TrackElement.RightBarrelRollUpToDown, new GForceFactors(-115, 170) },
+            { RCT2TrackElement.RightBarrelRollDownToUp, new GForceFactors(-115, 170) },
+            //Lateral Factor of 90, Vertical Factor of track progress / 2 + 134
         };
     }
 }

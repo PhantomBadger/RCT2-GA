@@ -9,6 +9,13 @@ namespace RCT2GA.RideData
     class RCT2TrackData
     {
         public List<RCT2TrackPiece> TrackData { get; set; }
+        public float MaxPositiveG { get; }
+        public float MaxNegativeG { get; }
+        public float MaxLateralG { get; }
+        public float AvgPositiveG { get; }
+        public float AvgNegativeG { get; }
+        public float AvgLateralG { get; }
+
 
         public RCT2TrackData()
         {
@@ -205,7 +212,17 @@ namespace RCT2GA.RideData
         {
             //TODO
             //https://github.com/OpenRCT2/OpenRCT2/blob/3da10b7d7db8fe60ca6cb1e277f39abe532e956b/src/ride/vehicle.c#L4960
+            
+
+            
+            
+
             return 0;
+        }
+
+        private void GetTrackGForces(RCT2TrackElements.RCT2TrackElement track, out float posG, out float negG, out float latG)
+        {
+
         }
 
         public void Parse(string rawData)
