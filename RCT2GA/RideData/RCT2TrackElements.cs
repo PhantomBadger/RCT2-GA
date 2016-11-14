@@ -267,10 +267,10 @@ namespace RCT2GA.RideData
 
         public struct GForceFactors
         {
-            public float LateralGFactor;
-            public float VerticalGFactor;
+            public int LateralGFactor;
+            public int VerticalGFactor;
 
-            public GForceFactors(float lat, float vert)
+            public GForceFactors(int lat, int vert)
             {
                 LateralGFactor = lat;
                 VerticalGFactor = vert;
@@ -3270,8 +3270,8 @@ namespace RCT2GA.RideData
             { RCT2TrackElement.RightSBend, new GForceFactors(-98, 0) },         //Inaccurate, should be pos during the left components
             { RCT2TrackElement.RightSBendCovered, new GForceFactors(-98, 0) },  // ^
             //Vertical Factor is the track progress - 155 / 2 + 28
-            { RCT2TrackElement.LeftVerticalLoop, new GForceFactors(0, 28) },    //Inaccurate, no way of doing track progress
-            { RCT2TrackElement.RightVerticalLoop, new GForceFactors(0, 28) },   // ^
+            { RCT2TrackElement.LeftVerticalLoop, new GForceFactors(0, -49) },    //Inaccurate, no way of doing track progress
+            { RCT2TrackElement.RightVerticalLoop, new GForceFactors(0, -49) },   // ^
             //Lateral Factor is 59
             { RCT2TrackElement.LeftQuarterTurnAcross3, new GForceFactors(0, 59) },
             { RCT2TrackElement.LeftQuarterTurnIncline25Across3, new GForceFactors(0, 59) },
@@ -3297,11 +3297,11 @@ namespace RCT2GA.RideData
             //Lateral Factor -45
             { RCT2TrackElement.RightQuarterTurnAcross1, new GForceFactors(-45, 0) },
             //Vertical Factor of Track Progress - 155 / 2 + 28
-            { RCT2TrackElement.HalfLoopUp, new GForceFactors(28, 0) },          //Inaccurate, no way of doing track progress
-            { RCT2TrackElement.FlyerHalfLoopUp, new GForceFactors(28, 0) },     // ^
+            { RCT2TrackElement.HalfLoopUp, new GForceFactors(0, -49) },          //Inaccurate, no way of doing track progress
+            { RCT2TrackElement.FlyerHalfLoopUp, new GForceFactors(0, -49) },     // ^
             //Vertical Factor of Track Progress / 2 + 28
-            { RCT2TrackElement.HalfLoopDown, new GForceFactors(-28, 0) },       //Inaccurate, no way of doing track progress
-            { RCT2TrackElement.FlyerHalfLoopDown, new GForceFactors(-28, 0) },  // ^
+            { RCT2TrackElement.HalfLoopDown, new GForceFactors(0, -28) },       //Inaccurate, no way of doing track progress
+            { RCT2TrackElement.FlyerHalfLoopDown, new GForceFactors(0, -28) },  // ^
             //Lateral Factor of 70, Vertical Factor of 52
             { RCT2TrackElement.LeftCorkscrewUp, new GForceFactors(70, 52) },
             { RCT2TrackElement.RightCorkscrewDown, new GForceFactors(70, 52) },
@@ -3386,6 +3386,41 @@ namespace RCT2GA.RideData
             { RCT2TrackElement.RightBarrelRollUpToDown, new GForceFactors(-115, 170) },
             { RCT2TrackElement.RightBarrelRollDownToUp, new GForceFactors(-115, 170) },
             //Lateral Factor of 90, Vertical Factor of track progress / 2 + 134
+            { RCT2TrackElement.LeftBankToLeftQuarterTurnIncline25Across3, new GForceFactors(90, 134) }, //Inaccurate
+            //Lateral Factor of -90, Vertical Factor of track progress / 2 + 134
+            { RCT2TrackElement.RightBankToRightQuarterTurnIncline25Across3, new GForceFactors(-90, 134) },    //Inaccurate
+            //Lateral Factor of 90, Vertical Factor of -(track progress / 2) + 134
+            { RCT2TrackElement.LeftQuarterTurnDecline25ToLeftBankAcross3, new GForceFactors(90, 134) }, //Inaccurate
+            //Lateral Factor of -90, Vertical Factor of -(track progress / 2) + 134
+            { RCT2TrackElement.RightQuarterTurnDecline25ToRightBankAcross3, new GForceFactors(-90, 134) },  //Inaccurate
+            //Vertical Factor of -(track progress - 311) / 4 + 46
+            { RCT2TrackElement.RightLargeHalfLoopUp, new GForceFactors(0, 123) },   //Inaccurate
+            { RCT2TrackElement.LeftLargeHalfLoopUp, new GForceFactors(0, 123) },    //Inaccurate
+            //Vertical Factor of track progress / 4 + 46
+            { RCT2TrackElement.RightLargeHalfLoopDown, new GForceFactors(0, 46) },  //Inaccurate
+            { RCT2TrackElement.LeftLargeHalfLoopDown, new GForceFactors(0, 46) },   //Inaccurate
+            //Vertical Factor of -103 to 103 depending on track progress
+            { RCT2TrackElement.HeartlineTransferUp, new GForceFactors(0, 103) },    //Inaccurate
+            { RCT2TrackElement.HeartlineTransferDown, new GForceFactors(0, -103) }, //Inaccurate
+            //Vertical Factor of track progress / 4 + 55
+            { RCT2TrackElement.InvertedFlatToDecline90QuarterLoop_Multidim, new GForceFactors(0, 55) }, //Inaccurate
+            { RCT2TrackElement.FlatToDecline90QuarterLoop_Multidim, new GForceFactors(0, 55) }, //Inaccurate
+            //Vertical Factor of -(track progress - 137 / 4) + 55
+            { RCT2TrackElement.Incline90ToInvertedFlatQuarterLoop_Multidim, new GForceFactors(0, 89) }, //Inaccurate
+            //Vertical Factor of -60
+            { RCT2TrackElement.AirThrustTopCap, new GForceFactors(0, -60) },
+            //Vertical Factor of 200, Lateral Factor of 100
+            { RCT2TrackElement.LeftQuarterTurnIncline25BankedAcross3, new GForceFactors(100, 200) },
+            { RCT2TrackElement.LeftQuarterTurnDecline25BankedAcross3, new GForceFactors(100, 200) },
+            //Vertical Factor of 200, Lateral Factor of -100
+            { RCT2TrackElement.RightQuarterTurnIncline25BankedAcross3, new GForceFactors(-100, 200) },
+            { RCT2TrackElement.RightQuarterTurnDecline25BankedAcross3, new GForceFactors(-100, 200) },
+            //Vertical Factor of 200, Lateral Factor of 160
+            { RCT2TrackElement.LeftQuarterTurnIncline25BankedAcross5, new GForceFactors(160, 200) },
+            { RCT2TrackElement.LeftQuarterTurnDecline25BankedAcross5, new GForceFactors(160, 200) },
+            //Vertical Factor of 200, Lateral Factor of -160
+            { RCT2TrackElement.RightQuarterTurnIncline25BankedAcross5, new GForceFactors(-160, 200) },
+            { RCT2TrackElement.RightQuarterTurnDecline25BankedAcross5, new GForceFactors(-160, 200) },
         };
     }
 }

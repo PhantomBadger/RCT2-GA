@@ -45,6 +45,21 @@ namespace RCT2GA.RideData
             { RCT2TrackDirectionChange.DiagonalRight, 45 }
         };
 
+        //Acceleration Map
+        //Data extracted from https://github.com/kevinburke/rct/blob/master/physics/physics.go#L24
+        public static Dictionary<int, float> TrackAccelerationMap = new Dictionary<int, float>()
+        {
+            { 8, 7 },
+            { 4, 2.37f },   //Hack value, average between 7 and 1.4
+            { 2, 1.4f },
+            { 1, 0.7f },
+            { 0, -0.1f },
+            { -1, -0.75f }, //Neg numbers have higher coefficient
+            { -2, -1.45f },
+            { -4, -2.40f },
+            { -8, -7 }
+        };
+
         public RCT2TrackDegree InputTrackDegree { get; set; }
         public RCT2TrackDegree OutputTrackDegree { get; set; }
         public RCT2TrackBank InputTrackBank { get; set; }
