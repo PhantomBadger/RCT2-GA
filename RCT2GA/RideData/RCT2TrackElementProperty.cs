@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RCT2GA.RideData
 {
-    class RCT2ElementProperty
+    class RCT2TrackElementProperty
     {
         public enum RCT2TrackDegree {   None,
                                         Up25,

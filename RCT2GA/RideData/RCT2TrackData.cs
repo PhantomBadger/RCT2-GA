@@ -282,7 +282,7 @@ namespace RCT2GA.RideData
 
             for (int i = 0; i < TrackData.Count - 1; i++)
             {
-                RCT2ElementProperty property = RCT2TrackElements.TrackElementPropertyMap[TrackData[i].TrackElement];
+                RCT2TrackElementProperty property = RCT2TrackElements.TrackElementPropertyMap[TrackData[i].TrackElement];
                 RCT2TrackElements.RCT2TrackElement element = TrackData[i].TrackElement;
 
                 //----Check for ride inversions----
@@ -392,11 +392,11 @@ namespace RCT2GA.RideData
             nausea = CalculateNausea();
         }
 
-        private bool CheckInversion(RCT2ElementProperty property)
+        private bool CheckInversion(RCT2TrackElementProperty property)
         {
             //Check for ride inversions
-            if ((property.InputTrackBank != RCT2ElementProperty.RCT2TrackBank.Flipped && property.OutputTrackBank == RCT2ElementProperty.RCT2TrackBank.Flipped) ||
-                (property.InputTrackBank == RCT2ElementProperty.RCT2TrackBank.Flipped && property.OutputTrackBank != RCT2ElementProperty.RCT2TrackBank.Flipped))
+            if ((property.InputTrackBank != RCT2TrackElementProperty.RCT2TrackBank.Flipped && property.OutputTrackBank == RCT2TrackElementProperty.RCT2TrackBank.Flipped) ||
+                (property.InputTrackBank == RCT2TrackElementProperty.RCT2TrackBank.Flipped && property.OutputTrackBank != RCT2TrackElementProperty.RCT2TrackBank.Flipped))
             {
                 return true;
             }
@@ -404,7 +404,7 @@ namespace RCT2GA.RideData
             return false;
         }
 
-        private float CalcVelocity(float currentVelocity, RCT2TrackElements.RCT2TrackElement element, RCT2ElementProperty property)
+        private float CalcVelocity(float currentVelocity, RCT2TrackElements.RCT2TrackElement element, RCT2TrackElementProperty property)
         {
             //Check if it's a Chain lift or a station
             if (element == RCT2TrackElements.RCT2TrackElement.PoweredLift ||
@@ -423,7 +423,7 @@ namespace RCT2GA.RideData
             //Try to get current acceleration from the map
             try
             {
-                acceleration = RCT2ElementProperty.TrackAccelerationMap[(int)property.Displacement.Y];
+                acceleration = RCT2TrackElementProperty.TrackAccelerationMap[(int)property.Displacement.Y];
             }
             catch
             {
