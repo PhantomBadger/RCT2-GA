@@ -8,5 +8,6 @@ namespace RCT2GA.RideData
 {
     class RCT2RideFeatures
     {
+        //TODO
     }
 }

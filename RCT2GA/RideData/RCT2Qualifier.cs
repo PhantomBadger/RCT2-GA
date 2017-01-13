@@ -23,7 +23,7 @@ namespace RCT2GA.RideData
                                             Pos360,
                                             Pos405,
                                             Pos450,
-                                            Pos495};
+                                            Pos495 };
 
         public short TrackColourSchemeNumber { get; set; }
         public RCT2QualifierRotation TrackRotation { get; set; }

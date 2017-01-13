@@ -48,7 +48,7 @@
     <Compile Include="RideData\DATFileFlags.cs" />
     <Compile Include="RideData\DATFileHeader.cs" />
     <Compile Include="RideData\RCT2DepartureControlFlags.cs" />
-    <Compile Include="RideData\RCT2ElementProperty.cs" />
+    <Compile Include="RideData\RCT2TrackElementProperty.cs" />
     <Compile Include="RideData\RCT2Qualifier.cs" />
     <Compile Include="RideData\RCT2RideCode.cs" />
     <Compile Include="RideData\RCT2RideData.cs" />

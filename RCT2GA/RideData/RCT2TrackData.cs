@@ -10,49 +10,28 @@ namespace RCT2GA.RideData
     {
         public List<RCT2TrackPiece> TrackData { get; set; }
 
-        public float MaxPositiveG { get { return maxPositiveG; } }
-        public float MaxNegativeG { get { return maxNegativeG; } }
-        public float MaxLateralG { get { return maxLateralG; } }
-        public float AvgPositiveG { get { return avgPositiveG; } }
-        public float AvgNegativeG { get { return avgNegativeG; } }
-        public float AvgLateralG { get { return avgLateralG; } }
-        
-        public int AirTimeInSeconds { get { return airTimeInSeconds; } }
+        public float MaxPositiveG { get; private set; }
+        public float MaxNegativeG { get; private set; }
+        public float MaxLateralG { get; private set; }
+        public float AvgPositiveG { get; private set; }
+        public float AvgNegativeG { get; private set; }
+        public float AvgLateralG { get; private set; }
 
-        public int NumOfInversions { get { return numOfInversions; } }
+        public int AirTimeInSeconds { get; private set; }
 
-        public int NumOfDrops { get { return numOfDrops; } }
-        public int HighestDrop { get { return highestDrop; } }
+        public int NumOfInversions { get; private set; }
 
-        public int AverageSpeed { get { return avgSpeed; } }
-        public int MaxSpeed { get { return maxSpeed; } }
+        public int NumOfDrops { get; private set; }
+        public int HighestDrop { get; private set; }
 
-        public float Excitement { get { return Excitement; } }
-        public float Intensity { get { return Intensity; } }
-        public float Nausea { get { return Nausea; } }
+        public int AverageSpeed { get; private set; }
+        public int MaxSpeed { get; private set; }
+
+        public float Excitement { get; private set; }
+        public float Intensity { get; private set; }
+        public float Nausea { get; private set; }
 
         const int ChainLiftSpeed = 6;
-
-        private float maxPositiveG = 0;
-        private float maxNegativeG = 0;
-        private float maxLateralG = 0;
-        private float avgPositiveG = 0;
-        private float avgNegativeG = 0;
-        private float avgLateralG = 0;
-
-        private int airTimeInSeconds = 0;
-
-        private int numOfInversions = 0;
-
-        private int numOfDrops = 0;
-        private int highestDrop = 0;
-
-        private int avgSpeed = 0;
-        private int maxSpeed = 0;
-
-        private float excitement = 0;
-        private float intensity = 0;
-        private float nausea = 0;
 
         public RCT2TrackData()
         {
@@ -369,27 +348,27 @@ namespace RCT2GA.RideData
             }
 
             //Apply the new values to our global vars
-            numOfInversions = tempInvCount;
+            NumOfInversions = tempInvCount;
 
-            numOfDrops = dropCount;
-            highestDrop = (int)tempHighestDrop;
+            NumOfDrops = dropCount;
+            HighestDrop = (int)tempHighestDrop;
 
-            avgSpeed = (int)(totalVelocity / TrackData.Count);
-            maxSpeed = (int)tempMaxSpeed;
+            AverageSpeed = (int)(totalVelocity / TrackData.Count);
+            MaxSpeed = (int)tempMaxSpeed;
 
-            avgLateralG = totalLatG / TrackData.Count;
-            avgPositiveG = totalPosG / TrackData.Count;
-            avgNegativeG = totalNegG / TrackData.Count;
+            AvgLateralG = totalLatG / TrackData.Count;
+            AvgPositiveG = totalPosG / TrackData.Count;
+            AvgNegativeG = totalNegG / TrackData.Count;
 
-            maxLateralG = maxLatG;
-            maxPositiveG = maxPosG;
-            maxNegativeG = maxNegG;
+            MaxLateralG = maxLatG;
+            MaxPositiveG = maxPosG;
+            MaxNegativeG = maxNegG;
 
-            airTimeInSeconds = tempAirTimeInSeconds;
+            AirTimeInSeconds = tempAirTimeInSeconds;
 
-            excitement = CalculateExcitement();
-            intensity = CalculateIntensity();
-            nausea = CalculateNausea();
+            Excitement = CalculateExcitement();
+            Intensity = CalculateIntensity();
+            Nausea = CalculateNausea();
         }
 
         private bool CheckInversion(RCT2TrackElementProperty property)

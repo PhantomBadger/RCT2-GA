@@ -280,13 +280,15 @@ namespace RCT2GA.RideData
         //Property map to link the enum to the relevent property
         //Location Change data adapted from the information found by Kevin Burke and showcased
         //on his github //https://github.com/kevinburke/rct/blob/master/tracks/segment.go
+        //Track Type data adapted from the OpenRCT2 Github: https://raw.githubusercontent.com/OpenRCT2/OpenRCT2/develop/src/ride/track_data.c
 
         //Seems some values are incorrect, could cause issues with collisions
         public static Dictionary<RCT2TrackElement, RCT2TrackElementProperty> TrackElementPropertyMap = new Dictionary<RCT2TrackElement, RCT2TrackElementProperty>
         {
-            { 
+            {
                 RCT2TrackElement.Flat, new RCT2TrackElementProperty()
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -298,6 +300,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.EndStation, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.StationEnd,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -309,6 +312,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.BeginStation, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -320,6 +324,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.MiddleStation, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -331,6 +336,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.Incline25, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up25,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up25,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -342,6 +348,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.Incline60, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up60,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up60,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -353,6 +360,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.FlatToIncline25, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up25,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -364,6 +372,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.Incline25To60, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up25,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up60,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -375,6 +384,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.Incline60To25, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up60,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up25,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -386,6 +396,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.Incline25ToFlat, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up25,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -397,6 +408,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.Decline25, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Down25,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Down25,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -408,6 +420,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.Decline60, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Down60,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Down60,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -419,6 +432,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.FlatToDecline25, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Down25,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -430,6 +444,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.Decline25To60, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Down25,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Down60,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -441,6 +456,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.Decline60To25, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Down60,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Down25,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -452,6 +468,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.Decline25ToFlat, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Down25,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -463,6 +480,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.LeftQuarterTurnAcross5, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -474,6 +492,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.RightQuarterTurnAcross5, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -485,6 +504,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.FlatToLeftBank, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -496,6 +516,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.FlatToRightBank, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -507,6 +528,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.LeftBankToFlat, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.Left,
@@ -518,6 +540,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.RightBankToFlat, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.Right,
@@ -529,6 +552,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.LeftQuarterTurnBankAcross5, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.Left,
@@ -540,6 +564,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.RightQuarterTurnBankAcross5, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.Right,
@@ -551,6 +576,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.LeftBankToIncline25, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up25,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.Left,
@@ -562,6 +588,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.RightBankToIncline25, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up25,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.Right,
@@ -573,6 +600,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.Incline25ToLeftBank, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up25,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -584,6 +612,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.Incline25ToRightBank, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up25,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -595,6 +624,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.LeftBankToDecline25, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Down25,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.Left,
@@ -606,6 +636,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.RightBankToDecline25, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Down25,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.Right,
@@ -617,6 +648,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.Decline25ToLeftBank, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Down25,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -628,6 +660,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.Decline25ToRightBank, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Down25,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -639,6 +672,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.LeftBank, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.Left,
@@ -650,6 +684,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.RightBank, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.Right,
@@ -661,6 +696,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.LeftQuarterTurnIncline25Across5, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up25,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up25,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -672,6 +708,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.RightQuarterTurnIncline25Across5, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up25,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up25,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -683,6 +720,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.LeftQuarterTurnDecline25Across5, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Down25,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Down25,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -694,6 +732,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.RightQuarterTurnDecline25Across5, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Down25,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Down25,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -705,6 +744,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.LeftSBend, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.SBend,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -716,6 +756,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.RightSBend, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.SBend,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -727,6 +768,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.LeftVerticalLoop, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.VerticalLoop,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up25,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Down25,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -738,6 +780,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.RightVerticalLoop, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.VerticalLoop,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up25,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Down25,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -749,6 +792,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.LeftQuarterTurnAcross3, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -760,6 +804,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.RightQuarterTurnAcross3, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -771,6 +816,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.LeftQuarterTurnBankAcross3, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.Left,
@@ -782,6 +828,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.RightQuarterTurnBankAcross3, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.Right,
@@ -793,6 +840,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.LeftQuarterTurnIncline25Across3, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up25,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up25,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -804,6 +852,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.RightQuarterTurnIncline25Across3, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up25,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up25,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -815,6 +864,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.LeftQuarterTurnDecline25Across3, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Down25,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Down25,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -826,6 +876,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.RightQuarterTurnDecline25Across3, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Down25,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Down25,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -837,6 +888,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.LeftQuarterTurnAcross1, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -848,6 +900,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.RightQuarterTurnAcross1, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -859,6 +912,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.LeftTwistDownToUp, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -870,6 +924,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.RightTwistDownToUp, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -881,6 +936,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.LeftTwistUpToDown, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.Flipped,
@@ -892,6 +948,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.RightTwistUpToDown, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.Flipped,
@@ -903,6 +960,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.HalfLoopUp, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.HalfLoop,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up25,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -914,6 +972,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.HalfLoopDown, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.HalfLoop,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Down25,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.Flipped,
@@ -925,6 +984,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.LeftCorkscrewUp, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Corkscrew,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -936,6 +996,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.RightCorkscrewUp, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Corkscrew,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -947,6 +1008,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.LeftCorkscrewDown, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Corkscrew,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.Flipped,
@@ -958,6 +1020,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.RightCorkscrewDown, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Corkscrew,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.Flipped,
@@ -969,6 +1032,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.FlatToIncline60, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up60,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -980,6 +1044,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.Incline60ToFlat, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up60,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -991,6 +1056,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.FlatToDecline60, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Down60,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -1002,6 +1068,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.Decline60ToFlat, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Down60,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -1013,6 +1080,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.TowerBase, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.TowerBase,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up90,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up90,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -1024,6 +1092,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.TowerSection, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.TowerBase,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up90,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up90,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -1035,6 +1104,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.FlatCovered, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -1046,6 +1116,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.Incline25Covered, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up25,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up25,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -1057,6 +1128,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.Incline60Covered, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up60,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up60,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -1068,6 +1140,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.FlatToIncline25Covered, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up25,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -1079,6 +1152,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.Incline25To60Covered, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up25,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up60,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -1090,6 +1164,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.Incline60To25Covered, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up60,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up25,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -1101,6 +1176,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.Incline25ToFlatCovered, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up25,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -1112,6 +1188,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.Decline25Covered, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Down25,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Down25,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -1123,6 +1200,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.Decline60Covered, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Down60,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Down60,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -1134,6 +1212,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.FlatToDecline25Covered, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Down25,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -1145,6 +1224,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.Decline25To60Covered, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Down25,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Down60,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -1156,6 +1236,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.Decline60To25Covered, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Down60,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Down25,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -1167,6 +1248,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.Decline25ToFlatCovered, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Down25,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -1178,6 +1260,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.LeftQuarterTurnCoveredAcross5, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -1189,6 +1272,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.RightQuarterTurnCoveredAcross5, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -1200,6 +1284,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.LeftSBendCovered, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -1211,6 +1296,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.RightSBendCovered, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -1222,6 +1308,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.LeftQuarterTurnCoveredAcross3, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -1233,6 +1320,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.RightQuarterTurnCoveredAcross3, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -1244,6 +1332,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.LeftHalfBankedHelixInclineSmall, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.HelixSmall,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.Left,
@@ -1255,6 +1344,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.RightHalfBankedHelixInclineSmall, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.HelixSmall,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.Right,
@@ -1266,6 +1356,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.LeftHalfBankedHelixDeclineSmall, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.HelixSmall,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.Left,
@@ -1277,6 +1368,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.RightHalfBankedHelixDeclineSmall, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.HelixSmall,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.Right,
@@ -1288,6 +1380,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.LeftHalfBankedHelixInclineLarge, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.HelixSmall,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.Left,
@@ -1299,6 +1392,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.RightHalfBankedHelixInclineLarge, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.HelixSmall,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.Right,
@@ -1310,6 +1404,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.LeftHalfBankedHelixDeclineLarge, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.HelixSmall,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.Left,
@@ -1321,6 +1416,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.RightHalfBankedHelixDeclineLarge, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.HelixSmall,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.Right,
@@ -1332,6 +1428,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.LeftQuarterTurnIncline60Across1, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up60,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up60,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -1343,6 +1440,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.RightQuarterTurnIncline60Across1, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up60,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up60,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -1354,6 +1452,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.LeftQuarterTurnDecline60Across1, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Down60,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Down60,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -1365,6 +1464,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.RightQuarterTurnDecline60Across1, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Down60,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Down60,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -1376,6 +1476,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.Brakes, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Brakes,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -1387,6 +1488,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.RotationControlToggle_SpinningWildMouse, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.RotationControlToggle,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -1398,6 +1500,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.InvertedIncline90ToFlatQuarterLoop_Multidim, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -1409,6 +1512,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.LeftQuarterTurnBankedHelixLargeIncline, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.HelixLarge,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.Left,
@@ -1420,6 +1524,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.RightQuarterTurnBankedHelixLargeIncline, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.HelixLarge,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.Right,
@@ -1431,6 +1536,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.LeftQuarterTurnBankedHelixLargeDecline, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.HelixLarge,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.Left,
@@ -1442,6 +1548,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.RightQuarterTurnBankedHelixLargeDecline, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.HelixLarge,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.Right,
@@ -1453,6 +1560,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.LeftQuarterTurnHelixLargeIncline, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.HelixLargeUnbanked,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -1464,6 +1572,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.RightQuarterTurnHelixLargeIncline, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.HelixLargeUnbanked,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -1475,6 +1584,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.LeftQuarterTurnHelixLargeDecline, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.HelixLargeUnbanked,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -1486,6 +1596,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.RightQuarterTurnHelixLargeDecline, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.HelixLargeUnbanked,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -1497,6 +1608,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.Incline25LeftBanked, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up25,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up25,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.Left,
@@ -1508,6 +1620,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.Incline25RightBanked, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up25,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up25,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.Right,
@@ -1519,6 +1632,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.Waterfall, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Waterfall,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -1530,6 +1644,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.Rapids, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Rapids,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -1541,6 +1656,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.OnRidePhoto, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.OnRidePhoto,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -1552,6 +1668,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.Decline25LeftBanked, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Down25,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Down25,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.Left,
@@ -1563,6 +1680,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.Decline25RightBanked, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Down25,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Down25,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.Right,
@@ -1574,6 +1692,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.Watersplash, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.WaterSplash,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -1585,6 +1704,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.FlatToIncline60LongBase, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up60,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -1596,6 +1716,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.Incline60ToFlatLongBase, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up60,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -1607,6 +1728,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.Whirlpool, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Whirlpool,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -1618,6 +1740,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.Decline60ToFlatLongBase, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Down60,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -1629,6 +1752,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.FlatToDecline60LongBase, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Down60,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -1640,6 +1764,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.CableLiftHill, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.LiftHillCable,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up25,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up60,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -1651,6 +1776,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.ReverseWhoaBellySlope, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.WhoaBelly,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up90,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -1662,6 +1788,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.ReverseWhoaBellyVertical, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.WhoaBelly,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up90,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up90,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -1673,6 +1800,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.Incline90, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up90,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up90,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -1684,6 +1812,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.Decline90, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Down90,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Down90,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -1695,6 +1824,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.Incline60To90, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up60,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up90,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -1706,6 +1836,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.Decline90To60, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Down90,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Down60,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -1717,6 +1848,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.Incline90To60, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up90,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up60,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -1728,6 +1860,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.Decline60To90, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Down60,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Down90,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -1739,6 +1872,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.BrakeforDrop, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.BrakeForDrop,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Down60,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -1750,6 +1884,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.LeftOneEighthTurnOTD, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -1761,6 +1896,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.RightOneEighthTurnOTD, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -1772,6 +1908,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.LeftOneEighthTurnDTO, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -1783,6 +1920,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.RightOneEighthTurnDTO, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -1794,6 +1932,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.LeftOneEighthBankOTD, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.Left,
@@ -1805,6 +1944,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.RightOneEighthBankOTD, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.Right,
@@ -1816,6 +1956,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.LeftOneEighthBankDTO, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.Left,
@@ -1827,6 +1968,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.RightOneEighthBankDTO, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.Right,
@@ -1838,6 +1980,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.DiagFlat, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -1849,6 +1992,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.DiagIncline25, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up25,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up25,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -1860,6 +2004,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.DiagIncline60, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up60,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up60,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -1871,6 +2016,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.DiagFlatToIncline25, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up25,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -1882,6 +2028,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.DiagIncline25To60, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up25,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up60,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -1893,6 +2040,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.DiagIncline60To25, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up60,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up25,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -1904,6 +2052,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.DiagIncline25ToFlat, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up25,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -1915,6 +2064,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.DiagDecline25, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Down25,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Down25,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -1926,6 +2076,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.DiagDecline60, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Down60,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Down60,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -1937,6 +2088,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.DiagFlatToDecline25, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Down25,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -1948,6 +2100,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.DiagDecline25To60, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Down25,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Down60,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -1959,6 +2112,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.DiagDecline60To25, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Down60,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Down25,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -1970,6 +2124,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.DiagDecline25ToFlat, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Down25,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -1981,6 +2136,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.DiagFlatToIncline60, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up60,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -1992,6 +2148,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.DiagIncline60ToFlat, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up60,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -2003,6 +2160,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.DiagFlatToDecline60, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Down60,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -2014,6 +2172,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.DiagDecline60ToFlat, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Down60,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -2025,6 +2184,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.DiagFlatToLeftBank, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -2036,6 +2196,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.DiagFlatToRightBank, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -2047,6 +2208,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.DiagLeftBankToFlat, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.Left,
@@ -2058,6 +2220,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.DiagRightBankToFlat, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.Right,
@@ -2069,6 +2232,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.DiagLeftBankToIncline25, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up25,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.Left,
@@ -2080,6 +2244,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.DiagRightBankToIncline25, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up25,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -2091,6 +2256,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.DiagIncline25ToLeftBank, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up25,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -2102,6 +2268,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.DiagIncline25ToRightBank, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up25,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -2113,6 +2280,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.DiagLeftBankToDecline25, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Down25,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.Left,
@@ -2124,6 +2292,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.DiagRightBankToDecline25, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Down25,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.Right,
@@ -2135,6 +2304,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.DiagDecline25ToLeftBank, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Down25,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -2146,6 +2316,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.DiagDecline25ToRightBank, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Down25,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -2157,6 +2328,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.DiagLeftBank, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.Left,
@@ -2168,6 +2340,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.DiagRightBank, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.Right,
@@ -2179,6 +2352,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.LogFlumeReverser, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.LogFlumeReverser,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -2190,6 +2364,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.SpinningTunnel, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.SpinningTunnel,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -2201,6 +2376,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.LeftBarrelRollUpToDown, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.BarrelRoll,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -2212,6 +2388,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.RightBarrelRollUpToDown, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.BarrelRoll,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -2223,6 +2400,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.LeftBarrelRollDownToUp, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.BarrelRoll,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.Flipped,
@@ -2234,6 +2412,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.RightBarrelRollDownToUp, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.BarrelRoll,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.Flipped,
@@ -2245,6 +2424,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.LeftBankToLeftQuarterTurnIncline25Across3, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up25,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.Left,
@@ -2256,6 +2436,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.RightBankToRightQuarterTurnIncline25Across3, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up25,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.Right,
@@ -2267,6 +2448,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.LeftQuarterTurnDecline25ToLeftBankAcross3, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Down25,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -2278,6 +2460,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.RightQuarterTurnDecline25ToRightBankAcross3, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Down25,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -2289,6 +2472,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.PoweredLift, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.PoweredLift,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up25,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up25,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -2300,6 +2484,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.LeftLargeHalfLoopUp, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.HalfLoopLarge,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up25,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -2311,6 +2496,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.RightLargeHalfLoopUp, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.HalfLoopLarge,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up25,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -2322,6 +2508,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.RightLargeHalfLoopDown, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.HalfLoopLarge,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Down25,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.Flipped,
@@ -2333,6 +2520,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.LeftLargeHalfLoopDown, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.HalfLoopLarge,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Down25,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.Flipped,
@@ -2344,6 +2532,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.LeftFlyerTwistUpToDown, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.InlineTwistUninverted,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -2355,6 +2544,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.RightFlyerTwistUpToDown, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.InlineTwistUninverted,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -2366,6 +2556,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.LeftFlyerTwistDownToUp, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.InlineTwistInverted,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.Flipped,
@@ -2377,6 +2568,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.RightFlyerTwistDownToUp, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.InlineTwistInverted,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.Flipped,
@@ -2388,6 +2580,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.FlyerHalfLoopUp, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.HalfLoopUninverted,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up25,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -2399,6 +2592,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.FlyerHalfLoopDown, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.HalfLoopInverted,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Down25,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -2410,6 +2604,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.LeftFlyCorkscrewUpToDown, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Track190,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -2421,6 +2616,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.RightFlyCorkscrewUpToDown, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Track190,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -2432,6 +2628,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.LeftFlyCorkscrewDownToUp, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Track192,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.Flipped,
@@ -2443,6 +2640,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.RightFlyCorkscrewDownToUp, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Track192,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.Flipped,
@@ -2454,6 +2652,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.HeartlineTransferUp, new RCT2TrackElementProperty //TODO: Check
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Track194,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -2465,6 +2664,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.HeartlineTransferDown, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Track194,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -2476,6 +2676,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.LeftHeartlineRoll, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.HeartlineRoll,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -2487,6 +2688,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.RightHeartlineRoll, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.HeartlineRoll,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -2498,6 +2700,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.MinigolfHoleA, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.MiniGolfHole,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -2509,6 +2712,7 @@ namespace RCT2GA.RideData
             { 
 				RCT2TrackElement.MinigolfHoleB, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.MiniGolfHole,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -2520,6 +2724,7 @@ namespace RCT2GA.RideData
             {
                 RCT2TrackElement.MinigolfHoleC, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.MiniGolfHole,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -2531,6 +2736,7 @@ namespace RCT2GA.RideData
             {
                 RCT2TrackElement.MinigolfHoleD, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.MiniGolfHole,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -2542,6 +2748,7 @@ namespace RCT2GA.RideData
             {
                 RCT2TrackElement.MinigolfHoleE, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.MiniGolfHole,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -2553,6 +2760,7 @@ namespace RCT2GA.RideData
             {
                 RCT2TrackElement.InvertedFlatToDecline90QuarterLoop_Multidim, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.QuarterLoopInverted,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Down90,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -2564,6 +2772,7 @@ namespace RCT2GA.RideData
             {
                 RCT2TrackElement.QuarterLoopIncline90ToInvert, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.QuarterLoop,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up90,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -2575,6 +2784,7 @@ namespace RCT2GA.RideData
             {
                 RCT2TrackElement.QuarterLoopInvertToDecline90, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.QuarterLoop,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up90,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.Flipped,
@@ -2586,6 +2796,7 @@ namespace RCT2GA.RideData
             {
                 RCT2TrackElement.LeftCurvedLiftHill, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.LiftHillCurved,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -2597,6 +2808,7 @@ namespace RCT2GA.RideData
             {
                 RCT2TrackElement.RightCurvedLiftHill, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.LiftHillCurved,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -2608,6 +2820,7 @@ namespace RCT2GA.RideData
             {
                 RCT2TrackElement.LeftReverser, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Reverser,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -2619,6 +2832,7 @@ namespace RCT2GA.RideData
             {
                 RCT2TrackElement.RightReverser, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Reverser,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -2630,6 +2844,7 @@ namespace RCT2GA.RideData
             {
                 RCT2TrackElement.AirThrustTopCap, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.SlopeToFlat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up90,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Down90,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -2641,6 +2856,7 @@ namespace RCT2GA.RideData
             {
                 RCT2TrackElement.AirThrustVerticalDown, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.SlopeToFlat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Down90,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Down90,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -2652,6 +2868,7 @@ namespace RCT2GA.RideData
             {
                 RCT2TrackElement.AirThrustVerticalDownToLevel, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.SlopeToFlat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Down90,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -2663,6 +2880,7 @@ namespace RCT2GA.RideData
             {
                 RCT2TrackElement.BlockBrakes, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.BlockBrakes,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -2674,6 +2892,7 @@ namespace RCT2GA.RideData
             {
                 RCT2TrackElement.LeftQuarterTurnIncline25BankedAcross3, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up25,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up25,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.Left,
@@ -2685,6 +2904,7 @@ namespace RCT2GA.RideData
             {
                 RCT2TrackElement.RightQuarterTurnIncline25BankedAcross3, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up25,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up25,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.Right,
@@ -2696,6 +2916,7 @@ namespace RCT2GA.RideData
             {
                 RCT2TrackElement.LeftQuarterTurnDecline25BankedAcross3, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Down25,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Down25,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.Left,
@@ -2707,6 +2928,7 @@ namespace RCT2GA.RideData
             {
                 RCT2TrackElement.RightQuarterTurnDecline25BankedAcross3, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Down25,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Down25,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.Right,
@@ -2718,6 +2940,7 @@ namespace RCT2GA.RideData
             {
                 RCT2TrackElement.LeftQuarterTurnIncline25BankedAcross5, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up25,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up25,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.Left,
@@ -2729,6 +2952,7 @@ namespace RCT2GA.RideData
             {
                 RCT2TrackElement.RightQuarterTurnIncline25BankedAcross5, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up25,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up25,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.Right,
@@ -2740,6 +2964,7 @@ namespace RCT2GA.RideData
             {
                 RCT2TrackElement.LeftQuarterTurnDecline25BankedAcross5, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Down25,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Down25,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.Left,
@@ -2751,6 +2976,7 @@ namespace RCT2GA.RideData
             {
                 RCT2TrackElement.RightQuarterTurnDecline25BankedAcross5, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Down25,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Down25,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.Right,
@@ -2762,6 +2988,7 @@ namespace RCT2GA.RideData
             {
                 RCT2TrackElement.Incline25ToLeftBankIncline25, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up25,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up25,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -2773,6 +3000,7 @@ namespace RCT2GA.RideData
             {
                 RCT2TrackElement.Incline25ToRightBankIncline25, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up25,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up25,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -2784,6 +3012,7 @@ namespace RCT2GA.RideData
             {
                 RCT2TrackElement.LeftBankIncline25ToIncline25, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up25,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up25,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.Left,
@@ -2795,6 +3024,7 @@ namespace RCT2GA.RideData
             {
                 RCT2TrackElement.RightBankIncline25ToIncline25, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up25,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up25,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.Right,
@@ -2806,6 +3036,7 @@ namespace RCT2GA.RideData
             {
                 RCT2TrackElement.Decline25ToLeftBankDecline25, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Down25,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Down25,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -2817,6 +3048,7 @@ namespace RCT2GA.RideData
             {
                 RCT2TrackElement.Decline25ToRightBankDecline25, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Down25,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Down25,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -2828,6 +3060,7 @@ namespace RCT2GA.RideData
             {
                 RCT2TrackElement.LeftBankDecline25ToDecline25, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Down25,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Down25,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.Left,
@@ -2839,6 +3072,7 @@ namespace RCT2GA.RideData
             {
                 RCT2TrackElement.RightBankDecline25ToDecline25, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Down25,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Down25,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.Right,
@@ -2850,6 +3084,7 @@ namespace RCT2GA.RideData
             {
                 RCT2TrackElement.LeftBankFlatToLeftBankIncline25, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up25,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.Left,
@@ -2861,6 +3096,7 @@ namespace RCT2GA.RideData
             {
                 RCT2TrackElement.RightBankFlatToRightBankIncline25, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up25,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.Right,
@@ -2872,6 +3108,7 @@ namespace RCT2GA.RideData
             {
                 RCT2TrackElement.LeftBankIncline25ToLeftBankFlat, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up25,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.Left,
@@ -2883,6 +3120,7 @@ namespace RCT2GA.RideData
             {
                 RCT2TrackElement.RightBankIncline25ToRightBankFlat, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up25,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.Right,
@@ -2894,6 +3132,7 @@ namespace RCT2GA.RideData
             {
                 RCT2TrackElement.LeftBankFlatToLeftBankDecline25, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Down25,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.Left,
@@ -2905,6 +3144,7 @@ namespace RCT2GA.RideData
             {
                 RCT2TrackElement.RightBankFlatToRightBankDecline25, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Down25,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.Right,
@@ -2916,6 +3156,7 @@ namespace RCT2GA.RideData
             {
                 RCT2TrackElement.LeftBankDecline25ToLeftBankFlat, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Down25,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.Left,
@@ -2927,6 +3168,7 @@ namespace RCT2GA.RideData
             {
                 RCT2TrackElement.RightBankDecline25ToRightBankFlat, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Down25,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.Right,
@@ -2938,6 +3180,7 @@ namespace RCT2GA.RideData
             {
                 RCT2TrackElement.FlatToLeftBankIncline25, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up25,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -2949,6 +3192,7 @@ namespace RCT2GA.RideData
             {
                 RCT2TrackElement.FlatToRightBankIncline25, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up25,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -2960,6 +3204,7 @@ namespace RCT2GA.RideData
             {
                 RCT2TrackElement.LeftBankIncline25ToFlat, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up25,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.Left,
@@ -2971,6 +3216,7 @@ namespace RCT2GA.RideData
             {
                 RCT2TrackElement.RightBankIncline25ToFlat, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up25,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.Right,
@@ -2982,6 +3228,7 @@ namespace RCT2GA.RideData
             {
                 RCT2TrackElement.FlatToLeftBankDecline25, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Down25,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -2993,6 +3240,7 @@ namespace RCT2GA.RideData
             {
                 RCT2TrackElement.FlatToRightBankDecline25, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Down25,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -3004,6 +3252,7 @@ namespace RCT2GA.RideData
             {
                 RCT2TrackElement.LeftBankDecline25ToFlat, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Down25,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.Left,
@@ -3015,6 +3264,7 @@ namespace RCT2GA.RideData
             {
                 RCT2TrackElement.RightBankDecline25ToFlat, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Down25,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.Right,
@@ -3026,6 +3276,7 @@ namespace RCT2GA.RideData
             {
                 RCT2TrackElement.LeftQuarterTurnIncline90Across1, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up90,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up90,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -3037,6 +3288,7 @@ namespace RCT2GA.RideData
             {
                 RCT2TrackElement.RightQuarterTurnIncline90Across1, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up90,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up90,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -3048,6 +3300,7 @@ namespace RCT2GA.RideData
             {
                 RCT2TrackElement.LeftQuarterTurnDecline90Across1, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Down90,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Down90,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -3059,6 +3312,7 @@ namespace RCT2GA.RideData
             {
                 RCT2TrackElement.RightQuarterTurnDecline90Across1, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.Flat,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Down90,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Down90,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -3070,6 +3324,7 @@ namespace RCT2GA.RideData
             {
                 RCT2TrackElement.Incline90ToInvertedFlatQuarterLoop_Multidim, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.QuarterLoopUninverted,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Up90,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -3081,6 +3336,7 @@ namespace RCT2GA.RideData
             {
                 RCT2TrackElement.FlatToDecline90QuarterLoop_Multidim, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.QuarterLoopUninverted,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.Down90,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
@@ -3092,6 +3348,7 @@ namespace RCT2GA.RideData
             {
                 RCT2TrackElement.EndOfTrack, new RCT2TrackElementProperty
                 {
+                    TrackType = RCT2TrackElementProperty.RCT2TrackElementType.QuarterLoopInverted,
                     InputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     OutputTrackDegree = RCT2TrackElementProperty.RCT2TrackDegree.None,
                     InputTrackBank = RCT2TrackElementProperty.RCT2TrackBank.None,
