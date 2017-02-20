@@ -16,14 +16,7 @@ namespace RCT2GA.RideData
                                             Pos45,
                                             Pos90,
                                             Pos135,
-                                            Pos180,
-                                            Pos225,
-                                            Pos270,
-                                            Pos315,
-                                            Pos360,
-                                            Pos405,
-                                            Pos450,
-                                            Pos495 };
+                                            Pos180 };
 
         public short TrackColourSchemeNumber { get; set; }
         public RCT2QualifierRotation TrackRotation { get; set; }

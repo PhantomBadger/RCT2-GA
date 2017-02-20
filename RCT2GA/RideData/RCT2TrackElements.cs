@@ -282,6 +282,7 @@ namespace RCT2GA.RideData
         //on his github //https://github.com/kevinburke/rct/blob/master/tracks/segment.go
         //Track Type data adapted from the OpenRCT2 Github: https://raw.githubusercontent.com/OpenRCT2/OpenRCT2/develop/src/ride/track_data.c
 
+        #region PropertyMap
         //Seems some values are incorrect, could cause issues with collisions
         public static Dictionary<RCT2TrackElement, RCT2TrackElementProperty> TrackElementPropertyMap = new Dictionary<RCT2TrackElement, RCT2TrackElementProperty>
         {
@@ -3358,7 +3359,9 @@ namespace RCT2GA.RideData
                 }
             },
         };
+        #endregion
 
+        #region GForces
         //Collection of the Vertical and Lateral G Force Factors
         //Tuple is LAteral , Vertical
         //Data extracted from https://github.com/OpenRCT2/OpenRCT2/blob/3da10b7d7db8fe60ca6cb1e277f39abe532e956b/src/ride/vehicle.c#L4968
@@ -3679,5 +3682,59 @@ namespace RCT2GA.RideData
             { RCT2TrackElement.RightQuarterTurnIncline25BankedAcross5, new GForceFactors(-160, 200) },
             { RCT2TrackElement.RightQuarterTurnDecline25BankedAcross5, new GForceFactors(-160, 200) },
         };
+        #endregion
+
+        static List<RCT2TrackElement> FindValidSuccessors(RCT2TrackElement inputTrack)
+        {
+            List<RCT2TrackElement> validTracks = new List<RCT2TrackElement>();
+
+            //Get the properties for out input track
+            RCT2TrackElementProperty inputProperty = TrackElementPropertyMap[inputTrack];
+
+            //Go through every track and add all the valid possibilities to our list
+            foreach (RCT2TrackElement track in Enum.GetValues(typeof(RCT2TrackElement)))
+            {
+                //For prototype we are focusing only on the Wooden Rollercoaster ride type
+                //Ignore anything that doesn't fit the restrictions for the ride
+                //TODO: Move these restrictions to a RideType file structure or something
+
+                //Easier to check if something doesn't meet the requirements than does most of the time
+                RCT2TrackElementProperty trackProperty = TrackElementPropertyMap[track];
+                if (
+                    //Doesn't match the bank from the input
+                    trackProperty.InputTrackBank != inputProperty.OutputTrackBank ||
+                    //Doesn't match the degree from the input               
+                    trackProperty.InputTrackDegree != inputProperty.OutputTrackDegree ||
+                    //Exceeds the Max Track Slope Limit of the Ride
+                    trackProperty.InputTrackDegree == RCT2TrackElementProperty.RCT2TrackDegree.Up90 ||
+                    trackProperty.OutputTrackDegree == RCT2TrackElementProperty.RCT2TrackDegree.Up90 ||
+                    trackProperty.InputTrackDegree == RCT2TrackElementProperty.RCT2TrackDegree.Down90 ||
+                    trackProperty.OutputTrackDegree == RCT2TrackElementProperty.RCT2TrackDegree.Down90 ||
+                    //Exceeds the Max Bank Angle
+                    trackProperty.OutputTrackBank == RCT2TrackElementProperty.RCT2TrackBank.Flipped ||
+                    //Dont use Diagonal Pieces
+                    trackProperty.DirectionChange == RCT2TrackElementProperty.RCT2TrackDirectionChange.DiagonalLeft ||
+                    trackProperty.DirectionChange == RCT2TrackElementProperty.RCT2TrackDirectionChange.DiagonalRight ||
+                    trackProperty.DirectionChange == RCT2TrackElementProperty.RCT2TrackDirectionChange.DiagonalStraight ||
+                    //Dont use Water/Covered pieces
+                    trackProperty.ToString().ToLower().Contains("covered") ||
+                    //Dont use Unsupported Track Types
+                   (trackProperty.TrackType != RCT2TrackElementProperty.RCT2TrackElementType.Flat &&
+                    trackProperty.TrackType != RCT2TrackElementProperty.RCT2TrackElementType.Curve &&
+                    trackProperty.TrackType != RCT2TrackElementProperty.RCT2TrackElementType.LiftHill &&
+                    trackProperty.TrackType != RCT2TrackElementProperty.RCT2TrackElementType.PoweredLift &&
+                    trackProperty.TrackType != RCT2TrackElementProperty.RCT2TrackElementType.OnRidePhoto &&
+                    trackProperty.TrackType != RCT2TrackElementProperty.RCT2TrackElementType.WaterSplash))
+                {
+                    //Ignore and go to the next track piece
+                    continue;
+                }
+
+                //Otherwise we consider it valid
+                validTracks.Add(track);
+            }
+
+            return validTracks;
+        }
     }
 }
