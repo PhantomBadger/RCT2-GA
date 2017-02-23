@@ -68,6 +68,8 @@ namespace RCT2GA.RideData
         public RCT2DepartureControlFlags DepartureFlags { get; set; }
         public int NumberOfTrains { get; set; }
         public int NumberOfCarsPerTrain { get; set; }
+        public int MinWaitTimeInSeconds { get; set; }
+        public int MaxWaitTimeInSeconds { get; set; }
         public float SpeedOfPoweredLaunch { get; set; }
         public int NumberOfGoKartLaps { get; set; }
         public int MaxNumberOfPeopleMaze { get; set; }
