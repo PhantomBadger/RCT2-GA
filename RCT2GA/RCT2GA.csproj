@@ -57,6 +57,7 @@
     <Compile Include="RideData\RCT2TrackElements.cs" />
     <Compile Include="RideData\RCT2TrackPiece.cs" />
     <Compile Include="RideData\RCT2VehicleColourScheme.cs" />
+    <Compile Include="RideData\TD6Parser.cs" />
     <Compile Include="RLEParser.cs" />
     <Compile Include="Vector2.cs" />
     <Compile Include="Vector3.cs" />
