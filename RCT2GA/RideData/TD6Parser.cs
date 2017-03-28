@@ -9,11 +9,16 @@ namespace RCT2GA.RideData
 {
     class TD6Parser
     {
+        const float MPHToBit = 2.25f;
+        const float GForceToBit = 0.32f;
+        const float DropMeterToBit = 0.75f;
+        const int TD6FileSize = 24735;
+
         /// <summary>
         /// Encode the RCT2RideData Structure into a Run-Length Unencoded Byte Array
         /// </summary>
         /// <param name="td6Data">The RCT2RideData Structure</param>
-        /// <returns></returns>
+        /// <returns>A Byte array containing a full TD6 file</returns>
         byte[] Encode(RCT2RideData td6Data)
         {
             List<byte> td6Bytes = new List<byte>();
@@ -24,6 +29,7 @@ namespace RCT2GA.RideData
 
             //00 Track Type
             //TODO: Finish The RCT2RideCode Class into an enum
+            td6Bytes.Add(0x34);
 
             //01 ?
             td6Bytes.Add(dummyByte);
@@ -117,7 +123,26 @@ namespace RCT2GA.RideData
 
             //08-47 32 sets of two byte colour specifiers for vehicles. 
             //first byte = body colour, second byte = trim colour
-            //TODO
+            for (int i = 0; i < 32; i++)
+            {
+                if (i < td6Data.ColourScheme.BodyColours.Length)
+                {
+                    td6Bytes.Add((byte)td6Data.ColourScheme.BodyColours[i]);
+                }
+                else
+                {
+                    td6Bytes.Add((byte)RCT2VehicleColourScheme.RCT2Colour.Black);
+                }
+
+                if (i < td6Data.ColourScheme.TrimColours.Length)
+                {
+                    td6Bytes.Add((byte)td6Data.ColourScheme.TrimColours[i]);
+                }
+                else
+                {
+                    td6Bytes.Add((byte)RCT2VehicleColourScheme.RCT2Colour.Black);
+                }
+            }
 
             //48 ?
             td6Bytes.Add(dummyByte);
@@ -192,52 +217,102 @@ namespace RCT2GA.RideData
 
             //50 Speed (Powered Launch/Chairlift/Whoa Belly, or num of laps for go kart, or num of people in a maze)
             //1 bit = 3.616 km/hr 2.25 mph
+            int numberOfBits = 0;
+            byte maskByte = 0x1;
             if (td6Data.SpeedOfPoweredLaunch != default(float))
             {
                 //Speed of powered launch
-                int numberOfBits = (int)(td6Data.SpeedOfPoweredLaunch / 2.25f);
+                numberOfBits = (int)(td6Data.SpeedOfPoweredLaunch / MPHToBit);
                 numberOfBits = Math.Min(8, numberOfBits);
 
-                byte maskByte = 0x1;
-                byte sppedOfPoweredLaunchByte = 0;
+                maskByte = 0x1;
+                byte speedOfPoweredLaunchByte = 0;
                 for (int i = 0; i < numberOfBits; i++)
                 {
-                    sppedOfPoweredLaunchByte |= maskByte;
+                    speedOfPoweredLaunchByte |= maskByte;
                     maskByte <<= 1;
                 }
+                td6Bytes.Add(speedOfPoweredLaunchByte);
             }
             else if (td6Data.NumberOfGoKartLaps != default(int))
             {
                 //Max number of go kart laps
+                td6Bytes.Add((byte)td6Data.NumberOfGoKartLaps);
             }
             else
             {
                 //Max Number of people in maze
+                td6Bytes.Add((byte)td6Data.MaxNumberOfPeopleMaze);
             }
-            //TODO
 
             //51 Max Speed of Ride
             //1 bit = 3.616 km/hr 2.25 mph
-            //TODO
+            numberOfBits = (int)(td6Data.MaxSpeedOfRide / MPHToBit);
+            numberOfBits = Math.Min(8, numberOfBits);
+            maskByte = 0x1;
+            byte maxSpeedByte = 0;
+            for (int i = 0; i < numberOfBits; i++)
+            {
+                maxSpeedByte |= maskByte;
+                maskByte <<= 1;
+            }
+            td6Bytes.Add(maxSpeedByte);
+
 
             //52 Average Speed of Ride
             //1 bit = 3.616 km/hr 2.25 mph
-            //TODO
+            numberOfBits = (int)(td6Data.AverageSpeedOfRide / MPHToBit);
+            numberOfBits = Math.Min(8, numberOfBits);
+            maskByte = 0x1;
+            byte averageSpeedByte = 0;
+            for (int i = 0; i < numberOfBits; i++)
+            {
+                averageSpeedByte |= maskByte;
+                maskByte <<= 1;
+            }
+            td6Bytes.Add(averageSpeedByte);
 
             //53-54 Ride Length in Meters
-            //TODO
+            td6Bytes.Add((byte)td6Data.RideLengthInMetres);
 
             //55 Positive G-Force 
             //1 bit = 0.32g
-            //TODO
+            numberOfBits = (int)(td6Data.PosGForce / GForceToBit);
+            numberOfBits = Math.Min(8, numberOfBits);
+            maskByte = 0x1;
+            byte posGByte = 0;
+            for (int i = 0; i < numberOfBits; i++)
+            {
+                posGByte |= maskByte;
+                maskByte <<= 1;
+            }
+            td6Bytes.Add(posGByte);
 
             //56 Negative G-Force
             //1 bit = 0.32g
-            //TODO
+            numberOfBits = (int)(td6Data.NegGForce / GForceToBit);
+            numberOfBits = Math.Min(8, numberOfBits);
+            maskByte = 0x1;
+            byte negGByte = 0;
+            for (int i = 0; i < numberOfBits; i++)
+            {
+                negGByte |= maskByte;
+                maskByte <<= 1;
+            }
+            td6Bytes.Add(negGByte);
 
             //57 Lateral G-Force
             //1 bit = 0.32g
-            //TODO
+            numberOfBits = (int)(td6Data.LatGForce / GForceToBit);
+            numberOfBits = Math.Min(8, numberOfBits);
+            maskByte = 0x1;
+            byte latGByte = 0;
+            for (int i = 0; i < numberOfBits; i++)
+            {
+                latGByte |= maskByte;
+                maskByte <<= 1;
+            }
+            td6Bytes.Add(latGByte);
 
             //58 Number of Inversions
             //Max 31
@@ -245,11 +320,20 @@ namespace RCT2GA.RideData
 
             //59 Number of drops
             //Max 63
-            td6Bytes.Add((byte)Math.Min(31, td6Data.NumberOfDrops));
+            td6Bytes.Add((byte)Math.Min(63, td6Data.NumberOfDrops));
 
             //5A Highest Drop
             //1 bit = 3/4 meter
-            //TODO
+            numberOfBits = (int)(td6Data.HighestDrop / DropMeterToBit);
+            numberOfBits = Math.Min(8, numberOfBits);
+            maskByte = 0x1;
+            byte highestDropByte = 0;
+            for (int i = 0; i < numberOfBits; i++)
+            {
+                highestDropByte |= maskByte;
+                maskByte <<= 1;
+            }
+            td6Bytes.Add(highestDropByte);
 
             //5B Excitement
             td6Bytes.Add((byte)td6Data.ExcitementTimesTen);
@@ -266,8 +350,41 @@ namespace RCT2GA.RideData
             //5F ?
             td6Bytes.Add(dummyByte);
 
-            //60-6B Various Colours
-            //TODO
+            //60 Track Main Spine Color (Main)
+            td6Bytes.Add((byte)td6Data.TrackMainColour);
+
+            //61 Track Main Spine Color (Alt 1)
+            td6Bytes.Add((byte)td6Data.TrackMainColourAlt1);
+
+            //62 Track Main Spine Color (Alt 2)
+            td6Bytes.Add((byte)td6Data.TrackMainColourAlt2);
+
+            //63 Track Main Spine Color (Alt 3)
+            td6Bytes.Add((byte)td6Data.TrackMainColourAlt3);
+
+            //64 Track Additional Rail Color (Main)
+            td6Bytes.Add((byte)td6Data.TrackAdditionalColour);
+
+            //65 Track Additional Rail Color (Alt 1)
+            td6Bytes.Add((byte)td6Data.TrackAdditionalColourAlt1);
+
+            //66 Track Additional Rail Color (Alt 2)
+            td6Bytes.Add((byte)td6Data.TrackAdditionalColourAlt2);
+
+            //67 Track Additional Rail Color (Alt 3)
+            td6Bytes.Add((byte)td6Data.TrackAdditionalColourAlt3);
+
+            //68 Track Support Color (Main)
+            td6Bytes.Add((byte)td6Data.TrackSupportColour);
+
+            //69 Track Support Color (Alt 1)
+            td6Bytes.Add((byte)td6Data.TrackSupportColourAlt1);
+
+            //6A Track Support Color (Alt 2)
+            td6Bytes.Add((byte)td6Data.TrackSupportColourAlt2);
+
+            //6B Track Support Color (Alt 3)
+            td6Bytes.Add((byte)td6Data.TrackSupportColourAlt3);
 
             //6C ?
             td6Bytes.Add(dummyByte);
@@ -284,21 +401,42 @@ namespace RCT2GA.RideData
             //70-73 DAT file flags
             //TODO
 
-            //74-7B Vehicle (Alphanumeric - 8 characters with trailing spaces
-            //TODO
+            //74-7B Vehicle (Alphanumeric - 8 characters with trailing spaces)
+            //We're using Minecarts for our example
+            td6Bytes.Add((byte)'M');
+            td6Bytes.Add((byte)'I');
+            td6Bytes.Add((byte)'N');
+            td6Bytes.Add((byte)'E');
+            td6Bytes.Add((byte)'C');
+            td6Bytes.Add((byte)'A');
+            td6Bytes.Add((byte)'R');
+            td6Bytes.Add((byte)'T');
 
             //7C-7F DAT file checksum
             //TODO
 
             //80-81 Map Space Required (X and Y)
-            //TODO
+            td6Bytes.Add((byte)td6Data.RequiredMapSpace.X);
+            td6Bytes.Add((byte)td6Data.RequiredMapSpace.Y);
 
             //82-A1 One-byte colour specifiers for vehicles additional colour
-            //TODO
+            for (int i = 0; i < 32; i++)
+            {
+                if (i < td6Data.ColourScheme.AdditionalColours.Length)
+                {
+                    td6Bytes.Add((byte)td6Data.ColourScheme.AdditionalColours[i]);
+                }
+                else
+                {
+                    td6Bytes.Add((byte)RCT2VehicleColourScheme.RCT2Colour.Black);
+                }
+            }
 
             //A2 - Low 5 bites = lift chain speed (1.6 km/hr per bit)
             //     Upper 3 bits = number of circuits
-            //TODO
+            byte a2Byte = 0x1;
+            a2Byte <<= 5;
+            a2Byte |= 7;
 
             //A3 Beginning of track data
             //Each track element is the track segment, then the qualifier, ends with an FF for track segment
@@ -309,15 +447,66 @@ namespace RCT2GA.RideData
                     break;
                 }
 
-                td6Bytes.Add((byte)td6Data.TrackData.TrackData[i].TrackElement);
-                //TODO - Qualifier
+                RCT2TrackElements.RCT2TrackElement currentTrackPiece = td6Data.TrackData.TrackData[i].TrackElement;
+
+                byte qualifierByte = 0;
+                //7 Bit - Chain lift
+                if (currentTrackPiece == RCT2TrackElements.RCT2TrackElement.PoweredLift)
+                {
+                    qualifierByte |= 0x80;
+                }
+
+                //6 Bit - Inverted
+                if (RCT2TrackElements.TrackElementPropertyMap[currentTrackPiece].InputTrackBank == RCT2TrackElementProperty.RCT2TrackBank.Flipped ||
+                    RCT2TrackElements.TrackElementPropertyMap[currentTrackPiece].OutputTrackBank == RCT2TrackElementProperty.RCT2TrackBank.Flipped)
+                {
+                    qualifierByte |= 0x40;
+                }
+
+                //5 & 4 - Colour Scheme
+                qualifierByte |= (byte)((td6Data.TrackData.TrackData[i].Qualifier.TrackColourSchemeNumber) << 4);
+
+                //3, 2, 1 - Stations:
+                if (td6Data.TrackData.TrackData[i].Qualifier.AtTerminalStation)
+                {
+                    qualifierByte |= 0x8;
+                }
+
+                qualifierByte |= (byte)td6Data.TrackData.TrackData[i].Qualifier.StationNumber;
+                //There are other segments for Multidim coasters but we're ignoring those
+
+                //Add to file
+                td6Bytes.Add((byte)currentTrackPiece);
+                td6Bytes.Add(qualifierByte);
+
             }
 
             //End of track byte
             td6Bytes.Add(0xFF);
 
-            //TODO Scenary Items
+            //Add in the Entracne/Exit data
+            //This is just entrance/exit data taken from an existing RCT2 TD6 file
+            //With them next to each other on a two-station long area
+            td6Bytes.Add(0x00);
+            td6Bytes.Add(0x03);
+            td6Bytes.Add(0x00);
+            td6Bytes.Add(0x00);
+            td6Bytes.Add(0x20);
+            td6Bytes.Add(0x00);
+            td6Bytes.Add(0x00);
+            td6Bytes.Add(0x83);
+            td6Bytes.Add(0xE0);
+            td6Bytes.Add(0xFF);
+            td6Bytes.Add(0x20);
+            td6Bytes.Add(0x00);
+            td6Bytes.Add(0xFF);
+            td6Bytes.Add(0xFF);
 
+            //Pad out to 24,735 which is the fixed length
+            for (int i = td6Bytes.Count; i < TD6FileSize; i++)
+            {
+                td6Bytes.Add(dummyByte);
+            }
 
             return td6Bytes.ToArray();
         }

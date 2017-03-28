@@ -47,5 +47,6 @@ namespace RCT2GA.RideData
         public RCT2VehicleColourMode ColourMode { get; set; }
         public RCT2Colour[] BodyColours { get; set; }
         public RCT2Colour[] TrimColours { get; set; }
+        public RCT2Colour[] AdditionalColours { get; set; }
     }
 }
