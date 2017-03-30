@@ -91,7 +91,7 @@ namespace RCT2GA.RideData
 
 
             //Go through every track piece and populate our bytes
-            RCT2TrackPiece prevTrackPiece = track.TrackData[0];
+            RCT2TrackElements.RCT2TrackElement prevTrackPiece = track.TrackData[0].TrackElement;
             for (int i = 0; i < track.TrackData.Count; i++)
             {
                 RCT2TrackElements.RCT2TrackElement currentTrack = track.TrackData[i].TrackElement;
@@ -199,6 +199,8 @@ namespace RCT2GA.RideData
 
                 if (currentTrack.ToString().ToLower().Contains("largehalfloop"))
                     LargeHalfLoop = true;
+
+                prevTrackPiece = currentTrack;
             }
         }
     }

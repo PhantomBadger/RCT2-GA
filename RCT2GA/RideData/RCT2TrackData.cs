@@ -227,10 +227,16 @@ namespace RCT2GA.RideData
             return tempNausea;
         }
 
-        public int CalculateRideLength()
+        public int CalculateRideLengthInMeters()
         {
             //TODO
             return TrackData.Count();
+        }
+
+        public Vector2 CalculateRequiredMapSpace()
+        {
+            //TODO
+            return new Vector2(0.0f, 0.0f);
         }
 
         public void PopulateRideStatistics()

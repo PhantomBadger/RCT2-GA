@@ -20,13 +20,12 @@ namespace RCT2GA.RideData
                                     Water,
                                     ScenarioText };
 
-        public string FileName { get; set; }
         public DATFileFlags FileFlags { get; set; }
         public DATObjectType ObjectType { get; set; }
 
-        public int CalculateChecksum()
+        public int CalculateChecksum(string filename)
         {
-            //TODO
+
             return 0;
         }
     }
