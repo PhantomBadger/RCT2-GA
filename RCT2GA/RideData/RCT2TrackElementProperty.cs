@@ -113,14 +113,14 @@ namespace RCT2GA.RideData
         //Data extracted from https://github.com/kevinburke/rct/blob/master/physics/physics.go#L24
         public static Dictionary<int, float> TrackAccelerationMap = new Dictionary<int, float>()
         {
-            { 8, 7 },
-            { 4, 2.37f },   //Hack value, average between 7 and 1.4
-            { 2, 1.4f },
-            { 1, 0.7f },
+            { 8, 14 },      //Adjusted to better match viewed behaviour
+            { 4, 10.15f },
+            { 2, 7.0f },
+            { 1, 3.6f },
             { 0, -0.1f },
             { -1, -0.75f }, //Neg numbers have higher coefficient
             { -2, -1.45f },
-            { -4, -2.40f },
+            { -4, -2.4f },
             { -8, -7 }
         };
 

@@ -18,6 +18,7 @@ namespace RCT2GA.RideData
                                             Pos135,
                                             Pos180 };
 
+        public bool IsChainLift { get; set; }
         public short TrackColourSchemeNumber { get; set; }
         public RCT2QualifierRotation TrackRotation { get; set; }
         public bool AtTerminalStation { get; set; }

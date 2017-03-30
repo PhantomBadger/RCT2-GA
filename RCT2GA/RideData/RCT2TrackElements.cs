@@ -3533,17 +3533,17 @@ namespace RCT2GA.RideData
             { RCT2TrackElement.LeftVerticalLoop, new GForceFactors(0, -49) },    //Inaccurate, no way of doing track progress
             { RCT2TrackElement.RightVerticalLoop, new GForceFactors(0, -49) },   // ^
             //Lateral Factor is 59
-            { RCT2TrackElement.LeftQuarterTurnAcross3, new GForceFactors(0, 59) },
-            { RCT2TrackElement.LeftQuarterTurnIncline25Across3, new GForceFactors(0, 59) },
-            { RCT2TrackElement.LeftQuarterTurnDecline25Across3, new GForceFactors(0, 59) },
-            { RCT2TrackElement.LeftQuarterTurnCoveredAcross3, new GForceFactors(0, 59) },
-            { RCT2TrackElement.LeftCurvedLiftHill, new GForceFactors(0, 59) },
+            { RCT2TrackElement.LeftQuarterTurnAcross3, new GForceFactors(59, 0) },
+            { RCT2TrackElement.LeftQuarterTurnIncline25Across3, new GForceFactors(59, 0)},
+            { RCT2TrackElement.LeftQuarterTurnDecline25Across3, new GForceFactors(59, 0) },
+            { RCT2TrackElement.LeftQuarterTurnCoveredAcross3, new GForceFactors(59, 0) },
+            { RCT2TrackElement.LeftCurvedLiftHill, new GForceFactors(59, 0) },
             //Lateral Factor is -59
-            { RCT2TrackElement.RightQuarterTurnAcross3, new GForceFactors(0, -59) },
-            { RCT2TrackElement.RightQuarterTurnIncline25Across3, new GForceFactors(0, -59) },
-            { RCT2TrackElement.RightQuarterTurnDecline25Across3, new GForceFactors(0, -59) },
-            { RCT2TrackElement.RightQuarterTurnCoveredAcross3, new GForceFactors(0, -59) },
-            { RCT2TrackElement.RightCurvedLiftHill, new GForceFactors(0, -59) },
+            { RCT2TrackElement.RightQuarterTurnAcross3, new GForceFactors(-59, 0) },
+            { RCT2TrackElement.RightQuarterTurnIncline25Across3, new GForceFactors(-59, 0) },
+            { RCT2TrackElement.RightQuarterTurnDecline25Across3, new GForceFactors(-59, 0) },
+            { RCT2TrackElement.RightQuarterTurnCoveredAcross3, new GForceFactors(-59, 0) },
+            { RCT2TrackElement.RightCurvedLiftHill, new GForceFactors(-59, 0) },
             //Lateral Factor is 100, Vertical Factor is 100
             { RCT2TrackElement.LeftQuarterTurnBankAcross3, new GForceFactors(100, 100) },
             { RCT2TrackElement.LeftHalfBankedHelixInclineSmall, new GForceFactors(100, 100) },

@@ -143,6 +143,7 @@ namespace RCT2GA
                 TrackElement = RideData.RCT2TrackElements.RCT2TrackElement.BeginStation,
                 Qualifier = new RideData.RCT2Qualifier()
                 {
+                    IsChainLift = false,
                     TrackColourSchemeNumber = 0,
                     TrackRotation = RideData.RCT2Qualifier.RCT2QualifierRotation.Zero,
                     AtTerminalStation = false,
@@ -156,19 +157,7 @@ namespace RCT2GA
                 TrackElement = RideData.RCT2TrackElements.RCT2TrackElement.EndStation,
                 Qualifier = new RideData.RCT2Qualifier()
                 {
-                    TrackColourSchemeNumber = 0,
-                    TrackRotation = RideData.RCT2Qualifier.RCT2QualifierRotation.Zero,
-                    AtTerminalStation = false,
-                    StationNumber = 0
-                }
-            });
-
-            //Flat
-            testCoaster.TrackData.TrackData.Add(new RideData.RCT2TrackPiece()
-            {
-                TrackElement = RideData.RCT2TrackElements.RCT2TrackElement.Flat,
-                Qualifier = new RideData.RCT2Qualifier()
-                {
+                    IsChainLift = false,
                     TrackColourSchemeNumber = 0,
                     TrackRotation = RideData.RCT2Qualifier.RCT2QualifierRotation.Zero,
                     AtTerminalStation = false,
@@ -182,6 +171,63 @@ namespace RCT2GA
                 TrackElement = RideData.RCT2TrackElements.RCT2TrackElement.LeftQuarterTurnAcross3,
                 Qualifier = new RideData.RCT2Qualifier()
                 {
+                    IsChainLift = false,
+                    TrackColourSchemeNumber = 0,
+                    TrackRotation = RideData.RCT2Qualifier.RCT2QualifierRotation.Zero,
+                    AtTerminalStation = false,
+                    StationNumber = 0
+                }
+            });
+
+            //Right Turn
+            testCoaster.TrackData.TrackData.Add(new RideData.RCT2TrackPiece()
+            {
+                TrackElement = RideData.RCT2TrackElements.RCT2TrackElement.RightQuarterTurnAcross3,
+                Qualifier = new RideData.RCT2Qualifier()
+                {
+                    IsChainLift = false,
+                    TrackColourSchemeNumber = 0,
+                    TrackRotation = RideData.RCT2Qualifier.RCT2QualifierRotation.Zero,
+                    AtTerminalStation = false,
+                    StationNumber = 0
+                }
+            });
+
+            //Flat To Incline 25
+            testCoaster.TrackData.TrackData.Add(new RideData.RCT2TrackPiece()
+            {
+                TrackElement = RideData.RCT2TrackElements.RCT2TrackElement.FlatToIncline25,
+                Qualifier = new RideData.RCT2Qualifier()
+                {
+                    IsChainLift = true,
+                    TrackColourSchemeNumber = 0,
+                    TrackRotation = RideData.RCT2Qualifier.RCT2QualifierRotation.Zero,
+                    AtTerminalStation = false,
+                    StationNumber = 0
+                }
+            });
+
+            //Incline 25
+            testCoaster.TrackData.TrackData.Add(new RideData.RCT2TrackPiece()
+            {
+                TrackElement = RideData.RCT2TrackElements.RCT2TrackElement.Incline25,
+                Qualifier = new RideData.RCT2Qualifier()
+                {
+                    IsChainLift = true,
+                    TrackColourSchemeNumber = 0,
+                    TrackRotation = RideData.RCT2Qualifier.RCT2QualifierRotation.Zero,
+                    AtTerminalStation = false,
+                    StationNumber = 0
+                }
+            });
+
+            //Incline 25 to Flat
+            testCoaster.TrackData.TrackData.Add(new RideData.RCT2TrackPiece()
+            {
+                TrackElement = RideData.RCT2TrackElements.RCT2TrackElement.Incline25ToFlat,
+                Qualifier = new RideData.RCT2Qualifier()
+                {
+                    IsChainLift = true,
                     TrackColourSchemeNumber = 0,
                     TrackRotation = RideData.RCT2Qualifier.RCT2QualifierRotation.Zero,
                     AtTerminalStation = false,
@@ -195,71 +241,7 @@ namespace RCT2GA
                 TrackElement = RideData.RCT2TrackElements.RCT2TrackElement.LeftQuarterTurnAcross3,
                 Qualifier = new RideData.RCT2Qualifier()
                 {
-                    TrackColourSchemeNumber = 0,
-                    TrackRotation = RideData.RCT2Qualifier.RCT2QualifierRotation.Zero,
-                    AtTerminalStation = false,
-                    StationNumber = 0
-                }
-            });
-
-            //Flat
-            testCoaster.TrackData.TrackData.Add(new RideData.RCT2TrackPiece()
-            {
-                TrackElement = RideData.RCT2TrackElements.RCT2TrackElement.Flat,
-                Qualifier = new RideData.RCT2Qualifier()
-                {
-                    TrackColourSchemeNumber = 0,
-                    TrackRotation = RideData.RCT2Qualifier.RCT2QualifierRotation.Zero,
-                    AtTerminalStation = false,
-                    StationNumber = 0
-                }
-            });
-
-            //Flat
-            testCoaster.TrackData.TrackData.Add(new RideData.RCT2TrackPiece()
-            {
-                TrackElement = RideData.RCT2TrackElements.RCT2TrackElement.Flat,
-                Qualifier = new RideData.RCT2Qualifier()
-                {
-                    TrackColourSchemeNumber = 0,
-                    TrackRotation = RideData.RCT2Qualifier.RCT2QualifierRotation.Zero,
-                    AtTerminalStation = false,
-                    StationNumber = 0
-                }
-            });
-
-            //Flat
-            testCoaster.TrackData.TrackData.Add(new RideData.RCT2TrackPiece()
-            {
-                TrackElement = RideData.RCT2TrackElements.RCT2TrackElement.Flat,
-                Qualifier = new RideData.RCT2Qualifier()
-                {
-                    TrackColourSchemeNumber = 0,
-                    TrackRotation = RideData.RCT2Qualifier.RCT2QualifierRotation.Zero,
-                    AtTerminalStation = false,
-                    StationNumber = 0
-                }
-            });
-
-            //Flat
-            testCoaster.TrackData.TrackData.Add(new RideData.RCT2TrackPiece()
-            {
-                TrackElement = RideData.RCT2TrackElements.RCT2TrackElement.Flat,
-                Qualifier = new RideData.RCT2Qualifier()
-                {
-                    TrackColourSchemeNumber = 0,
-                    TrackRotation = RideData.RCT2Qualifier.RCT2QualifierRotation.Zero,
-                    AtTerminalStation = false,
-                    StationNumber = 0
-                }
-            });
-
-            //Flat
-            testCoaster.TrackData.TrackData.Add(new RideData.RCT2TrackPiece()
-            {
-                TrackElement = RideData.RCT2TrackElements.RCT2TrackElement.Flat,
-                Qualifier = new RideData.RCT2Qualifier()
-                {
+                    IsChainLift = false,
                     TrackColourSchemeNumber = 0,
                     TrackRotation = RideData.RCT2Qualifier.RCT2QualifierRotation.Zero,
                     AtTerminalStation = false,
@@ -273,6 +255,119 @@ namespace RCT2GA
                 TrackElement = RideData.RCT2TrackElements.RCT2TrackElement.LeftQuarterTurnAcross3,
                 Qualifier = new RideData.RCT2Qualifier()
                 {
+                    IsChainLift = false,
+                    TrackColourSchemeNumber = 0,
+                    TrackRotation = RideData.RCT2Qualifier.RCT2QualifierRotation.Zero,
+                    AtTerminalStation = false,
+                    StationNumber = 0
+                }
+            });
+
+            //Flat To Decline 25
+            testCoaster.TrackData.TrackData.Add(new RideData.RCT2TrackPiece()
+            {
+                TrackElement = RideData.RCT2TrackElements.RCT2TrackElement.FlatToDecline25,
+                Qualifier = new RideData.RCT2Qualifier()
+                {
+                    IsChainLift = false,
+                    TrackColourSchemeNumber = 0,
+                    TrackRotation = RideData.RCT2Qualifier.RCT2QualifierRotation.Zero,
+                    AtTerminalStation = false,
+                    StationNumber = 0
+                }
+            });
+
+            //Decline 25
+            testCoaster.TrackData.TrackData.Add(new RideData.RCT2TrackPiece()
+            {
+                TrackElement = RideData.RCT2TrackElements.RCT2TrackElement.Decline25,
+                Qualifier = new RideData.RCT2Qualifier()
+                {
+                    IsChainLift = false,
+                    TrackColourSchemeNumber = 0,
+                    TrackRotation = RideData.RCT2Qualifier.RCT2QualifierRotation.Zero,
+                    AtTerminalStation = false,
+                    StationNumber = 0
+                }
+            });
+
+            //Decline 25 To Flat
+            testCoaster.TrackData.TrackData.Add(new RideData.RCT2TrackPiece()
+            {
+                TrackElement = RideData.RCT2TrackElements.RCT2TrackElement.Decline25ToFlat,
+                Qualifier = new RideData.RCT2Qualifier()
+                {
+                    IsChainLift = false,
+                    TrackColourSchemeNumber = 0,
+                    TrackRotation = RideData.RCT2Qualifier.RCT2QualifierRotation.Zero,
+                    AtTerminalStation = false,
+                    StationNumber = 0
+                }
+            });
+
+            //Flat
+            testCoaster.TrackData.TrackData.Add(new RideData.RCT2TrackPiece()
+            {
+                TrackElement = RideData.RCT2TrackElements.RCT2TrackElement.Flat,
+                Qualifier = new RideData.RCT2Qualifier()
+                {
+                    IsChainLift = false,
+                    TrackColourSchemeNumber = 0,
+                    TrackRotation = RideData.RCT2Qualifier.RCT2QualifierRotation.Zero,
+                    AtTerminalStation = false,
+                    StationNumber = 0
+                }
+            });
+
+            //Flat
+            testCoaster.TrackData.TrackData.Add(new RideData.RCT2TrackPiece()
+            {
+                TrackElement = RideData.RCT2TrackElements.RCT2TrackElement.Flat,
+                Qualifier = new RideData.RCT2Qualifier()
+                {
+                    IsChainLift = false,
+                    TrackColourSchemeNumber = 0,
+                    TrackRotation = RideData.RCT2Qualifier.RCT2QualifierRotation.Zero,
+                    AtTerminalStation = false,
+                    StationNumber = 0
+                }
+            });
+
+            //Flat
+            testCoaster.TrackData.TrackData.Add(new RideData.RCT2TrackPiece()
+            {
+                TrackElement = RideData.RCT2TrackElements.RCT2TrackElement.Flat,
+                Qualifier = new RideData.RCT2Qualifier()
+                {
+                    IsChainLift = false,
+                    TrackColourSchemeNumber = 0,
+                    TrackRotation = RideData.RCT2Qualifier.RCT2QualifierRotation.Zero,
+                    AtTerminalStation = false,
+                    StationNumber = 0
+                }
+            });
+
+            //Flat
+            testCoaster.TrackData.TrackData.Add(new RideData.RCT2TrackPiece()
+            {
+                TrackElement = RideData.RCT2TrackElements.RCT2TrackElement.Flat,
+                Qualifier = new RideData.RCT2Qualifier()
+                {
+                    IsChainLift = false,
+                    TrackColourSchemeNumber = 0,
+                    TrackRotation = RideData.RCT2Qualifier.RCT2QualifierRotation.Zero,
+                    AtTerminalStation = false,
+                    StationNumber = 0
+                }
+            });
+
+            //Flat
+            testCoaster.TrackData.TrackData.Add(new RideData.RCT2TrackPiece()
+            {
+                TrackElement = RideData.RCT2TrackElements.RCT2TrackElement.Flat,
+                Qualifier = new RideData.RCT2Qualifier()
+                {
+                    IsChainLift = false,
                     TrackColourSchemeNumber = 0,
                     TrackRotation = RideData.RCT2Qualifier.RCT2QualifierRotation.Zero,
                     AtTerminalStation = false,
@@ -286,6 +381,7 @@ namespace RCT2GA
                 TrackElement = RideData.RCT2TrackElements.RCT2TrackElement.LeftQuarterTurnAcross3,
                 Qualifier = new RideData.RCT2Qualifier()
                 {
+                    IsChainLift = false,
                     TrackColourSchemeNumber = 0,
                     TrackRotation = RideData.RCT2Qualifier.RCT2QualifierRotation.Zero,
                     AtTerminalStation = false,
@@ -299,6 +395,7 @@ namespace RCT2GA
                 TrackElement = RideData.RCT2TrackElements.RCT2TrackElement.Flat,
                 Qualifier = new RideData.RCT2Qualifier()
                 {
+                    IsChainLift = false,
                     TrackColourSchemeNumber = 0,
                     TrackRotation = RideData.RCT2Qualifier.RCT2QualifierRotation.Zero,
                     AtTerminalStation = false,
@@ -312,6 +409,35 @@ namespace RCT2GA
                 TrackElement = RideData.RCT2TrackElements.RCT2TrackElement.Flat,
                 Qualifier = new RideData.RCT2Qualifier()
                 {
+                    IsChainLift = false,
+                    TrackColourSchemeNumber = 0,
+                    TrackRotation = RideData.RCT2Qualifier.RCT2QualifierRotation.Zero,
+                    AtTerminalStation = false,
+                    StationNumber = 0
+                }
+            });
+
+            //Flat
+            testCoaster.TrackData.TrackData.Add(new RideData.RCT2TrackPiece()
+            {
+                TrackElement = RideData.RCT2TrackElements.RCT2TrackElement.Flat,
+                Qualifier = new RideData.RCT2Qualifier()
+                {
+                    IsChainLift = false,
+                    TrackColourSchemeNumber = 0,
+                    TrackRotation = RideData.RCT2Qualifier.RCT2QualifierRotation.Zero,
+                    AtTerminalStation = false,
+                    StationNumber = 0
+                }
+            });
+
+            //Left Turn
+            testCoaster.TrackData.TrackData.Add(new RideData.RCT2TrackPiece()
+            {
+                TrackElement = RideData.RCT2TrackElements.RCT2TrackElement.LeftQuarterTurnAcross3,
+                Qualifier = new RideData.RCT2Qualifier()
+                {
+                    IsChainLift = false,
                     TrackColourSchemeNumber = 0,
                     TrackRotation = RideData.RCT2Qualifier.RCT2QualifierRotation.Zero,
                     AtTerminalStation = false,
@@ -325,6 +451,7 @@ namespace RCT2GA
                 TrackElement = RideData.RCT2TrackElements.RCT2TrackElement.EndOfTrack,
                 Qualifier = new RideData.RCT2Qualifier()
                 {
+                    IsChainLift = false,
                     TrackColourSchemeNumber = 0,
                     TrackRotation = RideData.RCT2Qualifier.RCT2QualifierRotation.Zero,
                     AtTerminalStation = false,
@@ -366,8 +493,7 @@ namespace RCT2GA
 
             //Air Time In Seconds
             testCoaster.TrackData.PopulateRideStatistics();
-            //testCoaster.AirTimeInSeconds = testCoaster.TrackData.AirTimeInSeconds;
-            testCoaster.AirTimeInSeconds = 0;
+            testCoaster.AirTimeInSeconds = testCoaster.TrackData.AirTimeInSeconds;
 
             //Departure Flags
             testCoaster.DepartureFlags = new RideData.RCT2DepartureControlFlags();
@@ -428,22 +554,22 @@ namespace RCT2GA
             testCoaster.NauseaTimesTen = testCoaster.TrackData.Nausea * 10;
 
             //Main Track Colour
-            testCoaster.TrackMainColour = (RideData.RCT2VehicleColourScheme.RCT2Colour.LightBlue);
-            testCoaster.TrackMainColourAlt1 = (RideData.RCT2VehicleColourScheme.RCT2Colour.LightBlue);
-            testCoaster.TrackMainColourAlt2 = (RideData.RCT2VehicleColourScheme.RCT2Colour.LightBlue);
-            testCoaster.TrackMainColourAlt3 = (RideData.RCT2VehicleColourScheme.RCT2Colour.LightBlue);
+            testCoaster.TrackMainColour = (RideData.RCT2VehicleColourScheme.RCT2Colour)colourValues.GetValue(random.Next(colourValues.Length));
+            testCoaster.TrackMainColourAlt1 = (RideData.RCT2VehicleColourScheme.RCT2Colour)colourValues.GetValue(random.Next(colourValues.Length));
+            testCoaster.TrackMainColourAlt2 = (RideData.RCT2VehicleColourScheme.RCT2Colour)colourValues.GetValue(random.Next(colourValues.Length));
+            testCoaster.TrackMainColourAlt3 = (RideData.RCT2VehicleColourScheme.RCT2Colour)colourValues.GetValue(random.Next(colourValues.Length));
 
             //Additional Track Colour
-            testCoaster.TrackAdditionalColour = (RideData.RCT2VehicleColourScheme.RCT2Colour.Black);
-            testCoaster.TrackAdditionalColourAlt1 = (RideData.RCT2VehicleColourScheme.RCT2Colour.Black);
-            testCoaster.TrackAdditionalColourAlt2 = (RideData.RCT2VehicleColourScheme.RCT2Colour.Black);
-            testCoaster.TrackAdditionalColourAlt3 = (RideData.RCT2VehicleColourScheme.RCT2Colour.Black);
+            testCoaster.TrackAdditionalColour = (RideData.RCT2VehicleColourScheme.RCT2Colour)colourValues.GetValue(random.Next(colourValues.Length));
+            testCoaster.TrackAdditionalColourAlt1 = (RideData.RCT2VehicleColourScheme.RCT2Colour)colourValues.GetValue(random.Next(colourValues.Length));
+            testCoaster.TrackAdditionalColourAlt2 = (RideData.RCT2VehicleColourScheme.RCT2Colour)colourValues.GetValue(random.Next(colourValues.Length));
+            testCoaster.TrackAdditionalColourAlt3 = (RideData.RCT2VehicleColourScheme.RCT2Colour)colourValues.GetValue(random.Next(colourValues.Length));
 
             //Support Track Colour
-            testCoaster.TrackSupportColour = (RideData.RCT2VehicleColourScheme.RCT2Colour.Black);
-            testCoaster.TrackSupportColourAlt1 = (RideData.RCT2VehicleColourScheme.RCT2Colour.Black);
-            testCoaster.TrackSupportColourAlt2 = (RideData.RCT2VehicleColourScheme.RCT2Colour.Black);
-            testCoaster.TrackSupportColourAlt3 = (RideData.RCT2VehicleColourScheme.RCT2Colour.Black);
+            testCoaster.TrackSupportColour = (RideData.RCT2VehicleColourScheme.RCT2Colour)colourValues.GetValue(random.Next(colourValues.Length));
+            testCoaster.TrackSupportColourAlt1 = (RideData.RCT2VehicleColourScheme.RCT2Colour)colourValues.GetValue(random.Next(colourValues.Length));
+            testCoaster.TrackSupportColourAlt2 = (RideData.RCT2VehicleColourScheme.RCT2Colour)colourValues.GetValue(random.Next(colourValues.Length));
+            testCoaster.TrackSupportColourAlt3 = (RideData.RCT2VehicleColourScheme.RCT2Colour)colourValues.GetValue(random.Next(colourValues.Length));
 
             //Is Six Flag Design
             testCoaster.IsSixFlagsDesign = false;

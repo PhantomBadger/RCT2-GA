@@ -402,7 +402,7 @@ namespace RCT2GA.RideData
 
                 byte qualifierByte = 0;
                 //7 Bit - Chain lift
-                if (currentTrackPiece == RCT2TrackElements.RCT2TrackElement.PoweredLift)
+                if (td6Data.TrackData.TrackData[i].Qualifier.IsChainLift)
                 {
                     qualifierByte |= 0x80;
                 }

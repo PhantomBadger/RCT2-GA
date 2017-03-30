@@ -13,9 +13,6 @@ namespace RCT2GA.RideData
         public float MaxPositiveG { get; private set; }
         public float MaxNegativeG { get; private set; }
         public float MaxLateralG { get; private set; }
-        public float AvgPositiveG { get; private set; }
-        public float AvgNegativeG { get; private set; }
-        public float AvgLateralG { get; private set; }
 
         public int AirTimeInSeconds { get; private set; }
 
@@ -31,7 +28,8 @@ namespace RCT2GA.RideData
         public float Intensity { get; private set; }
         public float Nausea { get; private set; }
 
-        const int ChainLiftSpeed = 6;
+        const int ChainLiftSpeed = 5;
+        const int StationSpeed = 4;
 
         public RCT2TrackData()
         {
@@ -229,8 +227,41 @@ namespace RCT2GA.RideData
 
         public int CalculateRideLengthInMeters()
         {
-            //TODO
-            return TrackData.Count();
+            int rideLength = 0;
+
+            for (int i = 0; i < TrackData.Count; i++)
+            {
+                RCT2TrackElements.RCT2TrackElement element = TrackData[i].TrackElement;
+                RCT2TrackElementProperty property = RCT2TrackElements.TrackElementPropertyMap[element];
+
+                int curLength = 0;
+                int counter = 0;
+
+                if (property.Displacement.X != 0)
+                {
+                    curLength += (int)Math.Abs(property.Displacement.X * 5);
+                    counter++;
+                }
+
+                if (property.Displacement.Y != 0)
+                {
+                    curLength += (int)Math.Abs(property.Displacement.Y * 5);
+                    counter++;
+                }
+
+                if (property.Displacement.Z != 0)
+                {
+                    curLength += (int)Math.Abs(property.Displacement.Z * 5);
+                    counter++;
+                }
+
+                if (counter > 0)
+                {
+                    rideLength += (curLength / counter);
+                }
+            }
+
+            return rideLength;
         }
 
         public Vector2 CalculateRequiredMapSpace()
@@ -257,13 +288,12 @@ namespace RCT2GA.RideData
             int tempAirTimeInSeconds = 0;
 
             //G Forces
-            float totalLatG = 0;
-            float totalPosG = 0;
-            float totalNegG = 0;
-
             float maxLatG = 0;
             float maxPosG = 0;
             float maxNegG = 0;
+
+            float previousLatG = 0;
+            float previousVertG = 0;
 
             for (int i = 0; i < TrackData.Count - 1; i++)
             {
@@ -277,9 +307,10 @@ namespace RCT2GA.RideData
                 }
 
                 //----Velocity Calculations----
-                float tempVel = CalcVelocity(vehicleVelocity, element, property);
+                float tempVel = CalcVelocity(vehicleVelocity, element, TrackData[i].Qualifier, property);
                 vehicleVelocity = tempVel;
-                totalVelocity = tempVel;
+                totalVelocity += tempVel;
+
                 if (tempVel > tempMaxSpeed)
                 {
                     tempMaxSpeed = tempVel;
@@ -318,15 +349,20 @@ namespace RCT2GA.RideData
                 TrackData[i].GetGForces(vehicleVelocity, out latG, out vertG);
 
                 //Calc air time
-                if (vertG == 0)
+                if (vertG < 0)
                 {
                     //TODO: Translate into seconds, not sure how to do that really!
                     tempAirTimeInSeconds++;
                 }
 
-                //Add to our running totals & max values
-                //Lateral Gs
-                totalLatG += latG;
+                //Get current G forces by averaging with previous ones
+                vertG += previousVertG;
+                latG += previousLatG;
+                vertG /= 2;
+                latG /= 2;
+                previousLatG = latG;
+                previousVertG = vertG;
+
                 //See if it's more than our current maX
                 if (latG > maxLatG)
                 {
@@ -335,8 +371,7 @@ namespace RCT2GA.RideData
                 //Vertical Gs
                 if (vertG < 0)
                 {
-                    //Keep track of total & Max
-                    totalNegG += Math.Abs(vertG);
+                    //Keep track of Max
                     if (Math.Abs(vertG) > maxNegG)
                     {
                         maxNegG = Math.Abs(vertG);
@@ -344,8 +379,7 @@ namespace RCT2GA.RideData
                 }
                 else
                 {
-                    //Keep track of total & Max
-                    totalPosG += vertG;
+                    //Keep track of Max
                     if (vertG > maxPosG)
                     {
                         maxPosG = vertG;
@@ -361,10 +395,6 @@ namespace RCT2GA.RideData
 
             AverageSpeed = (int)(totalVelocity / TrackData.Count);
             MaxSpeed = (int)tempMaxSpeed;
-
-            AvgLateralG = totalLatG / TrackData.Count;
-            AvgPositiveG = totalPosG / TrackData.Count;
-            AvgNegativeG = totalNegG / TrackData.Count;
 
             MaxLateralG = maxLatG;
             MaxPositiveG = maxPosG;
@@ -389,18 +419,18 @@ namespace RCT2GA.RideData
             return false;
         }
 
-        private float CalcVelocity(float currentVelocity, RCT2TrackElements.RCT2TrackElement element, RCT2TrackElementProperty property)
+        private float CalcVelocity(float currentVelocity, RCT2TrackElements.RCT2TrackElement element, RCT2Qualifier qualifier, RCT2TrackElementProperty property)
         {
             //Check if it's a Chain lift or a station
-            if (element == RCT2TrackElements.RCT2TrackElement.PoweredLift ||
-                element == RCT2TrackElements.RCT2TrackElement.CableLiftHill ||
-                element == RCT2TrackElements.RCT2TrackElement.LeftCurvedLiftHill ||
-                element == RCT2TrackElements.RCT2TrackElement.RightCurvedLiftHill ||
-                element == RCT2TrackElements.RCT2TrackElement.BeginStation ||
-                element == RCT2TrackElements.RCT2TrackElement.MiddleStation ||
-                element == RCT2TrackElements.RCT2TrackElement.EndStation)
+            if (qualifier.IsChainLift)
             {
                 return Math.Max(currentVelocity, ChainLiftSpeed);
+            }
+            else if (element == RCT2TrackElements.RCT2TrackElement.BeginStation ||
+                     element == RCT2TrackElements.RCT2TrackElement.MiddleStation ||
+                     element == RCT2TrackElements.RCT2TrackElement.EndStation)
+            {
+                return Math.Max(currentVelocity, StationSpeed);
             }
 
             float acceleration = 0;
@@ -408,7 +438,7 @@ namespace RCT2GA.RideData
             //Try to get current acceleration from the map
             try
             {
-                acceleration = RCT2TrackElementProperty.TrackAccelerationMap[(int)property.Displacement.Y];
+                acceleration = RCT2TrackElementProperty.TrackAccelerationMap[(int)-property.Displacement.Y];
             }
             catch
             {
