@@ -30,6 +30,8 @@ namespace RCT2GA.RideData
 
         const int ChainLiftSpeed = 5;
         const int StationSpeed = 4;
+        const int HorizontalUnitsToMeters = 5;
+        const float VerticalUnitsToMeters = 0.75f;
 
         public RCT2TrackData()
         {
@@ -239,19 +241,19 @@ namespace RCT2GA.RideData
 
                 if (property.Displacement.X != 0)
                 {
-                    curLength += (int)Math.Abs(property.Displacement.X * 5);
+                    curLength += (int)Math.Abs(property.Displacement.X * HorizontalUnitsToMeters);
                     counter++;
                 }
 
                 if (property.Displacement.Y != 0)
                 {
-                    curLength += (int)Math.Abs(property.Displacement.Y * 5);
+                    curLength += (int)Math.Abs(property.Displacement.Y * VerticalUnitsToMeters);
                     counter++;
                 }
 
                 if (property.Displacement.Z != 0)
                 {
-                    curLength += (int)Math.Abs(property.Displacement.Z * 5);
+                    curLength += (int)Math.Abs(property.Displacement.Z * HorizontalUnitsToMeters);
                     counter++;
                 }
 
@@ -267,7 +269,58 @@ namespace RCT2GA.RideData
         public Vector2 CalculateRequiredMapSpace()
         {
             //TODO
-            return new Vector2(0.0f, 0.0f);
+            //Doesn't work with Diagonals!!
+
+            Vector2 requiredMapSpace = new Vector2(0.0f, 0.0f);
+            Vector2 posDisplacementCounter = new Vector2(0.0f, 0.0f);
+
+            int currentDirectionOffset = 0;
+
+            for (int i = 0; i < TrackData.Count; i++)
+            {
+                RCT2TrackElements.RCT2TrackElement element = TrackData[i].TrackElement;
+                RCT2TrackElementProperty property = RCT2TrackElements.TrackElementPropertyMap[element];
+                Vector3 displacement = property.Displacement;
+
+                switch (currentDirectionOffset)
+                {
+                    case 0:
+                        posDisplacementCounter.Y += Math.Abs(displacement.X);
+                        posDisplacementCounter.X += Math.Abs(displacement.Z);
+                        break;
+                    case 90:
+                        posDisplacementCounter.Y += Math.Abs(displacement.Z);
+                        break;
+                    case -90:
+                        posDisplacementCounter.X += Math.Abs(displacement.X);
+                        break;
+                    default:
+                        //TODO: Support Diagonals
+                        break;
+                }
+
+                int directionChange = (int)RCT2TrackElementProperty.TrackDirectionChangeMap[property.DirectionChange];
+                currentDirectionOffset += directionChange;
+
+                //Wrap around
+                if (currentDirectionOffset < -180)
+                {
+                    currentDirectionOffset = -(currentDirectionOffset + 180);
+                }
+                else if (currentDirectionOffset > 180)
+                {
+                    currentDirectionOffset = -(currentDirectionOffset - 180);
+                }
+                else if (currentDirectionOffset == -180)
+                {
+                    currentDirectionOffset = 180;
+                }
+            }
+
+            requiredMapSpace.X = posDisplacementCounter.X - 1;
+            requiredMapSpace.Y = posDisplacementCounter.Y - 1;
+
+            return requiredMapSpace;
         }
 
         public void PopulateRideStatistics()
@@ -323,22 +376,22 @@ namespace RCT2GA.RideData
                     //Increment our counters
                     inDrop = true;
                     dropCount++;
-                    curDropHeight += property.Displacement.Y;
+                    curDropHeight += property.Displacement.Y * VerticalUnitsToMeters;
                 }
                 //If we're still in a drop
                 else if (property.Displacement.Y < 0)
                 {
                     //Add to our measurement of this drop
-                    curDropHeight += property.Displacement.Y;
+                    curDropHeight += property.Displacement.Y * VerticalUnitsToMeters;
                 }
                 //If we end the drop
                 else if (property.Displacement.Y >= 0 && inDrop)
                 {
                     //Reset our values
                     inDrop = false;
-                    if (curDropHeight > tempHighestDrop)
+                    if (Math.Abs(curDropHeight) > tempHighestDrop)
                     {
-                        tempHighestDrop = curDropHeight;
+                        tempHighestDrop = Math.Abs(curDropHeight);
                     }
                     curDropHeight = 0;
                 }

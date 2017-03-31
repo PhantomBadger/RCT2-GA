@@ -17,5 +17,21 @@ namespace RCT2GA
             X = x;
             Y = y;
         }
+
+        public void RotateBy(int angle)
+        {
+            if (angle == 0)
+            {
+                return;
+            }
+
+            float theta = (float)(angle * Math.PI / 180.0f);
+
+            float x = (float)(X * Math.Cos(theta) - Y * Math.Sin(theta));
+            float y = (float)(X * Math.Sin(theta) - Y * Math.Cos(theta));
+
+            X = x;
+            Y = y;
+        }
     }
 }

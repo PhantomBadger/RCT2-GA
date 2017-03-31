@@ -583,8 +583,7 @@ namespace RCT2GA
             testCoaster.DatChecksum = testCoaster.DatFile.CalculateChecksum(RideData.RCT2RideCode.RideNameVehicleMap[testCoaster.TrackType.RideType]);
 
             //Required Map Space
-            //testCoaster.RequiredMapSpace = testCoaster.TrackData.CalculateRequiredMapSpace();
-            testCoaster.RequiredMapSpace = new Vector2(9, 5);
+            testCoaster.RequiredMapSpace = testCoaster.TrackData.CalculateRequiredMapSpace();
 
             //Lift Chain Speed
             testCoaster.LiftChainSpeed = 5;
