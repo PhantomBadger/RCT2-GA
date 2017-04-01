@@ -3361,7 +3361,7 @@ namespace RCT2GA.RideData
         };
         #endregion
 
-        #region GForces
+        #region GForceMap
         //Collection of the Vertical and Lateral G Force Factors
         //Tuple is LAteral , Vertical
         //Data extracted from https://github.com/OpenRCT2/OpenRCT2/blob/3da10b7d7db8fe60ca6cb1e277f39abe532e956b/src/ride/vehicle.c#L4968
@@ -3681,6 +3681,14 @@ namespace RCT2GA.RideData
             //Vertical Factor of 200, Lateral Factor of -160
             { RCT2TrackElement.RightQuarterTurnIncline25BankedAcross5, new GForceFactors(-160, 200) },
             { RCT2TrackElement.RightQuarterTurnDecline25BankedAcross5, new GForceFactors(-160, 200) },
+        };
+        #endregion
+
+        #region LengthMap
+        static Dictionary<RCT2TrackElement, int> TrackElementLengthMap = new Dictionary<RCT2TrackElement, int>
+        {
+            //TODO
+            //https://raw.githubusercontent.com/OpenRCT2/OpenRCT2/6ea78d6c01ef8b15c928e28e7304ecdcaeff8104/src/openrct2/ride/track_data.c
         };
         #endregion
 

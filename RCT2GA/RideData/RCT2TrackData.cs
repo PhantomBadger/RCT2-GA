@@ -31,7 +31,13 @@ namespace RCT2GA.RideData
         const int ChainLiftSpeed = 5;
         const int StationSpeed = 4;
         const int HorizontalUnitsToMeters = 5;
-        const float VerticalUnitsToMeters = 0.75f;
+        const float VerticalUnitsToMeters = 1.31234f;
+
+        const float MaxUnitsOfDisplacement = 80.0f;
+        const float MinUnitsOfDisplacement = -80.0f;
+
+        bool velocityChecked = false;
+        bool velocityGoesNegative = false;
 
         public RCT2TrackData()
         {
@@ -40,8 +46,169 @@ namespace RCT2GA.RideData
 
         public bool CheckValidity()
         {
-            //TODO
+            //Following Validity Checks:
+            // - All Track Pieces connect to the one before it
+            // - Track doesn't intersect with itself
+            // - Track doesn't exceed max height
+            // - Track doesn't go underground (Go lower than the station height)
+            // - Track's velocity doesn't go negative
+
+            if (TrackData.Count <= 0)
+            {
+                return true;
+            }
+
+            //Negative Velocity
+            if (!velocityChecked)
+            {
+                PopulateRideStatistics();
+            }
+
+            if (velocityGoesNegative)
+            {
+                return false;
+            }
+
+            float currentYDisplacement = 0;
+            RCT2TrackElementProperty prevElementProperty = RCT2TrackElements.TrackElementPropertyMap[TrackData[0].TrackElement];
+            List<Vector3> UsedCells = new List<Vector3>();
+            Vector3 prevWorldPos = new Vector3(0.0f, 0.0f, 0.0f);
+            int worldDirectionChange = 0;
+            for (int i = 0; i < TrackData.Count; i++)
+            {
+                RCT2TrackElements.RCT2TrackElement currentElement = TrackData[i].TrackElement;
+                RCT2TrackElementProperty property = RCT2TrackElements.TrackElementPropertyMap[currentElement];
+
+                // Height Checks
+                currentYDisplacement += property.Displacement.Y;
+                if (currentYDisplacement >= MaxUnitsOfDisplacement || currentYDisplacement < 0)
+                {
+                    return false;
+                }
+
+                //Prev Element Matching Test
+                if (i > 0 &&
+                    (prevElementProperty.OutputTrackBank != property.InputTrackBank ||
+                     prevElementProperty.OutputTrackDegree != property.InputTrackDegree))
+                {
+                    return false;
+                }
+
+                //Intersection Tests
+                //Get the world version of our property displacement
+                //ie, if the segment moves 1 forward, but is already rotated to the left
+                //    by 90°, then it actually moves right by 1
+                Vector3 worldDisplacement = property.Displacement;
+                
+                switch(worldDirectionChange)
+                {
+                    case -45:
+                        //Not supported - TODO
+                        goto default;
+                    case -90:
+                        float left90z = -worldDisplacement.X;
+                        float left90x = worldDisplacement.Z;
+
+                        worldDisplacement.X = left90x;
+                        worldDisplacement.Z = left90z;
+                        break;
+                    case -135:
+                        //Not Supported - TODO
+                        goto default;
+                    case 180:
+                        //Flip the X and Z
+                        worldDisplacement.X *= -1;
+                        worldDisplacement.Z *= -1;
+                        break;
+                    case 45:
+                        //Not Supported - TODO
+                        goto default;
+                    case 90:
+                        float right90z = worldDisplacement.X;
+                        float right90x = -worldDisplacement.Z;
+
+                        worldDisplacement.X = right90x;
+                        worldDisplacement.Z = right90z;
+                        break;
+                    case 135:
+                        //Not Supported - TODO
+                        goto default;
+                    case 0:
+                        //Do Nothing
+                        goto default;
+                    default:
+                        break;
+                }
+
+                //Check every tile used in this segment
+                for (int j = 0; j <= worldDisplacement.X + 1; j++)
+                {
+                    for (int k = 0; k <= worldDisplacement.Y + 1; k++)
+                    {
+                        for (int l = 0; l < worldDisplacement.Z + 1; l++)
+                        {
+                            Vector3 testCell = prevWorldPos + new Vector3(j, k, l);
+                            if (!UsedCells.Contains(testCell))
+                            {
+                                UsedCells.Add(testCell);
+                            }
+                            else
+                            {
+                                return false;
+                            }
+                        }
+                    }
+                }
+
+                /*
+                int xCounter, yCounter, zCounter;
+                xCounter = yCounter = zCounter = 0;
+                do
+                {
+                    do
+                    {
+                        do
+                        {
+                            Vector3 testCell = prevWorldPos + new Vector3(xCounter, yCounter, zCounter);
+                            if (!UsedCells.Contains(testCell))
+                            {
+                                UsedCells.Add(testCell);
+                            }
+                            else
+                            {
+                                return false;
+                            }
+                        } while (++yCounter < worldDisplacement.Z);
+                    } while (++xCounter < worldDisplacement.Y);
+                } while (++zCounter < worldDisplacement.X);
+                */
+                //Update World Direction Changes
+                worldDirectionChange += (int)RCT2TrackElementProperty.TrackDirectionChangeMap[property.DirectionChange];
+
+                if (worldDirectionChange < -180)
+                {
+                    worldDirectionChange = 180 + (worldDirectionChange + 180);
+                }
+                else if (worldDirectionChange > 180)
+                {
+                    worldDirectionChange = -180 + (worldDirectionChange - 180);
+                }
+                else if (worldDirectionChange == -180)
+                {
+                    worldDirectionChange = 180;
+                }
+
+                //Update variables
+                prevWorldPos += worldDisplacement;
+                prevElementProperty = property;
+            }
+
             return true;
+        }
+
+        public void AutoComplete()
+        {
+
         }
 
         private float CalculateExcitement()
@@ -229,6 +396,7 @@ namespace RCT2GA.RideData
 
         public int CalculateRideLengthInMeters()
         {
+            //Approximate
             int rideLength = 0;
 
             for (int i = 0; i < TrackData.Count; i++)
@@ -269,7 +437,7 @@ namespace RCT2GA.RideData
         public Vector2 CalculateRequiredMapSpace()
         {
             //TODO
-            //Doesn't work with Diagonals!!
+            //Doesn't work with Diagonals or Concave shapes!!
 
             Vector2 requiredMapSpace = new Vector2(0.0f, 0.0f);
             Vector2 posDisplacementCounter = new Vector2(0.0f, 0.0f);
@@ -448,6 +616,7 @@ namespace RCT2GA.RideData
 
             AverageSpeed = (int)(totalVelocity / TrackData.Count);
             MaxSpeed = (int)tempMaxSpeed;
+            velocityChecked = true;
 
             MaxLateralG = maxLatG;
             MaxPositiveG = maxPosG;
@@ -498,7 +667,13 @@ namespace RCT2GA.RideData
                 Console.WriteLine($"Unable to find acceleration value for track piece {element.ToString()}");
             }
 
-            return currentVelocity + acceleration;
+            float newVelocity = currentVelocity + acceleration;
+            if (newVelocity <= 0)
+            {
+                velocityGoesNegative = true;
+            }
+
+            return newVelocity;
         }
 
         public void Parse(string rawData)
