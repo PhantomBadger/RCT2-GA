@@ -98,47 +98,7 @@ namespace RCT2GA.RideData
                 //Get the world version of our property displacement
                 //ie, if the segment moves 1 forward, but is already rotated to the left
                 //    by 90°, then it actually moves right by 1
-                Vector3 worldDisplacement = property.Displacement;
-                
-                switch(worldDirectionChange)
-                {
-                    case -45:
-                        //Not supported - TODO
-                        goto default;
-                    case -90:
-                        float left90z = -worldDisplacement.X;
-                        float left90x = worldDisplacement.Z;
-
-                        worldDisplacement.X = left90x;
-                        worldDisplacement.Z = left90z;
-                        break;
-                    case -135:
-                        //Not Supported - TODO
-                        goto default;
-                    case 180:
-                        //Flip the X and Z
-                        worldDisplacement.X *= -1;
-                        worldDisplacement.Z *= -1;
-                        break;
-                    case 45:
-                        //Not Supported - TODO
-                        goto default;
-                    case 90:
-                        float right90z = worldDisplacement.X;
-                        float right90x = -worldDisplacement.Z;
-
-                        worldDisplacement.X = right90x;
-                        worldDisplacement.Z = right90z;
-                        break;
-                    case 135:
-                        //Not Supported - TODO
-                        goto default;
-                    case 0:
-                        //Do Nothing
-                        goto default;
-                    default:
-                        break;
-                }
+                Vector3 worldDisplacement = LocalDisplacementToWorld(property.Displacement, worldDirectionChange);
 
                 //Check every tile used in this segment
                 for (int j = 0; j <= worldDisplacement.X + 1; j++)
@@ -160,43 +120,8 @@ namespace RCT2GA.RideData
                     }
                 }
 
-                /*
-                int xCounter, yCounter, zCounter;
-                xCounter = yCounter = zCounter = 0;
-                do
-                {
-                    do
-                    {
-                        do
-                        {
-                            Vector3 testCell = prevWorldPos + new Vector3(xCounter, yCounter, zCounter);
-                            if (!UsedCells.Contains(testCell))
-                            {
-                                UsedCells.Add(testCell);
-                            }
-                            else
-                            {
-                                return false;
-                            }
-                        } while (++yCounter < worldDisplacement.Z);
-                    } while (++xCounter < worldDisplacement.Y);
-                } while (++zCounter < worldDisplacement.X);
-                */
                 //Update World Direction Changes
-                worldDirectionChange += (int)RCT2TrackElementProperty.TrackDirectionChangeMap[property.DirectionChange];
-
-                if (worldDirectionChange < -180)
-                {
-                    worldDirectionChange = 180 + (worldDirectionChange + 180);
-                }
-                else if (worldDirectionChange > 180)
-                {
-                    worldDirectionChange = -180 + (worldDirectionChange - 180);
-                }
-                else if (worldDirectionChange == -180)
-                {
-                    worldDirectionChange = 180;
-                }
+                worldDirectionChange = UpdateRotation(worldDirectionChange, property.DirectionChange);
 
                 //Update variables
                 prevWorldPos += worldDisplacement;
@@ -436,57 +361,36 @@ namespace RCT2GA.RideData
 
         public Vector2 CalculateRequiredMapSpace()
         {
-            //TODO
-            //Doesn't work with Diagonals or Concave shapes!!
-
             Vector2 requiredMapSpace = new Vector2(0.0f, 0.0f);
             Vector2 posDisplacementCounter = new Vector2(0.0f, 0.0f);
 
             int currentDirectionOffset = 0;
+            List<Vector3> usedCells = new List<Vector3>();
 
             for (int i = 0; i < TrackData.Count; i++)
             {
                 RCT2TrackElements.RCT2TrackElement element = TrackData[i].TrackElement;
                 RCT2TrackElementProperty property = RCT2TrackElements.TrackElementPropertyMap[element];
-                Vector3 displacement = property.Displacement;
+                Vector3 worldDisplacement = LocalDisplacementToWorld(property.Displacement, currentDirectionOffset);
 
-                switch (currentDirectionOffset)
-                {
-                    case 0:
-                        posDisplacementCounter.Y += Math.Abs(displacement.X);
-                        posDisplacementCounter.X += Math.Abs(displacement.Z);
-                        break;
-                    case 90:
-                        posDisplacementCounter.Y += Math.Abs(displacement.Z);
-                        break;
-                    case -90:
-                        posDisplacementCounter.X += Math.Abs(displacement.X);
-                        break;
-                    default:
-                        //TODO: Support Diagonals
-                        break;
-                }
+                usedCells.Add(worldDisplacement);
 
-                int directionChange = (int)RCT2TrackElementProperty.TrackDirectionChangeMap[property.DirectionChange];
-                currentDirectionOffset += directionChange;
-
-                //Wrap around
-                if (currentDirectionOffset < -180)
-                {
-                    currentDirectionOffset = -(currentDirectionOffset + 180);
-                }
-                else if (currentDirectionOffset > 180)
-                {
-                    currentDirectionOffset = -(currentDirectionOffset - 180);
-                }
-                else if (currentDirectionOffset == -180)
-                {
-                    currentDirectionOffset = 180;
-                }
+                currentDirectionOffset = UpdateRotation(currentDirectionOffset, property.DirectionChange);
             }
 
-            requiredMapSpace.X = posDisplacementCounter.X - 1;
-            requiredMapSpace.Y = posDisplacementCounter.Y - 1;
+            //Find max X and Y distance of cells in list
+            List<float> xVals = new List<float>();
+            List<float> yVals = new List<float>();
+            usedCells.ForEach(v =>
+            {
+                xVals.Add(v.X);
+                yVals.Add(v.Z);
+            });
+            xVals.Sort();
+            yVals.Sort();
+
+            requiredMapSpace.X = Math.Abs(xVals.Last() - xVals.First());
+            requiredMapSpace.Y = Math.Abs(yVals.Last() - yVals.First());
 
             return requiredMapSpace;
         }
@@ -674,6 +578,81 @@ namespace RCT2GA.RideData
             }
 
             return newVelocity;
+        }
+
+        private Vector3 LocalDisplacementToWorld(Vector3 localDisplacement, int currentRotation)
+        {
+            //Get the world version of our property displacement
+            //ie, if the segment moves 1 forward, but is already rotated to the left
+            //    by 90°, then it actually moves right by 1
+
+            //TODO
+            //Doesn't work with Diagonals
+            Vector3 worldDisplacement = localDisplacement;
+
+            switch (currentRotation)
+            {
+                case -45:
+                    //Not supported - TODO
+                    goto default;
+                case -90:
+                    float left90z = -worldDisplacement.X;
+                    float left90x = worldDisplacement.Z;
+
+                    worldDisplacement.X = left90x;
+                    worldDisplacement.Z = left90z;
+                    break;
+                case -135:
+                    //Not Supported - TODO
+                    goto default;
+                case 180:
+                    //Flip the X and Z
+                    worldDisplacement.X *= -1;
+                    worldDisplacement.Z *= -1;
+                    break;
+                case 45:
+                    //Not Supported - TODO
+                    goto default;
+                case 90:
+                    float right90z = worldDisplacement.X;
+                    float right90x = -worldDisplacement.Z;
+
+                    worldDisplacement.X = right90x;
+                    worldDisplacement.Z = right90z;
+                    break;
+                case 135:
+                    //Not Supported - TODO
+                    goto default;
+                case 0:
+                    //Do Nothing
+                    goto default;
+                default:
+                    break;
+            }
+
+            return worldDisplacement;
+        }
+
+        private int UpdateRotation(int currentRotation, RCT2TrackElementProperty.RCT2TrackDirectionChange directionChange)
+        {
+            //Update World Direction Changes
+            int worldDirectionChange = currentRotation;
+            worldDirectionChange+= (int)RCT2TrackElementProperty.TrackDirectionChangeMap[directionChange];
+
+            if (worldDirectionChange < -180)
+            {
+                worldDirectionChange = 180 + (worldDirectionChange + 180);
+            }
+            else if (worldDirectionChange > 180)
+            {
+                worldDirectionChange = -180 + (worldDirectionChange - 180);
+            }
+            else if (worldDirectionChange == -180)
+            {
+                worldDirectionChange = 180;
+            }
+
+            return worldDirectionChange;
         }
 
         public void Parse(string rawData)
