@@ -66,7 +66,8 @@ namespace RCT2GA
             byte[] td6Bytes = td6Parser.Encode(testCoaster);
 
             //Console.WriteLine("Directory to Save to:");
-            string directory = @"G:\GOG Games\RollerCoaster Tycoon 2 Triple Thrill Pack\Tracks\User Tracks\Generated Test Coasters";
+            string directory = //@"G:\GOG Games\RollerCoaster Tycoon 2 Triple Thrill Pack\Tracks\User Tracks\Generated Test Coasters";
+                @"C:/Temp/";
             string filename = "TEST_" + DateTime.Now.ToString("yyMMddhhmmss");
 
             File.WriteAllBytes(directory + "\\UNENCODED_" + filename + ".td6", td6Bytes);

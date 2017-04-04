@@ -101,11 +101,11 @@ namespace RCT2GA.RideData
                 Vector3 worldDisplacement = LocalDisplacementToWorld(property.Displacement, worldDirectionChange);
 
                 //Check every tile used in this segment
-                for (int j = 0; j <= worldDisplacement.X + 1; j++)
+                for (int j = 0; j <= worldDisplacement.X; j++)
                 {
-                    for (int k = 0; k <= worldDisplacement.Y + 1; k++)
+                    for (int k = 0; k <= worldDisplacement.Y; k++)
                     {
-                        for (int l = 0; l < worldDisplacement.Z + 1; l++)
+                        for (int l = 1; l <= worldDisplacement.Z; l++)
                         {
                             Vector3 testCell = prevWorldPos + new Vector3(j, k, l);
                             if (!UsedCells.Contains(testCell))
@@ -366,6 +366,7 @@ namespace RCT2GA.RideData
 
             int currentDirectionOffset = 0;
             List<Vector3> usedCells = new List<Vector3>();
+            Vector3 prevWorldDisplacement = new Vector3(0.0f, 0.0f, 0.0f);
 
             for (int i = 0; i < TrackData.Count; i++)
             {
@@ -373,7 +374,8 @@ namespace RCT2GA.RideData
                 RCT2TrackElementProperty property = RCT2TrackElements.TrackElementPropertyMap[element];
                 Vector3 worldDisplacement = LocalDisplacementToWorld(property.Displacement, currentDirectionOffset);
 
-                usedCells.Add(worldDisplacement);
+                prevWorldDisplacement += worldDisplacement;
+                usedCells.Add(prevWorldDisplacement);
 
                 currentDirectionOffset = UpdateRotation(currentDirectionOffset, property.DirectionChange);
             }
