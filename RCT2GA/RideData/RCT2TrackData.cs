@@ -99,42 +99,237 @@ namespace RCT2GA.RideData
                 //ie, if the segment moves 1 forward, but is already rotated to the left
                 //    by 90°, then it actually moves right by 1
                 Vector3 worldDisplacement = LocalDisplacementToWorld(property.Displacement, worldDirectionChange);
-
+                Vector3 testCell = prevWorldPos;
                 //Check every tile used in this segment
-                for (int j = 0; j <= worldDisplacement.X; j++)
+                //Code is so gross Im so sorry
+                for (int x = 1; x <= Math.Abs(worldDisplacement.X); x++)
                 {
-                    for (int k = 0; k <= worldDisplacement.Y; k++)
+                    testCell = prevWorldPos + new Vector3(Math.Sign(worldDisplacement.X) * (x), 0, 0);
+                    if (!UsedCells.Contains(testCell))
                     {
-                        for (int l = 1; l <= worldDisplacement.Z; l++)
-                        {
-                            Vector3 testCell = prevWorldPos + new Vector3(j, k, l);
-                            if (!UsedCells.Contains(testCell))
-                            {
-                                UsedCells.Add(testCell);
-                            }
-                            else
-                            {
-                                return false;
-                            }
-                        }
+                        UsedCells.Add(testCell);
+                    }
+                    else
+                    {
+                        return false;
                     }
                 }
+                prevWorldPos = testCell;
+                for (int y = 1; y <= Math.Abs(worldDisplacement.Y); y++)
+                {
+                    testCell = prevWorldPos + new Vector3(0, Math.Sign(worldDisplacement.Y) * (y), 0);
+                    if (!UsedCells.Contains(testCell))
+                    {
+                        UsedCells.Add(testCell);
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                prevWorldPos = testCell;
+                for (int z = 1; z <= Math.Abs(worldDisplacement.Z); z++)
+                {
+                    testCell = prevWorldPos + new Vector3(0, 0, Math.Sign(worldDisplacement.Z) * (z));
+                    if (!UsedCells.Contains(testCell))
+                    {
+                        UsedCells.Add(testCell);
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                prevWorldPos = testCell;
 
                 //Update World Direction Changes
                 worldDirectionChange = UpdateRotation(worldDirectionChange, property.DirectionChange);
 
                 //Update variables
-                prevWorldPos += worldDisplacement;
                 prevElementProperty = property;
             }
 
             return true;
         }
 
-        public void AutoComplete()
-        {
+        //public void AutoComplete()
+        //{
+        //    //Find the end rotation & world position
+        //    Vector3 prevWorldPos = new Vector3(0.0f, 0.0f, 0.0f);
+        //    List<RCT2TrackElements.RCT2TrackElement> additionalElements = new List<RCT2TrackElements.RCT2TrackElement>();
+        //    int worldDirectionChange = 0;
+        //    for (int i = 0; i < TrackData.Count; i++)
+        //    {
+        //        RCT2TrackElements.RCT2TrackElement currentElement = TrackData[i].TrackElement;
+        //        RCT2TrackElementProperty property = RCT2TrackElements.TrackElementPropertyMap[currentElement];
 
-        }
+        //        Vector3 worldDisplacement = LocalDisplacementToWorld(property.Displacement, worldDirectionChange);
+                
+        //        //Update World Position Changes
+        //        prevWorldPos += worldDisplacement;
+
+        //        //Update World Direction Changes
+        //        worldDirectionChange = UpdateRotation(worldDirectionChange, property.DirectionChange);
+        //    }
+
+        //    //We now have the end of track position, and the start of the track position (0, 0, 0) As well as the rotation
+        //    //Flat out whatever track piece we're on
+        //    //TODO - change to add qualifiers too
+        //    switch (TrackData[TrackData.Count - 2].TrackElement)
+        //    {
+        //        case RCT2TrackElements.RCT2TrackElement.Decline25:
+        //            additionalElements.Add(RCT2TrackElements.RCT2TrackElement.Decline25ToFlat);
+        //            break;
+        //        case RCT2TrackElements.RCT2TrackElement.Decline60:
+        //            additionalElements.Add(RCT2TrackElements.RCT2TrackElement.Decline60To25);
+        //            additionalElements.Add(RCT2TrackElements.RCT2TrackElement.Decline25ToFlat);
+        //            break;
+        //        case RCT2TrackElements.RCT2TrackElement.Incline25:
+        //            additionalElements.Add(RCT2TrackElements.RCT2TrackElement.Incline25ToFlat);
+        //            break;
+        //        case RCT2TrackElements.RCT2TrackElement.Incline60:
+        //            additionalElements.Add(RCT2TrackElements.RCT2TrackElement.Incline60To25);
+        //            additionalElements.Add(RCT2TrackElements.RCT2TrackElement.Incline25ToFlat);
+        //            break;
+        //        case RCT2TrackElements.RCT2TrackElement.Incline25LeftBanked:
+        //            additionalElements.Add(RCT2TrackElements.RCT2TrackElement.LeftBankIncline25ToFlat);
+        //            break;
+        //        case RCT2TrackElements.RCT2TrackElement.Incline25RightBanked:
+        //            additionalElements.Add(RCT2TrackElements.RCT2TrackElement.RightBankIncline25ToFlat);
+        //            break;
+        //        case RCT2TrackElements.RCT2TrackElement.Decline25LeftBanked:
+        //            additionalElements.Add(RCT2TrackElements.RCT2TrackElement.LeftBankDecline25ToFlat);
+        //            break;
+        //        case RCT2TrackElements.RCT2TrackElement.Decline25RightBanked:
+        //            additionalElements.Add(RCT2TrackElements.RCT2TrackElement.RightBankDecline25ToFlat);
+        //            break;
+        //        case RCT2TrackElements.RCT2TrackElement.LeftBank:
+        //            additionalElements.Add(RCT2TrackElements.RCT2TrackElement.LeftBankToFlat);
+        //            break;
+        //        case RCT2TrackElements.RCT2TrackElement.RightBank:
+        //            additionalElements.Add(RCT2TrackElements.RCT2TrackElement.RightBankToFlat);
+        //            break;
+        //    }
+
+        //    //Get to ground level
+        //    if (prevWorldPos.Y > 0)
+        //    {
+        //        int groundDistance = (int)prevWorldPos.Y;
+
+        //        additionalElements.Add(RCT2TrackElements.RCT2TrackElement.FlatToDecline25);
+        //        for (int i = 0; i < groundDistance - 2; i++)
+        //        {
+        //            additionalElements.Add(RCT2TrackElements.RCT2TrackElement.Decline25);
+        //        }
+        //        additionalElements.Add(RCT2TrackElements.RCT2TrackElement.Decline25ToFlat);
+        //    }
+
+
+        //    additionalElements.AddRange(ConnectTracks2D(prevWorldPos, new Vector3(0, 0, 0), worldDirectionChange));
+        //}
+
+        //private List<RCT2TrackElements.RCT2TrackElement> ConnectTracks2D (Vector3 startPosition, Vector3 endPosition, float currentRotation)
+        //{
+        //    List<RCT2TrackElements.RCT2TrackElement> additionalElements = new List<RCT2TrackElements.RCT2TrackElement>();
+        //    Vector3 prevWorldPos = new Vector3(startPosition);
+
+        //    //It is now a 2D connection problem as opposed to a 3D
+        //    //So now let's connect along a 2D axis
+        //    switch ((int)currentRotation)
+        //    {
+        //        case 0:
+        //            //Same direction as the station
+        //            SameDirectionConnect2D(prevWorldPos, new Vector3(0, 0, 0));
+        //            break;
+        //        case -90:
+        //            //Left Facing, Rotate to right
+        //            LeftDirectionConnect2D(prevWorldPos, new Vector3(0, 0, 0));
+        //            break;
+        //        case 180:
+        //            //Opposite Direction
+        //            OppositeDirectionConnect2D(prevWorldPos, new Vector3(0, 0, 0));
+        //            break;
+        //        case 90:
+        //            //Right Facing, Rotate to left
+        //            RightDirectionConnect2D(prevWorldPos, new Vector3(0, 0, 0));
+        //            break;
+        //    }
+
+        //    return additionalElements;
+        //}
+
+        //private List<RCT2TrackElements.RCT2TrackElement> SameDirectionConnect2D (Vector3 startPosition, Vector3 endPosition)
+        //{
+        //    List<RCT2TrackElements.RCT2TrackElement> additionalElements = new List<RCT2TrackElements.RCT2TrackElement>();
+        //    Vector3 prevWorldPos = new Vector3(startPosition);
+
+        //    //If theyre the same value we're at the end so we're good
+        //    if (startPosition == endPosition)
+        //    {
+        //        return additionalElements;
+        //    }
+
+        //    Vector3 difference = endPosition - startPosition;
+
+        //    //If the X values are the same
+        //    if (startPosition.X == endPosition.X)
+        //    {
+        //        for (int i = 0; i < Math.Abs(difference.Z); i++)
+        //        {
+        //            additionalElements.Add(RCT2TrackElements.RCT2TrackElement.Flat);
+        //        }
+        //        return additionalElements;
+        //    }
+        //    else if (Math.Abs(difference.Z) > 3 && Math.Abs(difference.X) == 1) 
+        //    {
+        //        RCT2TrackElements.RCT2TrackElement element = difference.X < 0 ? RCT2TrackElements.RCT2TrackElement.RightSBend : RCT2TrackElements.RCT2TrackElement.LeftSBend;
+        //        additionalElements.Add(element);
+        //        prevWorldPos += LocalDisplacementToWorld(RCT2TrackElements.TrackElementPropertyMap[element].Displacement, 0);
+        //        additionalElements.AddRange(SameDirectionConnect2D(startPosition, endPosition));
+        //        return additionalElements;
+        //    }
+
+        //    return additionalElements;
+        //}
+
+        //private List<RCT2TrackElements.RCT2TrackElement> LeftDirectionConnect2D (Vector3 startPosition, Vector3 endPosition)
+        //{
+        //    List<RCT2TrackElements.RCT2TrackElement> additionalElements = new List<RCT2TrackElements.RCT2TrackElement>();
+        //    Vector3 prevWorldPos = new Vector3(startPosition);
+
+        //    while (prevWorldPos != endPosition)
+        //    {
+        //        //TODO
+        //    }
+
+        //    return additionalElements;
+        //}
+
+        //private List<RCT2TrackElements.RCT2TrackElement> OppositeDirectionConnect2D(Vector3 startPosition, Vector3 endPosition)
+        //{
+        //    List<RCT2TrackElements.RCT2TrackElement> additionalElements = new List<RCT2TrackElements.RCT2TrackElement>();
+        //    Vector3 prevWorldPos = new Vector3(startPosition);
+
+        //    while (prevWorldPos != endPosition)
+        //    {
+        //        //TODO
+        //    }
+
+        //    return additionalElements;
+        //}
+
+        //private List<RCT2TrackElements.RCT2TrackElement> RightDirectionConnect2D(Vector3 startPosition, Vector3 endPosition)
+        //{
+        //    List<RCT2TrackElements.RCT2TrackElement> additionalElements = new List<RCT2TrackElements.RCT2TrackElement>();
+        //    Vector3 prevWorldPos = new Vector3(startPosition);
+
+        //    while (prevWorldPos != endPosition)
+        //    {
+        //        //TODO
+        //    }
+
+        //    return additionalElements;
+        //}
 
         private float CalculateExcitement()
         {
@@ -372,6 +567,7 @@ namespace RCT2GA.RideData
             {
                 RCT2TrackElements.RCT2TrackElement element = TrackData[i].TrackElement;
                 RCT2TrackElementProperty property = RCT2TrackElements.TrackElementPropertyMap[element];
+
                 Vector3 worldDisplacement = LocalDisplacementToWorld(property.Displacement, currentDirectionOffset);
 
                 prevWorldDisplacement += worldDisplacement;
@@ -484,11 +680,14 @@ namespace RCT2GA.RideData
 
                 //Get current G forces by averaging with previous ones
                 vertG += previousVertG;
-                latG += previousLatG;
                 vertG /= 2;
+                previousVertG = vertG;
+
+                latG += previousLatG;
                 latG /= 2;
                 previousLatG = latG;
-                previousVertG = vertG;
+
+                latG = Math.Abs(latG);
 
                 //See if it's more than our current maX
                 if (latG > maxLatG)
@@ -590,7 +789,7 @@ namespace RCT2GA.RideData
 
             //TODO
             //Doesn't work with Diagonals
-            Vector3 worldDisplacement = localDisplacement;
+            Vector3 worldDisplacement = new Vector3(localDisplacement);
 
             switch (currentRotation)
             {
@@ -598,8 +797,8 @@ namespace RCT2GA.RideData
                     //Not supported - TODO
                     goto default;
                 case -90:
-                    float left90z = -worldDisplacement.X;
-                    float left90x = worldDisplacement.Z;
+                    float left90z = worldDisplacement.X;
+                    float left90x = -worldDisplacement.Z;
 
                     worldDisplacement.X = left90x;
                     worldDisplacement.Z = left90z;
@@ -616,8 +815,8 @@ namespace RCT2GA.RideData
                     //Not Supported - TODO
                     goto default;
                 case 90:
-                    float right90z = worldDisplacement.X;
-                    float right90x = -worldDisplacement.Z;
+                    float right90z = -worldDisplacement.X;
+                    float right90x = worldDisplacement.Z;
 
                     worldDisplacement.X = right90x;
                     worldDisplacement.Z = right90z;
@@ -657,9 +856,9 @@ namespace RCT2GA.RideData
             return worldDirectionChange;
         }
 
-        public void Parse(string rawData)
-        {
-            //TODO
-        }
+        //public void Parse(string rawData)
+        //{
+        //    //TODO
+        //}
     }
 }

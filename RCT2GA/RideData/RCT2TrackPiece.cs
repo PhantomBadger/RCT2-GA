@@ -13,25 +13,31 @@ namespace RCT2GA.RideData
 
         public void GetGForces(float velocity, out float lateralG, out float verticalG)
         {
+            //The format Ia ssume velocity, acceleration, gforce, etc is stored in RCT2 is flawed
+            //Will need to revisit to get accurate results
+            // ie, 1.74 = 174 in code
+
             //Get the G force factors for this piece
             RCT2TrackElements.GForceFactors gForceFactors = RCT2TrackElements.TrackElementGForceFactorMap[TrackElement];
 
             //Init our G force vars
-            float latG = 0;
-            float vertG = 0;
+            int latG = 0;
+            int vertG = (int)((((0x280000 * (long)2147483647) >> 32) * 2147483647) >> 32) / 100;
+
+            vertG *= Math.Sign(gForceFactors.VerticalGFactor);
 
             //If the vertical isnt 0
             if (gForceFactors.VerticalGFactor != 0)
             {
                 //Apply the vehicle velocity
-                vertG += (Math.Abs(velocity) * 98 / gForceFactors.VerticalGFactor);
+                vertG += (Math.Abs((int)velocity) * 98 / gForceFactors.VerticalGFactor);
             }
 
             //If the lateral isnt 0
             if (gForceFactors.LateralGFactor != 0)
             {
                 //Apply the vehicle velocity
-                latG += (Math.Abs(velocity) * 98 / gForceFactors.LateralGFactor);
+                latG += (Math.Abs((int)velocity) * 98 / gForceFactors.LateralGFactor);
             }
 
             //Apply other modifications
@@ -39,11 +45,16 @@ namespace RCT2GA.RideData
             latG *= 10;
 
             //Trim them down to short length
-            vertG /= 32;
-            latG /= 32;
+            vertG >>= 16;
+            latG >>= 16;
 
-            lateralG = latG;
-            verticalG = vertG;
+            if (vertG == 0 && gForceFactors.VerticalGFactor > 0)
+            {
+                vertG = 1;
+            }
+
+            lateralG = (float)latG;
+            verticalG = (float)vertG;
 
             /* - I think this is done to shove it into the first 4 bits and trim the rest, we'll just trim at the end
             */

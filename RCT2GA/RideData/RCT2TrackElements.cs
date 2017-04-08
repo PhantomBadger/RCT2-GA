@@ -284,7 +284,7 @@ namespace RCT2GA.RideData
 
         #region PropertyMap
         //Seems some values are incorrect, could cause issues with collisions
-        public static Dictionary<RCT2TrackElement, RCT2TrackElementProperty> TrackElementPropertyMap = new Dictionary<RCT2TrackElement, RCT2TrackElementProperty>
+        public static readonly Dictionary<RCT2TrackElement, RCT2TrackElementProperty> TrackElementPropertyMap = new Dictionary<RCT2TrackElement, RCT2TrackElementProperty>
         {
             {
                 RCT2TrackElement.Flat, new RCT2TrackElementProperty()
@@ -3692,7 +3692,7 @@ namespace RCT2GA.RideData
         };
         #endregion
 
-        static List<RCT2TrackElement> FindValidSuccessors(RCT2TrackElement inputTrack)
+        static public List<RCT2TrackElement> FindValidSuccessors(RCT2TrackElement inputTrack)
         {
             List<RCT2TrackElement> validTracks = new List<RCT2TrackElement>();
 
@@ -3704,7 +3704,10 @@ namespace RCT2GA.RideData
             {
                 //For prototype we are focusing only on the Wooden Rollercoaster ride type
                 //Ignore anything that doesn't fit the restrictions for the ride
+
+
                 //TODO: Move these restrictions to a RideType file structure or something
+                //TODO: Actually fix this
 
                 //Easier to check if something doesn't meet the requirements than does most of the time
                 RCT2TrackElementProperty trackProperty = TrackElementPropertyMap[track];
@@ -3724,15 +3727,32 @@ namespace RCT2GA.RideData
                     trackProperty.DirectionChange == RCT2TrackElementProperty.RCT2TrackDirectionChange.DiagonalLeft ||
                     trackProperty.DirectionChange == RCT2TrackElementProperty.RCT2TrackDirectionChange.DiagonalRight ||
                     trackProperty.DirectionChange == RCT2TrackElementProperty.RCT2TrackDirectionChange.DiagonalStraight ||
+                    track.ToString().ToLower().Contains("dto") ||
+                    track.ToString().ToLower().Contains("otd") ||
                     //Dont use Water/Covered pieces
-                    trackProperty.ToString().ToLower().Contains("covered") ||
+                    track.ToString().ToLower().Contains("covered") ||
+                    track.ToString().ToLower().Contains("water") ||
+                    //Dont use Stations
+                    track == RCT2TrackElement.BeginStation ||
+                    track == RCT2TrackElement.MiddleStation ||
+                    track == RCT2TrackElement.EndStation ||
+                    track == RCT2TrackElement.EndOfTrack ||
                     //Dont use Unsupported Track Types
                    (trackProperty.TrackType != RCT2TrackElementProperty.RCT2TrackElementType.Flat &&
                     trackProperty.TrackType != RCT2TrackElementProperty.RCT2TrackElementType.Curve &&
                     trackProperty.TrackType != RCT2TrackElementProperty.RCT2TrackElementType.LiftHill &&
                     trackProperty.TrackType != RCT2TrackElementProperty.RCT2TrackElementType.PoweredLift &&
                     trackProperty.TrackType != RCT2TrackElementProperty.RCT2TrackElementType.OnRidePhoto &&
-                    trackProperty.TrackType != RCT2TrackElementProperty.RCT2TrackElementType.WaterSplash))
+                    trackProperty.TrackType != RCT2TrackElementProperty.RCT2TrackElementType.WaterSplash &&
+                    track.ToString().ToLower().Contains("across1")) ||
+                    //Dont use Track Pieces our problem space doesn't allow
+                    track == RCT2TrackElement.FlatToDecline60 ||
+                    track == RCT2TrackElement.FlatToIncline60 ||
+                    track == RCT2TrackElement.FlatToIncline60LongBase ||
+                    track == RCT2TrackElement.FlatToDecline60LongBase ||
+                    trackProperty.OutputTrackBank != RCT2TrackElementProperty.RCT2TrackBank.None ||
+                    trackProperty.OutputTrackDegree == RCT2TrackElementProperty.RCT2TrackDegree.Up60 ||
+                    trackProperty.OutputTrackDegree == RCT2TrackElementProperty.RCT2TrackDegree.Down60)
                 {
                     //Ignore and go to the next track piece
                     continue;
