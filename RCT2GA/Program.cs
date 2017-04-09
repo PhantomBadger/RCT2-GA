@@ -649,7 +649,7 @@ namespace RCT2GA
             testCoaster.NumberOfCircuits = 1;
 
             //Check Validity
-            if (!testCoaster.TrackData.CheckValidity())
+            if (testCoaster.TrackData.CheckValidity() != RideData.RCT2TrackData.InvalidityCode.Valid)
             {
                 Console.WriteLine("INVALID!!!!!");
                 return null;
@@ -1184,7 +1184,7 @@ namespace RCT2GA
             testCoaster.NumberOfCircuits = 1;
 
             //Check Validity
-            if (!testCoaster.TrackData.CheckValidity())
+            if (testCoaster.TrackData.CheckValidity() != RideData.RCT2TrackData.InvalidityCode.Valid)
             {
                 Console.WriteLine("INVALID!!!!!");
                 return null;
@@ -1482,7 +1482,7 @@ namespace RCT2GA
             testCoaster.NumberOfCircuits = 1;
 
             //Check Validity
-            return testCoaster.TrackData.CheckValidity();
+            return (testCoaster.TrackData.CheckValidity() == RideData.RCT2TrackData.InvalidityCode.Valid);
         }
     }
 }

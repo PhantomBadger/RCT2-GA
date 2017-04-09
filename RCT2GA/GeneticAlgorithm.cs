@@ -9,6 +9,22 @@ namespace RCT2GA
 {
     class GeneticAlgorithm
     {
+        float mutationRate = 0;
+        float crossoverRate = 0;
+        int populationSize = 100;
+        int generationCount = 100;
+        int length = 20;
+
+        public GeneticAlgorithm()
+        {
+
+        }
+
+        public void Initialise()
+        {
+
+        }
+
         public RCT2RideData GenerateWoodenRollerCoaster(int length)
         {
             RideData.RCT2RideData coaster = new RideData.RCT2RideData();
@@ -18,7 +34,7 @@ namespace RCT2GA
             coaster.TrackType.RideType = RideData.RCT2RideCode.RCT2TrackName.WoodenRollerCoaster6Seater;
 
             //Track Data
-            coaster.TrackData = GenerateTrack(length);
+            coaster.TrackData = GenerateWoodenRollerCoasterTrack(length);
 
             //Ride Features
             coaster.RideFeatures = new RideData.RCT2RideFeatures();
@@ -151,7 +167,7 @@ namespace RCT2GA
             coaster.NumberOfCircuits = 1;
 
             //Check Validity
-            if (!coaster.TrackData.CheckValidity())
+            if (coaster.TrackData.CheckValidity() != RCT2TrackData.InvalidityCode.Valid)
             {
                 Console.WriteLine("ERROR: Failed Validity Check");
                 return null;
@@ -160,8 +176,83 @@ namespace RCT2GA
             return coaster;
         }
 
-        private RCT2TrackData GenerateTrack(int length)
+        private RCT2TrackData GenerateWoodenRollerCoasterTrack(int length)
         {
+            List<RCT2TrackElements.RCT2TrackElement> whitelistedTracks = new List<RCT2TrackElements.RCT2TrackElement>();
+            whitelistedTracks.Add(RCT2TrackElements.RCT2TrackElement.Flat);
+            whitelistedTracks.Add(RCT2TrackElements.RCT2TrackElement.FlatToIncline25);
+            whitelistedTracks.Add(RCT2TrackElements.RCT2TrackElement.FlatToDecline25);
+            whitelistedTracks.Add(RCT2TrackElements.RCT2TrackElement.Incline25);
+            whitelistedTracks.Add(RCT2TrackElements.RCT2TrackElement.Decline25);
+            whitelistedTracks.Add(RCT2TrackElements.RCT2TrackElement.Incline25ToFlat);
+            whitelistedTracks.Add(RCT2TrackElements.RCT2TrackElement.Decline25ToFlat);
+            whitelistedTracks.Add(RCT2TrackElements.RCT2TrackElement.LeftBank);
+            whitelistedTracks.Add(RCT2TrackElements.RCT2TrackElement.LeftBankToIncline25);
+            whitelistedTracks.Add(RCT2TrackElements.RCT2TrackElement.LeftBankToDecline25);
+            whitelistedTracks.Add(RCT2TrackElements.RCT2TrackElement.Incline25LeftBanked);
+            whitelistedTracks.Add(RCT2TrackElements.RCT2TrackElement.Decline25LeftBanked);
+            //whitelistedTracks.Add(RCT2TrackElements.RCT2TrackElement.LeftBankIncline25ToFlat);
+            //whitelistedTracks.Add(RCT2TrackElements.RCT2TrackElement.LeftBankDecline25ToFlat);
+            //whitelistedTracks.Add(RCT2TrackElements.RCT2TrackElement.LeftBankToFlat);
+            //whitelistedTracks.Add(RCT2TrackElements.RCT2TrackElement.LeftBankFlatToLeftBankIncline25);
+            //whitelistedTracks.Add(RCT2TrackElements.RCT2TrackElement.LeftBankFlatToLeftBankDecline25);
+            //whitelistedTracks.Add(RCT2TrackElements.RCT2TrackElement.LeftBankIncline25ToIncline25);
+            //whitelistedTracks.Add(RCT2TrackElements.RCT2TrackElement.LeftBankDecline25ToDecline25);
+            //whitelistedTracks.Add(RCT2TrackElements.RCT2TrackElement.LeftBankIncline25ToLeftBankFlat);
+            //whitelistedTracks.Add(RCT2TrackElements.RCT2TrackElement.LeftBankDecline25ToLeftBankFlat);
+            //whitelistedTracks.Add(RCT2TrackElements.RCT2TrackElement.RightBank);
+            //whitelistedTracks.Add(RCT2TrackElements.RCT2TrackElement.RightBankToIncline25);
+            //whitelistedTracks.Add(RCT2TrackElements.RCT2TrackElement.RightBankToDecline25);
+            //whitelistedTracks.Add(RCT2TrackElements.RCT2TrackElement.Incline25RightBanked);
+            //whitelistedTracks.Add(RCT2TrackElements.RCT2TrackElement.Decline25RightBanked);
+            //whitelistedTracks.Add(RCT2TrackElements.RCT2TrackElement.RightBankIncline25ToFlat);
+            //whitelistedTracks.Add(RCT2TrackElements.RCT2TrackElement.RightBankDecline25ToFlat);
+            //whitelistedTracks.Add(RCT2TrackElements.RCT2TrackElement.RightBankToFlat);
+            //whitelistedTracks.Add(RCT2TrackElements.RCT2TrackElement.RightBankFlatToRightBankIncline25);
+            //whitelistedTracks.Add(RCT2TrackElements.RCT2TrackElement.RightBankFlatToRightBankDecline25);
+            //whitelistedTracks.Add(RCT2TrackElements.RCT2TrackElement.RightBankIncline25ToIncline25);
+            //whitelistedTracks.Add(RCT2TrackElements.RCT2TrackElement.RightBankDecline25ToDecline25);
+            //whitelistedTracks.Add(RCT2TrackElements.RCT2TrackElement.RightBankIncline25ToRightBankFlat);
+            //whitelistedTracks.Add(RCT2TrackElements.RCT2TrackElement.RightBankDecline25ToRightBankFlat);
+            whitelistedTracks.Add(RCT2TrackElements.RCT2TrackElement.LeftSBend);
+            whitelistedTracks.Add(RCT2TrackElements.RCT2TrackElement.RightSBend);
+            whitelistedTracks.Add(RCT2TrackElements.RCT2TrackElement.LeftQuarterTurnAcross3);
+            whitelistedTracks.Add(RCT2TrackElements.RCT2TrackElement.LeftQuarterTurnAcross5);
+            //whitelistedTracks.Add(RCT2TrackElements.RCT2TrackElement.LeftQuarterTurnBankAcross3);
+            //whitelistedTracks.Add(RCT2TrackElements.RCT2TrackElement.LeftQuarterTurnBankAcross5);
+            //whitelistedTracks.Add(RCT2TrackElements.RCT2TrackElement.LeftBankToLeftQuarterTurnIncline25Across3);
+            //whitelistedTracks.Add(RCT2TrackElements.RCT2TrackElement.LeftQuarterTurnDecline25Across3);
+            //whitelistedTracks.Add(RCT2TrackElements.RCT2TrackElement.LeftQuarterTurnIncline25Across3);
+            //whitelistedTracks.Add(RCT2TrackElements.RCT2TrackElement.LeftQuarterTurnIncline25Across5);
+            //whitelistedTracks.Add(RCT2TrackElements.RCT2TrackElement.LeftQuarterTurnDecline25Across5);
+            //whitelistedTracks.Add(RCT2TrackElements.RCT2TrackElement.LeftQuarterTurnDecline25ToLeftBankAcross3);
+            //whitelistedTracks.Add(RCT2TrackElements.RCT2TrackElement.LeftQuarterTurnIncline25BankedAcross5);
+            //whitelistedTracks.Add(RCT2TrackElements.RCT2TrackElement.LeftQuarterTurnDecline25BankedAcross5);
+            //whitelistedTracks.Add(RCT2TrackElements.RCT2TrackElement.LeftQuarterTurnIncline25BankedAcross3);
+            //whitelistedTracks.Add(RCT2TrackElements.RCT2TrackElement.LeftQuarterTurnDecline25BankedAcross3);
+            whitelistedTracks.Add(RCT2TrackElements.RCT2TrackElement.RightQuarterTurnAcross3);
+            whitelistedTracks.Add(RCT2TrackElements.RCT2TrackElement.RightQuarterTurnAcross5);
+            //whitelistedTracks.Add(RCT2TrackElements.RCT2TrackElement.RightQuarterTurnBankAcross3);
+            //whitelistedTracks.Add(RCT2TrackElements.RCT2TrackElement.RightQuarterTurnBankAcross5);
+            //whitelistedTracks.Add(RCT2TrackElements.RCT2TrackElement.RightBankToRightQuarterTurnIncline25Across3);
+            //whitelistedTracks.Add(RCT2TrackElements.RCT2TrackElement.RightQuarterTurnDecline25Across3);
+            //whitelistedTracks.Add(RCT2TrackElements.RCT2TrackElement.RightQuarterTurnIncline25Across3);
+            //whitelistedTracks.Add(RCT2TrackElements.RCT2TrackElement.RightQuarterTurnIncline25Across5);
+            //whitelistedTracks.Add(RCT2TrackElements.RCT2TrackElement.RightQuarterTurnDecline25Across5);
+            //whitelistedTracks.Add(RCT2TrackElements.RCT2TrackElement.RightQuarterTurnDecline25ToRightBankAcross3);
+            //whitelistedTracks.Add(RCT2TrackElements.RCT2TrackElement.RightQuarterTurnIncline25BankedAcross5);
+            //whitelistedTracks.Add(RCT2TrackElements.RCT2TrackElement.RightQuarterTurnDecline25BankedAcross5);
+            //whitelistedTracks.Add(RCT2TrackElements.RCT2TrackElement.RightQuarterTurnIncline25BankedAcross3);
+            //whitelistedTracks.Add(RCT2TrackElements.RCT2TrackElement.RightQuarterTurnDecline25BankedAcross3);
+            whitelistedTracks.Add(RCT2TrackElements.RCT2TrackElement.OnRidePhoto);
+            //whitelistedTracks.Add(RCT2TrackElements.RCT2TrackElement.FlatToLeftBank);
+            //whitelistedTracks.Add(RCT2TrackElements.RCT2TrackElement.FlatToRightBank);
+            //whitelistedTracks.Add(RCT2TrackElements.RCT2TrackElement.FlatToLeftBankIncline25);
+            //whitelistedTracks.Add(RCT2TrackElements.RCT2TrackElement.FlatToRightBankIncline25);
+            //whitelistedTracks.Add(RCT2TrackElements.RCT2TrackElement.FlatToLeftBankDecline25);
+            //whitelistedTracks.Add(RCT2TrackElements.RCT2TrackElement.FlatToRightBankDecline25);
+
+
             RCT2TrackData trackData = new RCT2TrackData();
             trackData.TrackData = new List<RCT2TrackPiece>();
             Random random = new Random();
@@ -194,9 +285,12 @@ namespace RCT2GA
                 }
             });
 
+            //TODO: Marking valid track pieces as invalid
+            //      The prior connection check is failing
+
             for (int i = 1; i < length + 2; i++)
             {
-                List<RCT2TrackElements.RCT2TrackElement> candidates = RCT2TrackElements.FindValidSuccessors(trackData.TrackData[i].TrackElement);
+                List<RCT2TrackElements.RCT2TrackElement> candidates = RCT2TrackElements.FindValidSuccessors(whitelistedTracks, trackData.TrackData[i].TrackElement);
                 bool reselect = false;
 
                 do
@@ -204,14 +298,22 @@ namespace RCT2GA
                     //If we have no candidates left
                     if (candidates.Count <= 0)
                     {
-                        Console.WriteLine("ERROR: No Valid Track Pieces Found");
-                        return null;
+                        if (i < 1)
+                        {
+                            Console.WriteLine("ERROR: Unable to create Coaster - Index stepped back too far");
+                            return null;
+                        }
+                        Console.WriteLine("ERROR: No Valid Track Pieces Found, Stepping back and starting again");
+                        trackData.TrackData.RemoveAt(i--);
+                        continue;
                     }
 
                     //Select our successor and remove it from the potential pool
                     RCT2TrackElements.RCT2TrackElement successor = candidates[random.Next(candidates.Count)];
                     candidates.Remove(successor);
                     RCT2TrackElementProperty property = RCT2TrackElements.TrackElementPropertyMap[successor];
+
+                    Console.WriteLine($"\tAttempting Track Piece {successor.ToString()}");
 
                     RCT2Qualifier qualifier;
 
@@ -253,13 +355,21 @@ namespace RCT2GA
                     trackData.TrackData.Add(new RCT2TrackPiece() { TrackElement = successor, Qualifier = qualifier });
 
                     //If it's invalid
-                    if (!trackData.CheckValidity())
+                    RCT2TrackData.InvalidityCode invalidityCode = trackData.CheckValidity();
+                    if (invalidityCode != RCT2TrackData.InvalidityCode.Valid)
                     {
                         //Remove it and try again
                         reselect = true;
                         trackData.TrackData.Remove(trackData.TrackData.Last());
+                        Console.WriteLine($"\tInvalid Selection, Code: {invalidityCode.ToString()}");
                     }
-                } while (reselect);                            
+                    else
+                    {
+                        reselect = false;
+                    }
+                } while (reselect);
+
+                Console.WriteLine($"{trackData.TrackData.Last().TrackElement.ToString()} Selected!");       
             }
 
             return trackData;
