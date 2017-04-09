@@ -15,14 +15,89 @@ namespace RCT2GA
         int generationCount = 100;
         int length = 20;
 
+        List<RCT2RideData> population;
+        List<RCT2RideData> nextPopulation;
+
         public GeneticAlgorithm()
         {
-
+            population = new List<RCT2RideData>();
+            nextPopulation = new List<RCT2RideData>();
         }
 
         public void Initialise()
         {
+            do
+            {
+                Console.WriteLine("Please enter an integer value for population size: ");
+            } while (!int.TryParse(Console.ReadLine(), out populationSize));
 
+            do
+            {
+                Console.WriteLine("Please enter an integer value for ride length: ");
+            } while (!int.TryParse(Console.ReadLine(), out length));
+
+            do
+            {
+                Console.WriteLine("Please enter an integer value for population size: ");
+            } while (!int.TryParse(Console.ReadLine(), out populationSize));
+
+            do
+            {
+                Console.WriteLine("Please enter an integer value for generation count: ");
+            } while (!int.TryParse(Console.ReadLine(), out generationCount));
+
+            do
+            {
+                Console.WriteLine("Please enter a float value for mutation rate: ");
+            } while (!float.TryParse(Console.ReadLine(), out mutationRate));
+
+            do
+            {
+                Console.WriteLine("Please enter a float value for crossover rate: ");
+            } while (!float.TryParse(Console.ReadLine(), out crossoverRate));
+        }
+
+        private float CalculateFitness(RCT2RideData candidate)
+        {
+            float fitness = 0;
+
+            //TODO
+
+            return fitness;
+        }
+
+        private RCT2RideData SelectCandidate()
+        {
+            //TODO
+            return new RCT2RideData();
+        }
+
+        private List<RCT2RideData> Crossover(RCT2RideData parent1, RCT2RideData parent2)
+        {
+            //TODO
+            return new List<RCT2RideData>();
+        }
+
+        private RCT2RideData Mutation(RCT2RideData candidate)
+        {
+            //TODO
+            return candidate;
+        }
+
+        private void NextGeneration()
+        {
+            for (int i = 0; i < population.Count; i++)
+            {
+                //TODO
+                //RCT2RideData parent1 = SelectCandidate();
+                //RCT2RideData parent2 = SelectCandidate();
+
+                //List<RCT2RideData> children = Crossover(parent1, parent2);
+                //children[0] = Mutation(children[0]);
+                //children[1] = Mutation(children[1]);
+
+                //nextPopulation.AddRange(children);
+            }
         }
 
         public RCT2RideData GenerateWoodenRollerCoaster(int length)
