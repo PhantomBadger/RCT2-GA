@@ -8,6 +8,58 @@ namespace RCT2GA.RideData
 {
     class RCT2RideData
     {
+        public RCT2RideData()
+        {
+        }
+
+        public RCT2RideData(RCT2RideData copy)
+        {
+            TrackType = copy.TrackType;
+            TrackData = copy.TrackData;
+            RideFeatures = copy.RideFeatures;
+            OperatingMode = copy.OperatingMode;
+            ColourScheme = copy.ColourScheme;
+            EntranceStyle = copy.EntranceStyle;
+            AirTimeInSeconds = copy.AirTimeInSeconds;
+            DepartureFlags = copy.DepartureFlags;
+            NumberOfTrains = copy.NumberOfTrains;
+            NumberOfCarsPerTrain = copy.NumberOfCarsPerTrain;
+            MinWaitTimeInSeconds = copy.MinWaitTimeInSeconds;
+            MaxWaitTimeInSeconds = copy.MaxWaitTimeInSeconds;
+            SpeedOfPoweredLaunch = copy.SpeedOfPoweredLaunch;
+            NumberOfGoKartLaps = copy.NumberOfGoKartLaps;
+            MaxNumberOfPeopleMaze = copy.MaxNumberOfPeopleMaze;
+            MaxSpeedOfRide = copy.MaxSpeedOfRide;
+            AverageSpeedOfRide = copy.AverageSpeedOfRide;
+            RideLengthInMetres = copy.RideLengthInMetres;
+            PosGForce = copy.PosGForce;
+            NegGForce = copy.NegGForce;
+            LatGForce = copy.LatGForce;
+            NumberOfInversions = copy.NumberOfInversions;
+            NumberOfDrops = copy.NumberOfDrops;
+            HighestDrop = copy.HighestDrop;
+            ExcitementTimesTen = copy.ExcitementTimesTen;
+            IntensityTimesTen = copy.IntensityTimesTen;
+            NauseaTimesTen = copy.NauseaTimesTen;
+            TrackMainColour = copy.TrackMainColour;
+            TrackMainColourAlt1 = copy.TrackMainColourAlt1;
+            TrackMainColourAlt2 = copy.TrackMainColourAlt2;
+            TrackMainColourAlt3 = copy.TrackMainColourAlt3;
+            TrackAdditionalColour = copy.TrackAdditionalColour;
+            TrackAdditionalColourAlt1 = copy.TrackAdditionalColourAlt1;
+            TrackAdditionalColourAlt2 = copy.TrackAdditionalColourAlt2;
+            TrackAdditionalColourAlt3 = copy.TrackAdditionalColourAlt3;
+            TrackSupportColour = copy.TrackSupportColour;
+            TrackSupportColourAlt1 = copy.TrackSupportColourAlt1;
+            TrackSupportColourAlt2 = copy.TrackSupportColourAlt2;
+            TrackSupportColourAlt3 = copy.TrackSupportColourAlt3;
+            IsSixFlagsDesign = copy.IsSixFlagsDesign;
+            DatFile = copy.DatFile;
+            RequiredMapSpace = copy.RequiredMapSpace;
+            LiftChainSpeed = copy.LiftChainSpeed;
+            NumberOfCircuits = copy.NumberOfCircuits;
+        }
+
         public enum RCT2OperatingModes {    Normal,
                                             ContinuousCircuit,
                                             ReverseInclineLaunchedShuttle,

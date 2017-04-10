@@ -18,10 +18,13 @@ namespace RCT2GA
         List<RCT2RideData> population;
         List<RCT2RideData> nextPopulation;
 
+        Random random;
+
         public GeneticAlgorithm()
         {
             population = new List<RCT2RideData>();
             nextPopulation = new List<RCT2RideData>();
+            random = new Random();
         }
 
         public void Initialise()
@@ -57,9 +60,9 @@ namespace RCT2GA
             } while (!float.TryParse(Console.ReadLine(), out crossoverRate));
         }
 
-        private float CalculateFitness(RCT2RideData candidate)
+        private int CalculateFitness(RCT2RideData candidate)
         {
-            float fitness = 0;
+            int fitness = 0;
 
             //TODO
 
@@ -68,35 +71,164 @@ namespace RCT2GA
 
         private RCT2RideData SelectCandidate()
         {
-            //TODO
-            return new RCT2RideData();
+            if (population.Count <= 0)
+            {
+                Console.WriteLine("ERROR: Population is 0");
+                return null;
+            }
+
+            //Get the total fitness for roulette wheel selection
+            int totalFitness = 0;
+            for (int i = 0; i < population.Count; i++)
+            {
+                totalFitness += CalculateFitness(population[i]);
+            }
+
+            //Get a random number
+            int randomNumber = random.Next(totalFitness);
+
+            //Perform Roulette Wheel Selection
+            int partSum = 0;
+            for (int i = 0; i < population.Count; i++)
+            {
+                partSum += CalculateFitness(population[i]);
+                if (partSum >= randomNumber)
+                {
+                    return population[i];
+                }
+            }
+
+            //Shouldnt ever reach here
+            return population[0];
         }
 
         private List<RCT2RideData> Crossover(RCT2RideData parent1, RCT2RideData parent2)
         {
-            //TODO
-            return new List<RCT2RideData>();
+            List<RCT2RideData> children = new List<RCT2RideData>();
+            int crossoverPoint = length - 1;
+            bool redo = false;
+
+            //Create crossover point
+            if (random.NextDouble() >= crossoverRate)
+            {
+                crossoverPoint = random.Next(length);
+            }
+
+            do
+            {
+                //Add first halves to each child
+                RCT2TrackData child1Track = new RCT2TrackData();
+                RCT2TrackData child2Track = new RCT2TrackData();
+                for (int i = 0; i <= crossoverPoint; i++)
+                {
+                    child1Track.TrackData.Add(parent1.TrackData.TrackData[i]);
+                    child2Track.TrackData.Add(parent2.TrackData.TrackData[i]);
+                }
+
+                //Add second halves to each child
+                for (int i = crossoverPoint; i < length; i++)
+                {
+                    child1Track.TrackData.Add(parent2.TrackData.TrackData[i]);
+                    child2Track.TrackData.Add(parent1.TrackData.TrackData[i]);
+                }
+
+                RCT2RideData child1 = new RCT2RideData(parent1);
+                RCT2RideData child2 = new RCT2RideData(parent2);
+                child1.TrackData = child1Track;
+                child2.TrackData = child2Track;
+
+                //If the created children are invalid, keep trying
+                //Wont cause an infinite loop as we will eventually crossover at point 0
+                //Which acts as if we never crossed over at all
+                if (child1.TrackData.CheckValidity() != RCT2TrackData.InvalidityCode.Valid ||
+                    child2.TrackData.CheckValidity() != RCT2TrackData.InvalidityCode.Valid)
+                {
+                    redo = true;
+                    crossoverPoint = random.Next(length);
+                }
+                else
+                {
+                    redo = false;
+                    children.Add(child1);
+                    children.Add(child2);
+                }
+
+            } while (redo);
+
+            return children;
         }
 
         private RCT2RideData Mutation(RCT2RideData candidate)
         {
-            //TODO
+            for (int i = 0; i < candidate.TrackData.TrackData.Count; i++)
+            {
+                if (random.NextDouble() >= mutationRate)
+                {
+                    //TODO
+                }
+                else
+                {
+
+                }
+            }
+
             return candidate;
         }
 
         private void NextGeneration()
         {
-            for (int i = 0; i < population.Count; i++)
+            if (population.Count >= 2)
             {
-                //TODO
-                //RCT2RideData parent1 = SelectCandidate();
-                //RCT2RideData parent2 = SelectCandidate();
+                //Go through and populate most of our next generation with new children
+                for (int i = 0; i < populationSize - 2; i++)
+                {
+                    RCT2RideData parent1 = SelectCandidate();
+                    RCT2RideData parent2;
+                    //Make sure the parents aren't the same
+                    do
+                    {
+                        parent2 = SelectCandidate();
+                    } while (parent2 == parent1);
 
-                //List<RCT2RideData> children = Crossover(parent1, parent2);
-                //children[0] = Mutation(children[0]);
-                //children[1] = Mutation(children[1]);
+                    //Crossover to create children
+                    List <RCT2RideData> children = Crossover(parent1, parent2);
 
-                //nextPopulation.AddRange(children);
+                    //Mutate the children
+                    children[0] = Mutation(children[0]);
+                    children[1] = Mutation(children[1]);
+
+                    //Add them to the next population
+                    nextPopulation.AddRange(children);
+                }
+
+                //Now add the best from this population as a form of Elitism
+                RCT2RideData elitism1 = population[0];
+                int elitism1Fitness = CalculateFitness(elitism1);
+                RCT2RideData elitism2 = population[1];
+                int elitism2Fitness = CalculateFitness(elitism2);
+
+                for (int i = 0; i < population.Count; i++)
+                {
+                    int curFitness = CalculateFitness(population[i]);
+
+                    if (curFitness > elitism1Fitness)
+                    {
+                        elitism1 = population[i];
+                        elitism1Fitness = curFitness;
+                    }
+                    else if (curFitness > elitism2Fitness)
+                    {
+                        elitism2 = population[i];
+                        elitism2Fitness = curFitness;
+                    }
+                }
+
+                nextPopulation.Add(elitism1);
+                nextPopulation.Add(elitism2);
+            }
+            else
+            {
+                Console.WriteLine("ERROR: Population Size must be at least 2");
             }
         }
 

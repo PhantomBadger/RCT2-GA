@@ -39,6 +39,7 @@ namespace RCT2GA.RideData
 
         bool velocityChecked = false;
         bool velocityGoesNegative = false;
+        private RCT2RideData parent1;
 
         public RCT2TrackData()
         {
@@ -367,44 +368,44 @@ namespace RCT2GA.RideData
         //    return additionalElements;
         //}
 
-        private List<RCT2TrackElements.RCT2TrackElement> RightDirectionConnect2D(Vector3 startPosition, Vector3 endPosition)
-        {
-            List<RCT2TrackElements.RCT2TrackElement> additionalElements = new List<RCT2TrackElements.RCT2TrackElement>();
-            Vector3 prevWorldPos = new Vector3(startPosition);
-            Vector3 difference = endPosition - prevWorldPos;
-            if ((difference.Z >= 0 && difference.X < 2) || difference.X > 0)
-            {
-                //We're ahead of the start point, turn left so we're moving away from it
-                //Or we're facing away from the track, so let's orient away from it also
-                RCT2TrackElements.RCT2TrackElement element = RCT2TrackElements.RCT2TrackElement.RightQuarterTurnAcross3;
-                additionalElements.Add(element);
-                prevWorldPos += LocalDisplacementToWorld(RCT2TrackElements.TrackElementPropertyMap[element].Displacement, 90);
-                additionalElements.AddRange(OppositeDirectionConnect2D(prevWorldPos, endPosition));
+        //private List<RCT2TrackElements.RCT2TrackElement> RightDirectionConnect2D(Vector3 startPosition, Vector3 endPosition)
+        //{
+        //    List<RCT2TrackElements.RCT2TrackElement> additionalElements = new List<RCT2TrackElements.RCT2TrackElement>();
+        //    Vector3 prevWorldPos = new Vector3(startPosition);
+        //    Vector3 difference = endPosition - prevWorldPos;
+        //    if ((difference.Z >= 0 && difference.X < 2) || difference.X > 0)
+        //    {
+        //        //We're ahead of the start point, turn left so we're moving away from it
+        //        //Or we're facing away from the track, so let's orient away from it also
+        //        RCT2TrackElements.RCT2TrackElement element = RCT2TrackElements.RCT2TrackElement.RightQuarterTurnAcross3;
+        //        additionalElements.Add(element);
+        //        prevWorldPos += LocalDisplacementToWorld(RCT2TrackElements.TrackElementPropertyMap[element].Displacement, 90);
+        //        additionalElements.AddRange(OppositeDirectionConnect2D(prevWorldPos, endPosition));
 
-            }
-            else if (difference.X == 3 || difference.X < 5)
-            {
-                RCT2TrackElements.RCT2TrackElement element = RCT2TrackElements.RCT2TrackElement.LeftQuarterTurnAcross5;
-                additionalElements.Add(element);
-                prevWorldPos += LocalDisplacementToWorld(RCT2TrackElements.TrackElementPropertyMap[element].Displacement, 90);
-                additionalElements.AddRange(SameDirectionConnect2D(prevWorldPos, endPosition));
-            }
-            else if (difference.X == 5)
-            {
-                RCT2TrackElements.RCT2TrackElement element = RCT2TrackElements.RCT2TrackElement.LeftQuarterTurnAcross5;
-                additionalElements.Add(element);
-                prevWorldPos += LocalDisplacementToWorld(RCT2TrackElements.TrackElementPropertyMap[element].Displacement, 90);
-                additionalElements.AddRange(SameDirectionConnect2D(prevWorldPos, endPosition));
-            }
-            else
-            {
-                //we're too close to solve it with this rudimentry system
-                //ie - if we'd need to go back out to come back in
-                Console.WriteLine("ERROR: Autocomplete failed to match up with rudimentry check");
-            }
+        //    }
+        //    else if (difference.X == 3 || difference.X < 5)
+        //    {
+        //        RCT2TrackElements.RCT2TrackElement element = RCT2TrackElements.RCT2TrackElement.LeftQuarterTurnAcross5;
+        //        additionalElements.Add(element);
+        //        prevWorldPos += LocalDisplacementToWorld(RCT2TrackElements.TrackElementPropertyMap[element].Displacement, 90);
+        //        additionalElements.AddRange(SameDirectionConnect2D(prevWorldPos, endPosition));
+        //    }
+        //    else if (difference.X == 5)
+        //    {
+        //        RCT2TrackElements.RCT2TrackElement element = RCT2TrackElements.RCT2TrackElement.LeftQuarterTurnAcross5;
+        //        additionalElements.Add(element);
+        //        prevWorldPos += LocalDisplacementToWorld(RCT2TrackElements.TrackElementPropertyMap[element].Displacement, 90);
+        //        additionalElements.AddRange(SameDirectionConnect2D(prevWorldPos, endPosition));
+        //    }
+        //    else
+        //    {
+        //        //we're too close to solve it with this rudimentry system
+        //        //ie - if we'd need to go back out to come back in
+        //        Console.WriteLine("ERROR: Autocomplete failed to match up with rudimentry check");
+        //    }
 
-            return additionalElements;
-        }
+        //    return additionalElements;
+        //}
 
         private float CalculateExcitement()
         {
