@@ -52,11 +52,6 @@ namespace RCT2GA
 
             do
             {
-                Console.WriteLine("Please enter an integer value for population size: ");
-            } while (!int.TryParse(Console.ReadLine(), out populationSize));
-
-            do
-            {
                 Console.WriteLine("Please enter an integer value for generation count: ");
             } while (!int.TryParse(Console.ReadLine(), out generationCount));
 
@@ -75,7 +70,8 @@ namespace RCT2GA
         {
             for (int i = 0; i < populationSize; i++)
             {
-                population.Add(GenerateWoodenRollerCoaster());
+                RCT2RideData ride = GenerateWoodenRollerCoaster();
+                population.Add(ride);
             }
         }
 
@@ -91,6 +87,29 @@ namespace RCT2GA
                 population = nextPopulation;
                 nextPopulation.Clear();
             }
+            Console.WriteLine("==================");
+            Console.WriteLine("Evolution Complete");
+            Console.WriteLine("==================");
+
+            //Find the best one of the final generation
+            RCT2RideData bestCoasterMyDude = population[0];
+            int bestFitnessMyDude = CalculateFitness(bestCoasterMyDude);
+            for (int i = 0; i < populationSize; i++)
+            {
+                int currentFitness = CalculateFitness(population[i]);
+                if (currentFitness > bestFitnessMyDude)
+                {
+                    bestCoasterMyDude = population[i];
+                    bestFitnessMyDude = currentFitness;
+                }
+            }
+
+            //Print the best candidate
+            for (int i = 0; i < bestCoasterMyDude.TrackData.TrackData.Count; i++)
+            {
+                Console.WriteLine(bestCoasterMyDude.TrackData.TrackData[i].TrackElement.ToString());
+            }
+
         }
 
         private int CalculateFitness(RCT2RideData candidate)
@@ -357,7 +376,7 @@ namespace RCT2GA
             coaster.TrackType.RideType = RideData.RCT2RideCode.RCT2TrackName.WoodenRollerCoaster6Seater;
 
             //Track Data
-            coaster.TrackData = GenerateWoodenRollerCoasterTrack(length);
+            coaster.TrackData = GenerateWoodenRollerCoasterTrack();
 
             //Ride Features
             coaster.RideFeatures = new RideData.RCT2RideFeatures();
@@ -548,11 +567,13 @@ namespace RCT2GA
                     {
                         if (i < 1)
                         {
-                            Console.WriteLine("ERROR: Unable to create Coaster - Index stepped back too far");
-                            return null;
+                            throw new Exception("ERROR: Unable to create Coaster - Index stepped back too far");
                         }
                         Console.WriteLine("ERROR: No Valid Track Pieces Found, Stepping back and starting again");
                         trackData.TrackData.RemoveAt(i--);
+
+
+                        //TODO - FIX SOME SHIT IN HERE, CONTINUE IS DUMB REWORK IT
                         continue;
                     }
 

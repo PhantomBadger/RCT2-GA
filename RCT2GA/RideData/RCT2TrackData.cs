@@ -41,6 +41,14 @@ namespace RCT2GA.RideData
         bool velocityGoesNegative = false;
         private RCT2RideData parent1;
 
+        //Wooden Roller Coaster Min Data
+        //Move to a Ride Structure eventually
+        const int PTCT2MinDropHeight = 12;
+        const int PTCT2MinMaxSpeed = 0xA;
+        const float PTCT2MinNegG = 0.1f;
+        const int PTCT2MinLength = 370;
+        const int PTCT2MinNumDrops = 2;
+
         public RCT2TrackData()
         {
             TrackData = new List<RCT2TrackPiece>();
@@ -412,47 +420,27 @@ namespace RCT2GA.RideData
             float tempExcitement = 0;
             //G Force
             //(0.08 * max pos g) + (0.24 * clamp(-2.5, max neg g, 0)) + (0.4 * min(1.5, max lat g))
-            //If lat g is above 3.1, rating is halved
-            //Multiplied by ride constant
             float clampedNeg = (MaxNegativeG < -2.5f) ? -2.5f : (MaxNegativeG > 0) ? 0 : MaxNegativeG;
             float gForceComponent = (0.08f * MaxPositiveG) + (0.24f * clampedNeg) + (0.4f * Math.Min(1.5f, MaxLateralG));
-            //TODO: GET RIDE CONSTANT
 
             //Drops
             //(0.11 * min(9, num of drops)) + (0.0049 * highest drop)
-            //Multiplied by ride constant
             float dropComponent = (0.11f * Math.Min(0, NumOfDrops)) + (0.0049f * HighestDrop);
-            //TODO: GET RIDE CONSTANT
 
             //Inversions
             //(0.27 * min(6, num inversions))
             float inversionComponent = (0.27f * Math.Min(6, NumOfInversions));
 
-            //Scenery
-            //Ignore
-
-            //Proximity
-            //Ignore
-
-            //Synchronized Stations
-            //A fixed constant is added
-            //TODO
-
             //Track Length
             //track length * ride constant
             //Ride specific cap for length also
-            //TODO
             float trackLengthComponent = TrackData.Count;
-
-            //Train Length
-            //Each additional car after 1 adds a fixed ride specific quantity to excitement
-            //TODO
 
             //Speed
             //Max speed * ride specific constant
             //Avg Speed * ride specific constant
-            float maxSpeedComponent = MaxSpeed; //TODO
-            float avgSpeedComponent = AverageSpeed; //TODO
+            float maxSpeedComponent = MaxSpeed;
+            float avgSpeedComponent = AverageSpeed;
 
 
             tempExcitement = gForceComponent + dropComponent + inversionComponent + maxSpeedComponent + avgSpeedComponent + trackLengthComponent;
@@ -465,9 +453,6 @@ namespace RCT2GA.RideData
             float tempIntensity = 0;
             //G-Force Ride Rating
             //(0.8 * max positive G) + (0.8 * 1- max negative g) + max lateral g
-            //If lat g is above 2.8, a value of 3.75 is added to intensity
-            //If lat g also exceeds 3.1 then 8.5 added to intensity
-            //Multiplied by ride constant
             float gForceComponent = (0.8f * MaxPositiveG) + (0.8f * (1 - MaxNegativeG)) + MaxLateralG;
             if (MaxLateralG > 2.8f)
             {
@@ -477,41 +462,18 @@ namespace RCT2GA.RideData
                     gForceComponent += 8.5f;
                 }
             }
-            //TODO: FIND RIDE CONSTANT
 
             //Ride Drops
             float rideDropComponent = (0.14f * NumOfDrops) + (0.0098f * HighestDrop);
-            //Multiplied by ride specific constant
-            //TODO: FIND RIDE CONSTANT
 
             //Inversions
             float inversionComponent = (0.5f * NumOfInversions);
 
-            //Scenery
-            //Changes based on placement Ignore (minimum between number of scenery items surrounding, and 47) * 5
-
-            //Proximity
-            //Changes based on placement Ignore
-
-            //Synchronized Stations
-            //Constant is added based on ride type
-            //TODO: FIND RIDE CONSTANT
-
             //Speed
             //Max speed multiplied by three ride specific constants and then added to each rating
             //Average rating multiplied by 2 constants and applied to excitement/intensity
-            float maxSpeedComponent = MaxSpeed; //TODO: Multiply by ride constant
-            float avgSpeedComponent = AverageSpeed; //TODO: Multiply by ride constant
-
-            //Penalties for low stats
-            //Each ride has it's own min threshold for
-            //Drop height
-            //Max Speed
-            //Number of Drops
-            //Max Neg Gs
-            //Max Lat Gs
-            //Failing to meet these causes all 3 ratings to be divided by a ride-specific constant
-            //TODO: Thresholds
+            float maxSpeedComponent = MaxSpeed;
+            float avgSpeedComponent = AverageSpeed;
 
             tempIntensity = gForceComponent + rideDropComponent + inversionComponent + maxSpeedComponent + avgSpeedComponent;
 
@@ -523,9 +485,6 @@ namespace RCT2GA.RideData
             float tempNausea = 0;
             //G Force
             //(0.26 * max positive g) + (0.22 * 1-max neg g) + 0.33 * max lat g
-            //if lat g above 2.8, then 2 added to nausea
-            //If lat g also above 3.1, 4 added to nausea
-            //Multiplied by constant dependint on ride type
             float gForceComponent = (0.26f * MaxPositiveG) + (0.22f * (1 - MaxNegativeG)) + (0.33f * MaxLateralG);
             if (MaxLateralG > 2.8f)
             {
@@ -535,37 +494,20 @@ namespace RCT2GA.RideData
                     gForceComponent += 4;
                 }
             }
-            //TODO: GET RIDE CONSTANT
 
             //Drops
             // (0.1 * num of drops) + (0.0016 * highest drop)
             //Calculated by ride specific constant
             float dropComponent = (0.1f * NumOfDrops) + (0.0016f * HighestDrop);
-            //TODO: GET RIDE CONSTANT
 
             //Inversions
             //0.22 * num of inversions
             float inversionComponent = (0.22f * NumOfInversions);
 
-            //Scenery
-            //Ignore
-
-            //Proximity
-            //Ignore
-
             //Speed
             //Max speed multiplied by ride specific constant
             //Avg speed isnt used
             float maxSpeedComponent = MaxSpeed; //TODO
-
-            //Penalties for low stats
-            //Each ride has it's own min threshold for
-            //Drop height
-            //Max Speed
-            //Number of Drops
-            //Max Neg Gs
-            //Max Lat Gs
-            //Failing to meet these causes all 3 ratings to be divided by a ride-specific constant
 
             tempNausea = gForceComponent + dropComponent + inversionComponent + maxSpeedComponent;
 
@@ -574,28 +516,97 @@ namespace RCT2GA.RideData
 
         private void ApplyPenalties(ref float excitement, ref float intensity, ref float nausea)
         {
-            //=====EXCITEMENT======
-            //If lat g is above 3.1, rating is halved
+            //Too high Lateral G
+            //If lat g is above 3.1, excitement rating is halved
+            if (MaxLateralG > 3.1f)
+            {
+                excitement /= 2;
+            }
+
+            //If lat g is above 2.8, a value of 3.75 is added to intensity
+            if (MaxLateralG > 2.8f)
+            {
+                intensity += 3.75f;
+            }
+
+            //If lat g also exceeds 3.1 then 8.5 added to intensity
+            if (MaxLateralG > 3.1f)
+            {
+                intensity += 8.5f;
+            }
+
+            //if lat g above 2.8, then 2 added to nausea
+            if (MaxLateralG > 2.8f)
+            {
+                nausea += 2;
+            }
+
+            //If lat g also above 3.1, 4 added to nausea
+            if (MaxLateralG > 3.1f)
+            {
+                nausea += 4;
+            }
+
+            //Too High Intensity
+            //If Intensity > 10 excitement is decreased by 25%
+            if (intensity > 10)
+            {
+                excitement *= 0.75f;
+            }
+            //If Intensity > 11 excitement is decreased by 25% again
+            if (intensity > 11)
+            {
+                excitement *= 0.75f;
+            }
+            //If Intensity > 12 excitement is decreased by 25% again
+            if (intensity > 12)
+            {
+                excitement *= 0.75f;
+            }
+            //If Intensity > 13.2 excitement is decreased by 25% again
+            if (intensity > 13.2f)
+            {
+                excitement *= 0.75f;
+            }
+            //If Intensity > 14.5 excitement is decreased by 25% again
+            if (intensity > 14.5f)
+            {
+                excitement *= 0.75f;
+            }
 
             //Penalties for low stats
             //Each ride has it's own min threshold for
             //Drop height
+            if (HighestDrop < PTCT2MinDropHeight)
+            {
+                excitement /= 2;
+                intensity /= 2;
+                nausea /= 2;
+            }
+
             //Max Speed
+            if (MaxSpeed < PTCT2MinMaxSpeed)
+            {
+                excitement /= 2;
+                intensity /= 2;
+                nausea /= 2;
+            }
+
             //Number of Drops
+            if (NumOfDrops < PTCT2MinNumDrops)
+            {
+                excitement /= 2;
+                intensity /= 2;
+                nausea /= 2;
+            }
+
             //Max Neg Gs
-            //Max Lat Gs
-            //Failing to meet these causes all 3 ratings to be divided by a ride-specific constant
-
-            //Too High Intensity
-            //If Intensity > 10 excitement is decreased by 25%
-            //If Intensity > 11 excitement is decreased by 25% again
-            //If Intensity > 12 excitement is decreased by 25% again
-            //If Intensity > 13.2 excitement is decreased by 25% again
-            //If Intensity > 14.5 excitement is decreased by 25% again
-
-            //=====INTENSITY======
-
-            //=====NAUSEA=====
+            if (MaxNegativeG < PTCT2MinNegG)
+            {
+                excitement /= 2;
+                intensity /= 2;
+                nausea /= 2;
+            }
 
         }
 
@@ -814,9 +825,15 @@ namespace RCT2GA.RideData
 
             AirTimeInSeconds = tempAirTimeInSeconds;
 
-            Excitement = CalculateExcitement();
-            Intensity = CalculateIntensity();
-            Nausea = CalculateNausea();
+            float localExcitement = CalculateExcitement();
+            float localIntensity = CalculateIntensity();
+            float localNausea = CalculateNausea();
+
+            ApplyPenalties(ref localExcitement, ref localIntensity, ref localNausea);
+
+            Excitement = localExcitement;
+            Intensity = localIntensity;
+            Nausea = localNausea;
         }
 
         private bool CheckInversion(RCT2TrackElementProperty property)

@@ -1196,17 +1196,19 @@ namespace RCT2GA
         static void GenerateCoasterWithGA()
         {
             GeneticAlgorithm ga = new GeneticAlgorithm();
+            ga.InitialiseParameters();
+            ga.PerformAlgorithm();
 
-            RideData.RCT2RideData coaster = ga.GenerateWoodenRollerCoaster(10);
+            //RideData.RCT2RideData coaster = ga.GenerateWoodenRollerCoaster();
 
-            Console.WriteLine("=====TEST COASTER=====");
+            //Console.WriteLine("=====TEST COASTER=====");
 
-            for (int i = 0; i < coaster.TrackData.TrackData.Count; i++)
-            {
-                Console.WriteLine(coaster.TrackData.TrackData[i].TrackElement.ToString());
-            }
+            //for (int i = 0; i < coaster.TrackData.TrackData.Count; i++)
+            //{
+            //    Console.WriteLine(coaster.TrackData.TrackData[i].TrackElement.ToString());
+            //}
 
-            Console.WriteLine("======================");
+            //Console.WriteLine("======================");
         }
 
         static bool CheckIntersectingTestCoaster()

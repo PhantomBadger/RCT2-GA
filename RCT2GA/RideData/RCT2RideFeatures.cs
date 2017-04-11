@@ -49,7 +49,7 @@ namespace RCT2GA.RideData
         public void Populate(RCT2TrackData track)
         {
             //If the track is empty, return
-            if (track.TrackData.Count <= 0)
+            if (track == null || track.TrackData == null || track.TrackData.Count <= 0)
             {
                 return;
             }
