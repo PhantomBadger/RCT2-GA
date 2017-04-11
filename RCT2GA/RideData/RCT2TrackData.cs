@@ -442,6 +442,7 @@ namespace RCT2GA.RideData
             //track length * ride constant
             //Ride specific cap for length also
             //TODO
+            float trackLengthComponent = TrackData.Count;
 
             //Train Length
             //Each additional car after 1 adds a fixed ride specific quantity to excitement
@@ -453,27 +454,8 @@ namespace RCT2GA.RideData
             float maxSpeedComponent = MaxSpeed; //TODO
             float avgSpeedComponent = AverageSpeed; //TODO
 
-            //Penalties for low stats
-            //Each ride has it's own min threshold for
-            //Drop height
-            //Max Speed
-            //Number of Drops
-            //Max Neg Gs
-            //Max Lat Gs
-            //Failing to meet these causes all 3 ratings to be divided by a ride-specific constant
-            //TODO
 
-
-            //Too High Intensity
-            //If Intensity > 10 excitement is decreased by 25%
-            //If Intensity > 11 excitement is decreased by 25% again
-            //If Intensity > 12 excitement is decreased by 25% again
-            //If Intensity > 13.2 excitement is decreased by 25% again
-            //If Intensity > 14.5 excitement is decreased by 25% again
-            //TODO
-
-
-            tempExcitement = gForceComponent + dropComponent + inversionComponent + maxSpeedComponent + avgSpeedComponent;
+            tempExcitement = gForceComponent + dropComponent + inversionComponent + maxSpeedComponent + avgSpeedComponent + trackLengthComponent;
 
             return tempExcitement;
         }
@@ -588,6 +570,33 @@ namespace RCT2GA.RideData
             tempNausea = gForceComponent + dropComponent + inversionComponent + maxSpeedComponent;
 
             return tempNausea;
+        }
+
+        private void ApplyPenalties(ref float excitement, ref float intensity, ref float nausea)
+        {
+            //=====EXCITEMENT======
+            //If lat g is above 3.1, rating is halved
+
+            //Penalties for low stats
+            //Each ride has it's own min threshold for
+            //Drop height
+            //Max Speed
+            //Number of Drops
+            //Max Neg Gs
+            //Max Lat Gs
+            //Failing to meet these causes all 3 ratings to be divided by a ride-specific constant
+
+            //Too High Intensity
+            //If Intensity > 10 excitement is decreased by 25%
+            //If Intensity > 11 excitement is decreased by 25% again
+            //If Intensity > 12 excitement is decreased by 25% again
+            //If Intensity > 13.2 excitement is decreased by 25% again
+            //If Intensity > 14.5 excitement is decreased by 25% again
+
+            //=====INTENSITY======
+
+            //=====NAUSEA=====
+
         }
 
         public int CalculateRideLengthInMeters()
@@ -857,7 +866,7 @@ namespace RCT2GA.RideData
             return newVelocity;
         }
 
-        private Vector3 LocalDisplacementToWorld(Vector3 localDisplacement, int currentRotation)
+        public Vector3 LocalDisplacementToWorld(Vector3 localDisplacement, int currentRotation)
         {
             //Get the world version of our property displacement
             //ie, if the segment moves 1 forward, but is already rotated to the left
@@ -910,7 +919,7 @@ namespace RCT2GA.RideData
             return worldDisplacement;
         }
 
-        private int UpdateRotation(int currentRotation, RCT2TrackElementProperty.RCT2TrackDirectionChange directionChange)
+        public int UpdateRotation(int currentRotation, RCT2TrackElementProperty.RCT2TrackDirectionChange directionChange)
         {
             //Update World Direction Changes
             int worldDirectionChange = currentRotation;
