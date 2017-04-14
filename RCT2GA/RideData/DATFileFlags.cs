@@ -8,7 +8,18 @@ namespace RCT2GA.RideData
 {
     class DATFileFlags
     {
-        public bool IsStandardObject { get; set; }
-        public bool IsCustomObject { get; set; }
+        public bool IsStandardObject { get; set; } = false;
+        public bool IsCustomObject { get; set; } = false;
+
+        public DATFileFlags(DATFileFlags copy)
+        {
+            IsStandardObject = copy.IsStandardObject;
+            IsCustomObject = copy.IsCustomObject;
+        }
+
+        public DATFileFlags()
+        {
+
+        }
     }
 }

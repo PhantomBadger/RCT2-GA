@@ -14,14 +14,51 @@ namespace RCT2GA.RideData
 
         public RCT2RideData(RCT2RideData copy)
         {
-            TrackType = copy.TrackType;
-            TrackData = copy.TrackData;
-            RideFeatures = copy.RideFeatures;
+            if (copy.TrackType != null)
+            {
+                TrackType = new RCT2RideCode(copy.TrackType);
+            }
+            else
+            {
+                TrackType = new RCT2RideCode();
+            }
+
+            if (copy.TrackData != null)
+            {
+                TrackData = new RCT2TrackData(copy.TrackData);
+            }
+            else
+            {
+                TrackData = new RCT2TrackData();
+            }
+
+            if (copy.RideFeatures != null)
+            {
+                RideFeatures = new RCT2RideFeatures(copy.RideFeatures);
+            }
+            else
+            {
+                RideFeatures = new RCT2RideFeatures();
+            }
             OperatingMode = copy.OperatingMode;
-            ColourScheme = copy.ColourScheme;
+            if (copy.ColourScheme != null)
+            {
+                ColourScheme = new RCT2VehicleColourScheme(copy.ColourScheme);
+            }
+            else
+            {
+                ColourScheme = new RCT2VehicleColourScheme();
+            }
             EntranceStyle = copy.EntranceStyle;
             AirTimeInSeconds = copy.AirTimeInSeconds;
-            DepartureFlags = copy.DepartureFlags;
+            if (copy.DepartureFlags != null)
+            {
+                DepartureFlags = new RCT2DepartureControlFlags(copy.DepartureFlags);
+            }
+            else
+            {
+                DepartureFlags = new RCT2DepartureControlFlags();
+            }
             NumberOfTrains = copy.NumberOfTrains;
             NumberOfCarsPerTrain = copy.NumberOfCarsPerTrain;
             MinWaitTimeInSeconds = copy.MinWaitTimeInSeconds;
@@ -54,8 +91,22 @@ namespace RCT2GA.RideData
             TrackSupportColourAlt2 = copy.TrackSupportColourAlt2;
             TrackSupportColourAlt3 = copy.TrackSupportColourAlt3;
             IsSixFlagsDesign = copy.IsSixFlagsDesign;
-            DatFile = copy.DatFile;
-            RequiredMapSpace = copy.RequiredMapSpace;
+            if (copy.DatFile != null)
+            {
+                DatFile = new DATFileHeader(copy.DatFile);
+            }
+            else
+            {
+                DatFile = new DATFileHeader();
+            }
+            if (copy.RequiredMapSpace != null)
+            {
+                RequiredMapSpace = new Vector2(copy.RequiredMapSpace);
+            }
+            else
+            {
+                RequiredMapSpace = new Vector2(0, 0);
+            }
             LiftChainSpeed = copy.LiftChainSpeed;
             NumberOfCircuits = copy.NumberOfCircuits;
         }

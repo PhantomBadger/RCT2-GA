@@ -18,5 +18,24 @@ namespace RCT2GA.RideData
         public bool WaitForThreeQuarterLoad { get; set; }
         public bool WaitForFullLoad { get; set; }
         public bool WaitForAnyLoad { get; set; }
+
+        public RCT2DepartureControlFlags(RCT2DepartureControlFlags copy)
+        {
+            UseMaximumTime = copy.UseMaximumTime;
+            UseMinimumTime = copy.UseMinimumTime;
+            SyncWithAdjacentStation = copy.SyncWithAdjacentStation;
+            LeaveIfAnotherArrives = copy.LeaveIfAnotherArrives;
+            WaitForLoad = copy.WaitForLoad;
+            WaitForQuarterLoad = copy.WaitForQuarterLoad;
+            WaitForHalfLoad = copy.WaitForHalfLoad;
+            WaitForThreeQuarterLoad = copy.WaitForThreeQuarterLoad;
+            WaitForFullLoad = copy.WaitForFullLoad;
+            WaitForAnyLoad = copy.WaitForAnyLoad;
+        }
+
+        public RCT2DepartureControlFlags()
+        {
+
+        }
     }
 }

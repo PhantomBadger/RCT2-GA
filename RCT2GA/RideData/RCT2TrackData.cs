@@ -8,7 +8,7 @@ namespace RCT2GA.RideData
 {
     class RCT2TrackData
     {
-        public enum InvalidityCode { Intersection, NegativeVelocity, DoesntConnectToPrior, ExceedMaxHeight, ExceedMinHeight, NoTrack, Valid }
+        public enum InvalidityCode { Intersection, NegativeVelocity, DoesntConnectToPrior, ExceedMaxHeight, ExceedMinHeight, NoTrack, TwoRidePhotos, Valid }
         public List<RCT2TrackPiece> TrackData { get; set; }
 
         public float MaxPositiveG { get; private set; }
@@ -39,7 +39,7 @@ namespace RCT2GA.RideData
 
         bool velocityChecked = false;
         bool velocityGoesNegative = false;
-        private RCT2RideData parent1;
+        bool hasRidePhoto = false;
 
         //Wooden Roller Coaster Min Data
         //Move to a Ride Structure eventually
@@ -54,6 +54,24 @@ namespace RCT2GA.RideData
             TrackData = new List<RCT2TrackPiece>();
         }
 
+        public RCT2TrackData(RCT2TrackData trackData)
+        {
+            TrackData = new List<RCT2TrackPiece>();
+            TrackData.AddRange(trackData.TrackData);
+            MaxPositiveG = trackData.MaxPositiveG;
+            MaxNegativeG = trackData.MaxNegativeG;
+            MaxLateralG = trackData.MaxLateralG;
+            AirTimeInSeconds = trackData.AirTimeInSeconds;
+            NumOfInversions = trackData.NumOfInversions;
+            NumOfDrops = trackData.NumOfDrops;
+            HighestDrop = trackData.HighestDrop;
+            AverageSpeed = trackData.AverageSpeed;
+            MaxSpeed = trackData.MaxSpeed;
+            Excitement = trackData.Excitement;
+            Intensity = trackData.Intensity;
+            Nausea = trackData.Nausea;
+        }
+
         public InvalidityCode CheckValidity()
         {
             //Following Validity Checks:
@@ -62,6 +80,7 @@ namespace RCT2GA.RideData
             // - Track doesn't exceed max height
             // - Track doesn't go underground (Go lower than the station height)
             // - Track's velocity doesn't go negative
+            // - Track has more than one OnRidePhoto
 
             if (TrackData.Count <= 0)
             {
@@ -88,6 +107,19 @@ namespace RCT2GA.RideData
             {
                 RCT2TrackElements.RCT2TrackElement currentElement = TrackData[i].TrackElement;
                 RCT2TrackElementProperty property = RCT2TrackElements.TrackElementPropertyMap[currentElement];
+
+                // OnRidePhoto Checks
+                if (currentElement == RCT2TrackElements.RCT2TrackElement.OnRidePhoto)
+                {
+                    if (hasRidePhoto)
+                    {
+                        return InvalidityCode.TwoRidePhotos;
+                    }
+                    else
+                    {
+                        hasRidePhoto = true;
+                    }
+                }
 
                 // Height Checks
                 currentYDisplacement += property.Displacement.Y;

@@ -14,6 +14,13 @@ namespace RCT2GA
         int populationSize;
         int generationCount;
         int length;
+        int crossoverAttempts = 10;
+
+        int successfulMutations = 0;
+        int successfulCrossovers = 0;
+        int totalSuccessfulMutations = 0;
+        int totalSuccessfulCrossovers = 0;
+
 
         List<RCT2RideData> population;
         List<RCT2RideData> nextPopulation;
@@ -68,24 +75,62 @@ namespace RCT2GA
 
         public void InitialPopulationGeneration()
         {
+            Console.WriteLine("==================");
+            Console.WriteLine("Initial Population");
+            Console.WriteLine("==================");
             for (int i = 0; i < populationSize; i++)
             {
                 RCT2RideData ride = GenerateWoodenRollerCoaster();
                 population.Add(ride);
+                Console.WriteLine($"Ride {i} generated!");
             }
         }
 
         public void PerformAlgorithm()
         {
             InitialPopulationGeneration();
+
+            Console.WriteLine("==================");
+            Console.WriteLine("Generation Start");
+            Console.WriteLine("==================");
+
             for (int i = 0; i < generationCount; i++)
             {
+                Console.WriteLine($"Generation Number {i}");
                 //Generate the next generation
                 NextGeneration();
 
                 //Swap over the populations
-                population = nextPopulation;
+                population.Clear();
+                population.AddRange(nextPopulation);
                 nextPopulation.Clear();
+
+                //Find the best fitness from this new generation and display it
+                //Now add the best from this population as a form of Elitism
+                RCT2RideData bestCoaster = population[0];
+                int bestFitness = CalculateFitness(bestCoaster);
+                int totalFitness = 0;
+
+                for (int j = 0; j < population.Count; j++)
+                {
+                    int curFitness = CalculateFitness(population[j]);
+                    totalFitness += curFitness;
+
+                    if (curFitness > bestFitness)
+                    {
+                        bestCoaster = population[j];
+                        bestFitness = curFitness;
+                    }
+                }
+                Console.WriteLine($"\tSuccessful Mutations: {successfulMutations}");
+                Console.WriteLine($"\tSuccessful Crossovers: {successfulCrossovers}");
+                Console.WriteLine($"\tBest Fitness: {bestFitness}");
+                Console.WriteLine($"\tAverage Fitness: {totalFitness / populationSize}");
+
+                totalSuccessfulMutations += successfulMutations;
+                successfulMutations = 0;
+                totalSuccessfulCrossovers += successfulCrossovers;
+                successfulCrossovers = 0;
             }
             Console.WriteLine("==================");
             Console.WriteLine("Evolution Complete");
@@ -109,6 +154,7 @@ namespace RCT2GA
             {
                 Console.WriteLine(bestCoasterMyDude.TrackData.TrackData[i].TrackElement.ToString());
             }
+            bestFitnessMyDude = CalculateFitness(bestCoasterMyDude);
 
         }
 
@@ -118,7 +164,6 @@ namespace RCT2GA
 
             //Get Displacement to End & Max Y Displacement
             Vector3 prevWorldPos = new Vector3(0.0f, 0.0f, 0.0f);
-            List<RCT2TrackElements.RCT2TrackElement> additionalElements = new List<RCT2TrackElements.RCT2TrackElement>();
             int worldDirectionChange = 0;
             int maxYDisplacement = 0;
             for (int i = 0; i < candidate.TrackData.TrackData.Count; i++)
@@ -128,13 +173,13 @@ namespace RCT2GA
 
                 Vector3 worldDisplacement = candidate.TrackData.LocalDisplacementToWorld(property.Displacement, worldDirectionChange);
 
-                if (worldDisplacement.Y >= maxYDisplacement)
-                {
-                    maxYDisplacement = (int)worldDisplacement.Y;
-                }
-
                 //Update World Position Changes
                 prevWorldPos += worldDisplacement;
+
+                if (prevWorldPos.Y >= maxYDisplacement)
+                {
+                    maxYDisplacement = (int)prevWorldPos.Y;
+                }
 
                 //Update World Direction Changes
                 worldDirectionChange = candidate.TrackData.UpdateRotation(worldDirectionChange, property.DirectionChange);
@@ -144,9 +189,11 @@ namespace RCT2GA
             displacementToEnd.Y = Math.Abs(prevWorldPos.Y);
             displacementToEnd.Z = Math.Abs(prevWorldPos.Z);
 
+            //Console.WriteLine(maxYDisplacement);
+
             double displacementToEndLength = Math.Sqrt(Math.Pow(displacementToEnd.X, 2) + Math.Pow(displacementToEnd.Y, 2) + Math.Pow(displacementToEnd.Z, 2));
 
-            fitness = (int)((candidate.ExcitementTimesTen / 1 + candidate.NauseaTimesTen) - (displacementToEndLength) + (maxYDisplacement));
+            fitness = (int)((/*(candidate.ExcitementTimesTen / (1 + candidate.NauseaTimesTen)) - (displacementToEndLength)*/ + (maxYDisplacement * 10)) * 1000);
 
             return fitness;
         }
@@ -187,30 +234,42 @@ namespace RCT2GA
         private List<RCT2RideData> Crossover(RCT2RideData parent1, RCT2RideData parent2)
         {
             List<RCT2RideData> children = new List<RCT2RideData>();
-            int crossoverPoint = length - 1;
+            int crossoverPoint = length;
+            int redoCount = 0;
             bool redo = false;
 
+            RCT2TrackData.InvalidityCode parent1Invalidity = parent1.TrackData.CheckValidity();
+            RCT2TrackData.InvalidityCode parent2Invalidity = parent2.TrackData.CheckValidity();
+
             //Create crossover point
-            if (random.NextDouble() >= crossoverRate)
+            if (random.NextDouble() <= crossoverRate)
             {
                 crossoverPoint = random.Next(length);
             }
 
             do
             {
+                if (redoCount >= crossoverAttempts)
+                {
+                    crossoverPoint = length;
+                }
+
                 //Add first halves to each child
                 RCT2TrackData child1Track = new RCT2TrackData();
                 RCT2TrackData child2Track = new RCT2TrackData();
-                for (int i = 0; i <= crossoverPoint; i++)
+                for (int i = 0; i < crossoverPoint; i++)
                 {
                     child1Track.TrackData.Add(parent1.TrackData.TrackData[i]);
                     child2Track.TrackData.Add(parent2.TrackData.TrackData[i]);
                 }
 
                 //Add second halves to each child
-                for (int i = crossoverPoint; i < length; i++)
+                for (int i = crossoverPoint; i < parent2.TrackData.TrackData.Count(); i++)
                 {
                     child1Track.TrackData.Add(parent2.TrackData.TrackData[i]);
+                }
+                for (int i = crossoverPoint; i < parent1.TrackData.TrackData.Count(); i++)
+                {
                     child2Track.TrackData.Add(parent1.TrackData.TrackData[i]);
                 }
 
@@ -222,10 +281,13 @@ namespace RCT2GA
                 //If the created children are invalid, keep trying
                 //Wont cause an infinite loop as we will eventually crossover at point 0
                 //Which acts as if we never crossed over at all
-                if (child1.TrackData.CheckValidity() != RCT2TrackData.InvalidityCode.Valid ||
-                    child2.TrackData.CheckValidity() != RCT2TrackData.InvalidityCode.Valid)
+                RCT2TrackData.InvalidityCode child1Invalidity = child1.TrackData.CheckValidity();
+                RCT2TrackData.InvalidityCode child2Invalidity = child2.TrackData.CheckValidity();
+                if (child1Invalidity != RCT2TrackData.InvalidityCode.Valid ||
+                    child2Invalidity != RCT2TrackData.InvalidityCode.Valid)
                 {
                     redo = true;
+                    redoCount++;
                     crossoverPoint = random.Next(length);
                 }
                 else
@@ -233,6 +295,10 @@ namespace RCT2GA
                     redo = false;
                     children.Add(child1);
                     children.Add(child2);
+                    if (crossoverPoint != length)
+                    {
+                        successfulCrossovers++;
+                    }
                 }
 
             } while (redo);
@@ -242,20 +308,33 @@ namespace RCT2GA
 
         private RCT2RideData Mutation(RCT2RideData candidate)
         {
-            for (int i = 2; i < candidate.TrackData.TrackData.Count; i++)
+            //Console.WriteLine("------------");
+            //foreach (var track in candidate.TrackData.TrackData)
+            //{
+            //    Console.WriteLine(track.TrackElement.ToString());
+            //}
+            bool hasExtraPiece = false;
+            for (int i = 2; i < candidate.TrackData.TrackData.Count(); i++)
             {
-                if (random.NextDouble() >= mutationRate)
+
+                if (random.NextDouble() <= mutationRate)
                 {
                     //Get possible candidates
                     RCT2RideData candidateCopy = new RCT2RideData(candidate);
-                    List<RCT2TrackElements.RCT2TrackElement> candidateReplacements = RCT2TrackElements.FindValidSuccessors(whitelistedTracks, candidate.TrackData.TrackData[i].TrackElement);
+                    List<RCT2TrackElements.RCT2TrackElement> candidateReplacements = RCT2TrackElements.FindValidSuccessors(whitelistedTracks, candidate.TrackData.TrackData[i - 1].TrackElement);
                     bool redo = false;
 
                     do
                     {
+
                         //If we're out of possible replacements
                         if (candidateReplacements.Count <= 0)
                         {
+                            //Console.WriteLine("/////////////");
+                            //foreach (var track in candidate.TrackData.TrackData)
+                            //{
+                            //    Console.WriteLine(track.TrackElement.ToString());
+                            //}
                             return candidate;
                         }
 
@@ -290,8 +369,55 @@ namespace RCT2GA
                         }
 
                         //Replace the existing element at that location with this
+                        if (hasExtraPiece)
+                        {
+                            candidateCopy.TrackData.TrackData.RemoveAt(i + 1);
+                            hasExtraPiece = false;
+                        }
                         candidateCopy.TrackData.TrackData.RemoveAt(i);
-                        candidateCopy.TrackData.TrackData.Insert(i, randomElement);
+
+                        if (randomElement.TrackElement == RCT2TrackElements.RCT2TrackElement.FlatToIncline25 || 
+                            randomElement.TrackElement == RCT2TrackElements.RCT2TrackElement.Incline25)
+                        {
+                            candidateCopy.TrackData.TrackData.Insert(i, randomElement);
+                            RCT2TrackPiece bridgeElement = new RCT2TrackPiece();
+                            bridgeElement.TrackElement = RCT2TrackElements.RCT2TrackElement.Incline25ToFlat;
+                            bridgeElement.Qualifier = new RCT2Qualifier()
+                            {
+                                IsChainLift = true,
+                                TrackColourSchemeNumber = 0,
+                                TrackRotation = RideData.RCT2Qualifier.RCT2QualifierRotation.Zero,
+                                AtTerminalStation = false,
+                                StationNumber = 0
+                            };
+                            candidateCopy.TrackData.TrackData.Insert(i + 1, bridgeElement);
+
+                            //Console.WriteLine($"\tAttempted to Mutate into {randomElement.TrackElement.ToString()}");
+                            hasExtraPiece = true;
+                        }
+                        else if (randomElement.TrackElement == RCT2TrackElements.RCT2TrackElement.FlatToDecline25 ||
+                                 randomElement.TrackElement == RCT2TrackElements.RCT2TrackElement.Decline25)
+                        {
+                            candidateCopy.TrackData.TrackData.Insert(i, randomElement);
+                            RCT2TrackPiece bridgeElement = new RCT2TrackPiece();
+                            bridgeElement.TrackElement = RCT2TrackElements.RCT2TrackElement.Decline25ToFlat;
+                            bridgeElement.Qualifier = new RCT2Qualifier()
+                            {
+                                IsChainLift = false,
+                                TrackColourSchemeNumber = 0,
+                                TrackRotation = RideData.RCT2Qualifier.RCT2QualifierRotation.Zero,
+                                AtTerminalStation = false,
+                                StationNumber = 0
+                            };
+                            candidateCopy.TrackData.TrackData.Insert(i + 1, bridgeElement);
+
+                            //Console.WriteLine($"\tAttempted to Mutate into {randomElement.TrackElement.ToString()}");
+                            hasExtraPiece = true;
+                        }
+                        else
+                        {
+                            candidateCopy.TrackData.TrackData.Insert(i, randomElement);
+                        }
 
                         //If it makes the track invalid, try again
                         if (candidateCopy.TrackData.CheckValidity() != RCT2TrackData.InvalidityCode.Valid)
@@ -301,6 +427,8 @@ namespace RCT2GA
                         else
                         {
                             redo = false;
+                            successfulMutations++;
+                            hasExtraPiece = false;
                         }
 
                     } while (redo);
@@ -315,7 +443,7 @@ namespace RCT2GA
             if (population.Count >= 2)
             {
                 //Go through and populate most of our next generation with new children
-                for (int i = 0; i < populationSize - 2; i++)
+                while (nextPopulation.Count() < (populationSize - 2))
                 {
                     RCT2RideData parent1 = SelectCandidate();
                     RCT2RideData parent2;
@@ -555,9 +683,9 @@ namespace RCT2GA
             //TODO: Marking valid track pieces as invalid
             //      The prior connection check is failing
 
-            for (int i = 1; i < length + 2; i++)
+            for (int i = 2; i < length; i++)
             {
-                List<RCT2TrackElements.RCT2TrackElement> candidates = RCT2TrackElements.FindValidSuccessors(whitelistedTracks, trackData.TrackData[i].TrackElement);
+                List<RCT2TrackElements.RCT2TrackElement> candidates = RCT2TrackElements.FindValidSuccessors(whitelistedTracks, trackData.TrackData[i - 1].TrackElement);
                 bool reselect = false;
 
                 do
@@ -565,16 +693,17 @@ namespace RCT2GA
                     //If we have no candidates left
                     if (candidates.Count <= 0)
                     {
-                        if (i < 1)
+                        if (i < 3)
                         {
                             throw new Exception("ERROR: Unable to create Coaster - Index stepped back too far");
                         }
-                        Console.WriteLine("ERROR: No Valid Track Pieces Found, Stepping back and starting again");
-                        trackData.TrackData.RemoveAt(i--);
+                        //Console.WriteLine("ERROR: No Valid Track Pieces Found, Stepping back and starting again");
+                        trackData.TrackData.Remove(trackData.TrackData.Last());
+                        i -= 2;
 
 
                         //TODO - FIX SOME SHIT IN HERE, CONTINUE IS DUMB REWORK IT
-                        continue;
+                        break;
                     }
 
                     //Select our successor and remove it from the potential pool
@@ -582,7 +711,7 @@ namespace RCT2GA
                     candidates.Remove(successor);
                     RCT2TrackElementProperty property = RCT2TrackElements.TrackElementPropertyMap[successor];
 
-                    Console.WriteLine($"\tAttempting Track Piece {successor.ToString()}");
+                    //Console.WriteLine($"\tAttempting Track Piece {successor.ToString()}");
 
                     RCT2Qualifier qualifier;
 
@@ -630,7 +759,7 @@ namespace RCT2GA
                         //Remove it and try again
                         reselect = true;
                         trackData.TrackData.Remove(trackData.TrackData.Last());
-                        Console.WriteLine($"\tInvalid Selection, Code: {invalidityCode.ToString()}");
+                        //Console.WriteLine($"\tInvalid Selection, Code: {invalidityCode.ToString()}");
                     }
                     else
                     {
@@ -638,7 +767,12 @@ namespace RCT2GA
                     }
                 } while (reselect);
 
-                Console.WriteLine($"{trackData.TrackData.Last().TrackElement.ToString()} Selected!");       
+                //Console.WriteLine($"{trackData.TrackData.Last().TrackElement.ToString()} Selected!");       
+            }
+
+            for(int i = 0; i < trackData.TrackData.Count(); i++)
+            {
+                Console.WriteLine("\t" + trackData.TrackData[i].TrackElement.ToString());
             }
 
             return trackData;

@@ -18,6 +18,12 @@ namespace RCT2GA
             Y = y;
         }
 
+        public Vector2(Vector2 copy)
+        {
+            X = copy.X;
+            Y = copy.Y;
+        }
+
         public void RotateBy(int angle)
         {
             if (angle == 0)

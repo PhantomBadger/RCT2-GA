@@ -46,6 +46,48 @@ namespace RCT2GA.RideData
         public bool LaunchedLiftHill { get; set; }
         public bool LargeHalfLoop { get; set; }
 
+        public RCT2RideFeatures(RCT2RideFeatures copy)
+        {
+            StraightFlat = copy.StraightFlat;
+            StationPlatform = copy.StationPlatform;
+            LiftChain = copy.LiftChain;
+            SteepLiftChain = copy.SteepLiftChain;
+            CurveLiftChain = copy.CurveLiftChain;
+            Banking = copy.Banking;
+            VerticalLoop = copy.VerticalLoop;
+
+            NormalSlope = copy.NormalSlope;
+            SteepSlope = copy.SteepSlope;
+            FlatToSteep = copy.FlatToSteep;
+            SlopedCurves = copy.SlopedCurves;
+            SteepTwist = copy.SteepTwist;
+            SBends = copy.SBends;
+            SmallRadiusCurves = copy.SmallRadiusCurves;
+            SmallRadiusBanked = copy.SmallRadiusBanked;
+
+            MediumRadiusCurves = copy.MediumRadiusCurves;
+            InlineTwist = copy.InlineTwist;
+            HalfLoop = copy.HalfLoop;
+            HalfCorkscrew = copy.HalfCorkscrew;
+            TowerBaseVertical = copy.TowerBaseVertical;
+            HelixBanked = copy.HelixBanked;
+            HelixUnbanked = copy.HelixUnbanked;
+
+            Brakes = copy.Brakes;
+            Booster = copy.Booster;
+            OnRidePhoto = copy.OnRidePhoto;
+            WaterSplash = copy.WaterSplash;
+            VerticalTrack = copy.VerticalTrack;
+            BarrelRoll = copy.BarrelRoll;
+            LaunchedLiftHill = copy.LaunchedLiftHill;
+            LargeHalfLoop = copy.LargeHalfLoop;
+        }
+
+        public RCT2RideFeatures()
+        {
+
+        }
+
         public void Populate(RCT2TrackData track)
         {
             //If the track is empty, return

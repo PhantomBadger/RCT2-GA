@@ -382,6 +382,15 @@ namespace RCT2GA.RideData
             { RCT2TrackName.LIMLaunchedRollerCoaster, "PREMT1" },
         };
 
+        public RCT2RideCode(RCT2RideCode trackType)
+        {
+            RideType = trackType.RideType;
+        }
+
+        public RCT2RideCode()
+        {
+        }
+
         public RCT2TrackName RideType { get; set; }
     }
 }
