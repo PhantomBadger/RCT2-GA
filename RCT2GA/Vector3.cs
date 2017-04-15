@@ -63,5 +63,10 @@ namespace RCT2GA
             return (X == vec.X && Y == vec.Y && Z == vec.Z);
         }
 
+        public double Length()
+        {
+            return Math.Sqrt(Math.Pow(X, 2) + Math.Pow(Y, 2) + Math.Pow(Z, 2));
+        }
+
     }
 }

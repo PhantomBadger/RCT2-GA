@@ -1196,8 +1196,14 @@ namespace RCT2GA
         static void GenerateCoasterWithGA()
         {
             GeneticAlgorithm ga = new GeneticAlgorithm();
-            ga.InitialiseParameters();
             ga.PerformAlgorithm();
+
+            if (!Directory.Exists("GenerationLogs"))
+            {
+                Directory.CreateDirectory("GenerationLogs");
+            }
+            string filename = "GenerationLogs/TESTLOG_" + DateTime.Now.ToString("yyMMddhhmmss") + ".txt";
+            Logger.Save(filename);
 
             //RideData.RCT2RideData coaster = ga.GenerateWoodenRollerCoaster();
 
