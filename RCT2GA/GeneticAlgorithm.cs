@@ -165,7 +165,7 @@ namespace RCT2GA
             //Get Displacement to End & Max Y Displacement
             Vector3 prevWorldPos = new Vector3(0.0f, 0.0f, 0.0f);
             int worldDirectionChange = 0;
-            int maxYDisplacement = 0;
+            int maxYVariance = 0;
             for (int i = 0; i < candidate.TrackData.TrackData.Count; i++)
             {
                 RCT2TrackElements.RCT2TrackElement currentElement = candidate.TrackData.TrackData[i].TrackElement;
@@ -176,14 +176,15 @@ namespace RCT2GA
                 //Update World Position Changes
                 prevWorldPos += worldDisplacement;
 
-                if (prevWorldPos.Y >= maxYDisplacement)
+                if (prevWorldPos.Y >= maxYVariance)
                 {
-                    maxYDisplacement = (int)prevWorldPos.Y;
+                    maxYVariance = (int)prevWorldPos.Y;
                 }
 
                 //Update World Direction Changes
                 worldDirectionChange = candidate.TrackData.UpdateRotation(worldDirectionChange, property.DirectionChange);
             }
+            maxYVariance -= (int)prevWorldPos.Y;
             Vector3 displacementToEnd = new Vector3(0, 0, 0);
             displacementToEnd.X = Math.Abs(prevWorldPos.X);
             displacementToEnd.Y = Math.Abs(prevWorldPos.Y);
@@ -193,7 +194,7 @@ namespace RCT2GA
 
             double displacementToEndLength = Math.Sqrt(Math.Pow(displacementToEnd.X, 2) + Math.Pow(displacementToEnd.Y, 2) + Math.Pow(displacementToEnd.Z, 2));
 
-            fitness = (int)((/*(candidate.ExcitementTimesTen / (1 + candidate.NauseaTimesTen)) - (displacementToEndLength)*/ + (maxYDisplacement * 10)) * 1000);
+            fitness = (int)(((candidate.ExcitementTimesTen / (1 + candidate.NauseaTimesTen)) + (maxYVariance)) * 1000);
 
             return fitness;
         }
@@ -210,7 +211,8 @@ namespace RCT2GA
             int totalFitness = 0;
             for (int i = 0; i < population.Count; i++)
             {
-                totalFitness += CalculateFitness(population[i]);
+                int curFitness = CalculateFitness(population[i]);
+                totalFitness += curFitness;
             }
 
             //Get a random number
@@ -503,8 +505,11 @@ namespace RCT2GA
             coaster.TrackType = new RideData.RCT2RideCode();
             coaster.TrackType.RideType = RideData.RCT2RideCode.RCT2TrackName.WoodenRollerCoaster6Seater;
 
-            //Track Data
-            coaster.TrackData = GenerateWoodenRollerCoasterTrack();
+            do
+            {
+                //Track Data
+                coaster.TrackData = GenerateWoodenRollerCoasterTrack();
+            } while (coaster.TrackData == null);
 
             //Ride Features
             coaster.RideFeatures = new RideData.RCT2RideFeatures();
@@ -637,10 +642,17 @@ namespace RCT2GA
             coaster.NumberOfCircuits = 1;
 
             //Check Validity
-            if (coaster.TrackData.CheckValidity() != RCT2TrackData.InvalidityCode.Valid)
+            RCT2TrackData.InvalidityCode invalidityResult = coaster.TrackData.CheckValidity();
+            if (invalidityResult != RCT2TrackData.InvalidityCode.Valid)
             {
-                Console.WriteLine("ERROR: Failed Validity Check");
-                return null;
+                for (int i = 0; i < coaster.TrackData.TrackData.Count(); i++)
+                {
+                    Console.WriteLine("\t\t" + coaster.TrackData.TrackData[i].TrackElement);
+                }
+                Console.WriteLine("Failed Validity Check: " + invalidityResult.ToString());
+
+                RCT2TrackData.InvalidityCode invalidityResult2 = coaster.TrackData.CheckValidity();
+                RCT2TrackData.InvalidityCode invalidityResult3 = coaster.TrackData.CheckValidity();
             }
 
             return coaster;
@@ -693,17 +705,24 @@ namespace RCT2GA
                     //If we have no candidates left
                     if (candidates.Count <= 0)
                     {
-                        if (i < 3)
-                        {
-                            throw new Exception("ERROR: Unable to create Coaster - Index stepped back too far");
-                        }
-                        //Console.WriteLine("ERROR: No Valid Track Pieces Found, Stepping back and starting again");
-                        trackData.TrackData.Remove(trackData.TrackData.Last());
-                        i -= 2;
+                        return null;
+                        //if (steppedBack)
+                        //{
+                        //    return null;
+                        //}
+
+                        //if (i < 3)
+                        //{
+                        //    throw new Exception("ERROR: Unable to create Coaster - Index stepped back too far");
+                        //}
+                        ////Console.WriteLine("ERROR: No Valid Track Pieces Found, Stepping back and starting again");
+                        //trackData.TrackData.Remove(trackData.TrackData.Last());
+                        //i -= 2;
+                        //steppedBack = true;
 
 
-                        //TODO - FIX SOME SHIT IN HERE, CONTINUE IS DUMB REWORK IT
-                        break;
+                        //TODO - Make this a better solution, right now it's a hack to make it work
+                        //break;
                     }
 
                     //Select our successor and remove it from the potential pool
@@ -726,7 +745,7 @@ namespace RCT2GA
                         bool chainLift = trackData.TrackData[i - 1].Qualifier.IsChainLift;
 
                         //If our current velocity would be negative or zero, we need a chain lift
-                        
+
 
                         qualifier = new RCT2Qualifier()
                         {
@@ -770,10 +789,10 @@ namespace RCT2GA
                 //Console.WriteLine($"{trackData.TrackData.Last().TrackElement.ToString()} Selected!");       
             }
 
-            for(int i = 0; i < trackData.TrackData.Count(); i++)
-            {
-                Console.WriteLine("\t" + trackData.TrackData[i].TrackElement.ToString());
-            }
+            //for (int i = 0; i < trackData.TrackData.Count(); i++)
+            //{
+            //    Console.WriteLine("\t" + trackData.TrackData[i].TrackElement.ToString());
+            //}
 
             return trackData;
         }

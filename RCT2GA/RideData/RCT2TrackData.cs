@@ -39,7 +39,6 @@ namespace RCT2GA.RideData
 
         bool velocityChecked = false;
         bool velocityGoesNegative = false;
-        bool hasRidePhoto = false;
 
         //Wooden Roller Coaster Min Data
         //Move to a Ride Structure eventually
@@ -81,6 +80,7 @@ namespace RCT2GA.RideData
             // - Track doesn't go underground (Go lower than the station height)
             // - Track's velocity doesn't go negative
             // - Track has more than one OnRidePhoto
+            bool hasRidePhoto = false;
 
             if (TrackData.Count <= 0)
             {
@@ -965,7 +965,8 @@ namespace RCT2GA.RideData
                     break;
             }
 
-            return worldDisplacement;
+            //Add 1 to the Y to account for the cell it is in already
+            return worldDisplacement + new Vector3(0, 1, 0);
         }
 
         public int UpdateRotation(int currentRotation, RCT2TrackElementProperty.RCT2TrackDirectionChange directionChange)
